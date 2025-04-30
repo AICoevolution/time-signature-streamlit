@@ -43,7 +43,7 @@ if query:
         st.markdown("### Matching Works")
         if results:
             for composer, work, movements, _ in results:
-                st.markdown(f"<div style='font-size: 12px; margin-bottom: 1em;'>
+                st.markdown("<div style='font-size: 12px; margin-bottom: 1em;'>
                             <strong>{work}</strong><br><em>{composer}</em><br>" +
                             "<br>".join([f"{mv['movement']} — {mv['time_signature']}" for mv in movements]) +
                             "</div>", unsafe_allow_html=True)
