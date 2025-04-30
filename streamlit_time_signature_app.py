@@ -25,10 +25,9 @@ def suggest_imslp_titles(query, imslp_db, max_results=10):
             ratio = difflib.SequenceMatcher(None, query.lower(), full_text).ratio()
             score = word_matches + ratio
 
-            if score > 1:  # Higher score threshold
+            if score > 1:
                 suggestions.append((composer, work_title, works[work_title], score))
 
-    # Sort by score
     suggestions = sorted(suggestions, key=lambda x: x[3], reverse=True)
     return suggestions[:max_results]
 
@@ -45,24 +44,31 @@ if query:
     imslp_db = load_imslp_database()
     results = suggest_imslp_titles(query, imslp_db)
 
-    with st.sidebar:
-        st.markdown("### Matching Works")
-        if results:
-            for composer, work, movements, _ in results:
-                mv_list = "<br>".join([f"{mv['movement']} — {mv['time_signature']}" for mv in movements])
-                query_encoded = urllib.parse.quote(f"{work} {composer}")
-                spotify_url = f"https://open.spotify.com/search/{query_encoded}"
-                imslp_url = f"https://imslp.org/index.php?search={query_encoded}&title=Special:Search&go=Go"
-                html = f"""
-                    <div style='font-size: 12px; margin-bottom: 1em;'>
-                        <strong>{work}</strong><br><em>{composer}</em><br>{mv_list}<br>
-                        <a href='{spotify_url}' target='_blank'>🎧 Spotify</a> |
-                        <a href='{imslp_url}' target='_blank'>📜 IMSLP</a>
-                    </div>
-                """
-                st.markdown(html, unsafe_allow_html=True)
-        else:
-            st.warning("No matches found.")
+    if results:
+        for composer, work, movements, _ in results:
+            st.markdown("---")
+            st.markdown(f"### 🎼 {work}")
+            st.markdown(f"*by {composer}*")
+
+            for mv in movements:
+                st.markdown(f"- **{mv['movement']}** — `{mv['time_signature']}`")
+
+            query_encoded = urllib.parse.quote(f"{work} {composer}")
+            spotify_url = f"https://open.spotify.com/search/{query_encoded}"
+            imslp_url = f"https://imslp.org/index.php?search={query_encoded}&title=Special:Search&go=Go"
+            youtube_url = f"https://www.youtube.com/results?search_query={query_encoded}"
+
+            st.markdown(
+                f"[🎧 Listen on Spotify]({spotify_url}) | [📜 View Score on IMSLP]({imslp_url}) | [▶️ YouTube Search]({youtube_url})",
+                unsafe_allow_html=True
+            )
+    else:
+        st.warning("No matches found.")
+
+# === Sidebar ===
+with st.sidebar:
+    st.markdown("### ℹ️ About This Tool")
+    st.write("Search classical works and get movement time signatures, plus links to listen or read the score.")
 
 # === Optional: Show Dataset ===
 with st.expander("📂 View Raw Dataset (Sample)"):
