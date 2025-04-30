@@ -11,43 +11,42 @@ def load_imslp_database(path='imslp_scores_corrected.json'):
         st.error(f"Failed to load IMSLP data: {e}")
         return {}
 
-# === Matching Function ===
-def match_imslp_title(query, imslp_db):
-    best_match = None
-    best_score = 0
-    matched_composer = None
+# === Suggestive Matching Function ===
+def suggest_imslp_titles(query, imslp_db, max_results=10):
+    suggestions = []
 
     for composer, works in imslp_db.items():
         for work_title in works:
-            ratio = difflib.SequenceMatcher(None, query.lower(), work_title.lower()).ratio()
-            if ratio > best_score and ratio > 0.5:
-                best_match = work_title
-                matched_composer = composer
-                best_score = ratio
+            text = f"{composer} – {work_title}"
+            ratio = difflib.SequenceMatcher(None, query.lower(), text.lower()).ratio()
+            if query.lower() in composer.lower() or query.lower() in work_title.lower() or ratio > 0.4:
+                suggestions.append((composer, work_title, works[work_title], ratio))
 
-    if matched_composer and best_match:
-        return matched_composer, best_match, imslp_db[matched_composer][best_match]
-    return None, None, None
+    # Sort by match quality
+    suggestions = sorted(suggestions, key=lambda x: x[3], reverse=True)
+    return suggestions[:max_results]
 
 # === Streamlit UI ===
 st.set_page_config(page_title="Classical Time Signature Lookup", layout="centered")
 st.title("🎵 Classical Time Signature Lookup")
 st.markdown("""
-Type a classical work name (e.g., **Mozart Symphony 24**, **Beethoven Sonata Moonlight**) and see its time signatures for each movement.
+Type a classical work name (e.g., **Mozart Symphony 24**, **Beethoven Sonata Moonlight**) and see time signatures for each movement.
 """)
 
 query = st.text_input("Enter Work Title:", "Mozart Symphony 24")
 
 if query:
     imslp_db = load_imslp_database()
-    composer, work, result = match_imslp_title(query, imslp_db)
+    results = suggest_imslp_titles(query, imslp_db)
 
-    if composer and work:
-        st.success(f"Matched Work: {work}\nby {composer}")
-        for mv in result:
-            st.markdown(f"- **{mv['movement']}** — `{mv['time_signature']}`")
+    if results:
+        for composer, work, movements, _ in results:
+            st.markdown(f"### {work}\n*by {composer}*")
+            for mv in movements:
+                st.markdown(f"- **{mv['movement']}** — `{mv['time_signature']}`")
+            st.markdown("---")
     else:
-        st.warning("No match found in dataset.")
+        st.warning("No matches found.")
 
 # === Optional: Show Dataset ===
 with st.expander("📂 View Raw Dataset (Sample)"):
