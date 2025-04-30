@@ -1,6 +1,7 @@
 import streamlit as st
 import difflib
 import json
+import urllib.parse
 
 # === Load IMSLP JSON Database ===
 def load_imslp_database(path='imslp_scores_corrected.json'):
@@ -49,9 +50,14 @@ if query:
         if results:
             for composer, work, movements, _ in results:
                 mv_list = "<br>".join([f"{mv['movement']} — {mv['time_signature']}" for mv in movements])
+                query_encoded = urllib.parse.quote(f"{work} {composer}")
+                spotify_url = f"https://open.spotify.com/search/{query_encoded}"
+                imslp_url = f"https://imslp.org/index.php?search={query_encoded}&title=Special:Search&go=Go"
                 html = f"""
                     <div style='font-size: 12px; margin-bottom: 1em;'>
-                        <strong>{work}</strong><br><em>{composer}</em><br>{mv_list}
+                        <strong>{work}</strong><br><em>{composer}</em><br>{mv_list}<br>
+                        <a href='{spotify_url}' target='_blank'>🎧 Spotify</a> |
+                        <a href='{imslp_url}' target='_blank'>📜 IMSLP</a>
                     </div>
                 """
                 st.markdown(html, unsafe_allow_html=True)
