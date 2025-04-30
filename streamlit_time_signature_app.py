@@ -59,5 +59,5 @@ if query:
             st.warning("No matches found.")
 
 # === Optional: Show Dataset ===
-with st.expander("📂 View Raw Dataset (Sample)")"):
+with st.expander("📂 View Raw Dataset (Sample)"):
     st.json({k: list(v.keys())[:2] for k, v in imslp_db.items()})
