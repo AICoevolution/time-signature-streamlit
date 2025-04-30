@@ -55,7 +55,7 @@ if query:
 
             query_encoded = urllib.parse.quote(f"{work} {composer}")
             spotify_url = f"https://open.spotify.com/search/{query_encoded}"
-            imslp_url = f"https://imslp.org/index.php?search={query_encoded}&title=Special:Search&go=Go"
+            imslp_url = f"https://www.google.com/search?q=site%3Aimslp.org+score+pdf+{query_encoded}"
             youtube_url = f"https://www.youtube.com/results?search_query={query_encoded}"
 
             st.markdown(
