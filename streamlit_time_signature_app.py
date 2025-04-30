@@ -3,7 +3,6 @@ import difflib
 import json
 import urllib.parse
 import requests
-from bs4 import BeautifulSoup
 
 # === Load IMSLP JSON Database ===
 def load_imslp_database(path='imslp_scores_corrected.json'):
@@ -33,19 +32,6 @@ def suggest_imslp_titles(query, imslp_db, max_results=10):
     suggestions = sorted(suggestions, key=lambda x: x[3], reverse=True)
     return suggestions[:max_results]
 
-# === Try to Get First YouTube Video ID ===
-def fetch_youtube_video_id(query):
-    search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(query)}"
-    try:
-        response = requests.get(search_url)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, "html.parser")
-            for link in soup.find_all("a"):
-                href = link.get("href")
-                if href and href.startswith("/watch?v="):
-                    return href.split("=")[1][:11]
-    except:
-        return None
     return None
 
 # === Streamlit UI ===
@@ -80,10 +66,7 @@ if query:
                 unsafe_allow_html=True
             )
 
-            # === Embedded YouTube Player ===
-            video_id = fetch_youtube_video_id(f"{work} {composer}")
-            if video_id:
-                st.video(f"https://www.youtube.com/embed/{video_id}")
+            
     else:
         st.warning("No matches found.")
 
