@@ -33,7 +33,7 @@ def suggest_imslp_titles(query, imslp_db, max_results=10):
 
 # === Streamlit UI ===
 st.set_page_config(page_title="Classical Time Signature Lookup", layout="wide")
-st.title("\ud83c\udfb5 Classical Time Signature Lookup")
+st.title("🎵 Classical Time Signature Lookup")
 st.markdown("""
 Type a classical work name (e.g., **Mozart Symphony 24**, **Beethoven Sonata Moonlight**) and see time signatures for each movement.
 """)
@@ -59,5 +59,5 @@ if query:
             st.warning("No matches found.")
 
 # === Optional: Show Dataset ===
-with st.expander("\ud83d\udcc2 View Raw Dataset (Sample)"):
+with st.expander("📂 View Raw Dataset (Sample)")"):
     st.json({k: list(v.keys())[:2] for k, v in imslp_db.items()})
