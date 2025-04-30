@@ -27,7 +27,7 @@ def suggest_imslp_titles(query, imslp_db, max_results=10):
     return suggestions[:max_results]
 
 # === Streamlit UI ===
-st.set_page_config(page_title="Classical Time Signature Lookup", layout="centered")
+st.set_page_config(page_title="Classical Time Signature Lookup", layout="wide")
 st.title("🎵 Classical Time Signature Lookup")
 st.markdown("""
 Type a classical work name (e.g., **Mozart Symphony 24**, **Beethoven Sonata Moonlight**) and see time signatures for each movement.
@@ -39,14 +39,16 @@ if query:
     imslp_db = load_imslp_database()
     results = suggest_imslp_titles(query, imslp_db)
 
-    if results:
-        for composer, work, movements, _ in results:
-            st.markdown(f"### {work}\n*by {composer}*")
-            for mv in movements:
-                st.markdown(f"- **{mv['movement']}** — `{mv['time_signature']}`")
-            st.markdown("---")
-    else:
-        st.warning("No matches found.")
+    with st.sidebar:
+        st.markdown("### Matching Works")
+        if results:
+            for composer, work, movements, _ in results:
+                st.markdown(f"<div style='font-size: 12px; margin-bottom: 1em;'>
+                            <strong>{work}</strong><br><em>{composer}</em><br>" +
+                            "<br>".join([f"{mv['movement']} — {mv['time_signature']}" for mv in movements]) +
+                            "</div>", unsafe_allow_html=True)
+        else:
+            st.warning("No matches found.")
 
 # === Optional: Show Dataset ===
 with st.expander("📂 View Raw Dataset (Sample)"):
