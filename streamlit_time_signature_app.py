@@ -1,1030 +1,704 @@
+import streamlit as st
+import difflib
 import json
-import os
-import sys
+import urllib.parse
+import random
+import re
+import pandas as pd
+import altair as alt
+import requests
+from bs4 import BeautifulSoup
 
-def create_classical_dataset():
-    """Create a comprehensive dataset of classical works with time signatures"""
-    
-    print("Generating comprehensive classical music dataset...")
-    
-    # Output dictionary
-    output_data = {}
-    
-    # Add major composers and their works
-    add_beethoven(output_data)
-    add_mozart(output_data)
-    add_bach(output_data)
-    add_chopin(output_data)
-    add_tchaikovsky(output_data)
-    add_brahms(output_data)
-    add_haydn(output_data)
-    add_schubert(output_data)
-    add_debussy(output_data)
-    add_ravel(output_data)
-    
-    # Save the dataset
-    output_path = 'classical_time_signatures.json'
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(output_data, f, indent=2, ensure_ascii=False)
-    
-    # Print statistics
-    total_composers = len(output_data)
-    total_works = sum(len(works) for works in output_data.values())
-    total_movements = sum(sum(len(movements) for movements in composer_works.values()) 
-                       for composer_works in output_data.values())
-    
-    print(f"Dataset generated with:")
-    print(f"- {total_composers} composers")
-    print(f"- {total_works} musical works")
-    print(f"- {total_movements} movements with time signatures")
-    print(f"Saved to {output_path}")
-    
-    return output_data
+# =============================================
+# === Configure Page and Custom CSS Styling ===
+# =============================================
+st.set_page_config(
+    page_title="Classical Time Signature Explorer",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-def add_beethoven(output_data):
-    """Add Beethoven's major works"""
-    composer = "Ludwig van Beethoven"
-    output_data[composer] = {}
-    
-    # Symphonies
-    symphonies = {
-        1: {"key": "C major", "nickname": None},
-        2: {"key": "D major", "nickname": None},
-        3: {"key": "E-flat major", "nickname": "Eroica"},
-        4: {"key": "B-flat major", "nickname": None},
-        5: {"key": "C minor", "nickname": None},
-        6: {"key": "F major", "nickname": "Pastoral"},
-        7: {"key": "A major", "nickname": None},
-        8: {"key": "F major", "nickname": None},
-        9: {"key": "D minor", "nickname": "Choral"}
+# Custom CSS for fixed header and compact layout
+st.markdown("""
+<style>
+    /* Top header customization */
+    .main-header {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: white;
+        padding: 10px 0;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 10px;
     }
     
-    for num, info in symphonies.items():
-        title = f"Symphony No. {num} in {info['key']}"
-        if info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        # Custom movements for each symphony
-        if num == 5:
-            movements = [
-                {"movement": "I. Allegro con brio", "time_signature": "2/4"},
-                {"movement": "II. Andante con moto", "time_signature": "3/8"},
-                {"movement": "III. Scherzo: Allegro", "time_signature": "3/4"},
-                {"movement": "IV. Allegro", "time_signature": "4/4"}
-            ]
-        elif num == 6:
-            movements = [
-                {"movement": "I. Awakening of cheerful feelings on arrival in the countryside: Allegro ma non troppo", "time_signature": "2/4"},
-                {"movement": "II. Scene by the brook: Andante molto mosso", "time_signature": "12/8"},
-                {"movement": "III. Merry gathering of country folk: Allegro", "time_signature": "3/4"},
-                {"movement": "IV. Thunderstorm: Allegro", "time_signature": "4/4"},
-                {"movement": "V. Shepherd's song. Cheerful and thankful feelings after the storm: Allegretto", "time_signature": "6/8"}
-            ]
-        elif num == 9:
-            movements = [
-                {"movement": "I. Allegro ma non troppo, un poco maestoso", "time_signature": "2/4"},
-                {"movement": "II. Scherzo: Molto vivace", "time_signature": "3/4"},
-                {"movement": "III. Adagio molto e cantabile", "time_signature": "4/4"},
-                {"movement": "IV. Finale: Presto - Allegro assai", "time_signature": "4/4"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro con brio", "time_signature": "4/4"},
-                {"movement": "II. Andante cantabile con moto", "time_signature": "3/4"},
-                {"movement": "III. Menuetto: Allegro molto e vivace", "time_signature": "3/4"},
-                {"movement": "IV. Adagio - Allegro molto e vivace", "time_signature": "2/2"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Piano Sonatas
-    sonatas = {
-        1: {"key": "F minor", "nickname": None, "opus": "Op. 2 No. 1"},
-        8: {"key": "C minor", "nickname": "Pathétique", "opus": "Op. 13"},
-        14: {"key": "C-sharp minor", "nickname": "Moonlight", "opus": "Op. 27 No. 2"},
-        17: {"key": "D minor", "nickname": "Tempest", "opus": "Op. 31 No. 2"},
-        21: {"key": "C major", "nickname": "Waldstein", "opus": "Op. 53"},
-        23: {"key": "F minor", "nickname": "Appassionata", "opus": "Op. 57"},
-        26: {"key": "E-flat major", "nickname": "Les Adieux", "opus": "Op. 81a"},
-        29: {"key": "B-flat major", "nickname": "Hammerklavier", "opus": "Op. 106"},
-        32: {"key": "C minor", "nickname": None, "opus": "Op. 111"}
+    /* Make page title smaller and more compact */
+    h1 {
+        font-size: 2rem !important;
+        margin-top: -15px !important;
+        margin-bottom: 0px !important;
     }
     
-    for num, info in sonatas.items():
-        title = f"Piano Sonata No. {num} in {info['key']}, {info['opus']}"
-        if info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        # Custom movements for each sonata
-        if num == 14:  # Moonlight
-            movements = [
-                {"movement": "I. Adagio sostenuto", "time_signature": "2/2"},
-                {"movement": "II. Allegretto", "time_signature": "3/4"},
-                {"movement": "III. Presto agitato", "time_signature": "4/4"}
-            ]
-        elif num == 8:  # Pathétique
-            movements = [
-                {"movement": "I. Grave - Allegro di molto e con brio", "time_signature": "4/4"},
-                {"movement": "II. Adagio cantabile", "time_signature": "2/4"},
-                {"movement": "III. Rondo: Allegro", "time_signature": "2/2"}
-            ]
-        elif num == 23:  # Appassionata
-            movements = [
-                {"movement": "I. Allegro assai", "time_signature": "12/8"},
-                {"movement": "II. Andante con moto", "time_signature": "3/8"},
-                {"movement": "III. Allegro ma non troppo - Presto", "time_signature": "2/2"}
-            ]
-        elif num == 32:  # Op. 111
-            movements = [
-                {"movement": "I. Maestoso - Allegro con brio ed appassionato", "time_signature": "12/8"},
-                {"movement": "II. Arietta: Adagio molto semplice e cantabile", "time_signature": "9/16"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro", "time_signature": "4/4"},
-                {"movement": "II. Adagio", "time_signature": "3/4"},
-                {"movement": "III. Rondo: Allegro", "time_signature": "2/4"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # String Quartets
-    quartets = {
-        1: {"key": "F major", "opus": "Op. 18 No. 1"},
-        7: {"key": "F major", "opus": "Op. 59 No. 1", "nickname": "Razumovsky"},
-        14: {"key": "C-sharp minor", "opus": "Op. 131"}
+    /* Make tabs sticky */
+    .stTabs [data-baseweb="tab-list"] {
+        position: sticky;
+        top: 60px;
+        z-index: 998;
+        background-color: white;
+        padding: 2px 0;
     }
     
-    for num, info in quartets.items():
-        title = f"String Quartet No. {num} in {info['key']}, {info['opus']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        movements = [
-            {"movement": "I. Allegro", "time_signature": "4/4"},
-            {"movement": "II. Adagio affettuoso ed appassionato", "time_signature": "9/8"},
-            {"movement": "III. Scherzo: Allegro molto", "time_signature": "3/4"},
-            {"movement": "IV. Allegro", "time_signature": "2/2"}
-        ]
-        
-        output_data[composer][title] = movements
-    
-    # Piano Concertos
-    concertos = {
-        4: {"key": "G major", "opus": "Op. 58"},
-        5: {"key": "E-flat major", "opus": "Op. 73", "nickname": "Emperor"}
+    /* Result cards styling */
+    .result-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
     }
     
-    for num, info in concertos.items():
-        title = f"Piano Concerto No. {num} in {info['key']}, {info['opus']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        movements = [
-            {"movement": "I. Allegro moderato", "time_signature": "4/4"},
-            {"movement": "II. Andante con moto", "time_signature": "2/4"},
-            {"movement": "III. Rondo: Vivace", "time_signature": "6/8"}
-        ]
-        
-        output_data[composer][title] = movements
+    .movement-item {
+        margin: 5px 0;
+        padding: 5px 0;
+        border-bottom: 1px dotted #e0e0e0;
+    }
+    
+    .time-signature {
+        font-family: monospace;
+        background-color: #f0f0f0;
+        padding: 2px 8px;
+        border-radius: 3px;
+        font-weight: bold;
+        color: #d63384;
+    }
+    
+    /* Media integration */
+    .media-container {
+        display: flex;
+        margin-top: 10px;
+    }
+    
+    .media-container > div {
+        flex: 1;
+        padding: 5px;
+    }
+    
+    .media-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    
+    /* Make expander headers more compact */
+    .streamlit-expanderHeader {
+        font-size: 1rem !important;
+        padding: 0.5rem !important;
+    }
+    
+    /* Compact sidebar */
+    .css-1oe6wy4 {
+        padding-top: 2rem;
+    }
+    
+    /* Audio player styling */
+    .audio-player {
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-def add_mozart(output_data):
-    """Add Mozart's major works"""
-    composer = "Wolfgang Amadeus Mozart"
-    output_data[composer] = {}
-    
-    # Symphonies
-    symphonies = {
-        25: {"key": "G minor", "k": "183", "nickname": "Little G minor"},
-        29: {"key": "A major", "k": "201", "nickname": None},
-        35: {"key": "D major", "k": "385", "nickname": "Haffner"},
-        36: {"key": "C major", "k": "425", "nickname": "Linz"},
-        38: {"key": "D major", "k": "504", "nickname": "Prague"},
-        39: {"key": "E-flat major", "k": "543", "nickname": None},
-        40: {"key": "G minor", "k": "550", "nickname": "Great G minor"},
-        41: {"key": "C major", "k": "551", "nickname": "Jupiter"}
-    }
-    
-    for num, info in symphonies.items():
-        title = f"Symphony No. {num} in {info['key']}, K. {info['k']}"
-        if info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        # Special case for Symphony 40
-        if num == 40:
-            movements = [
-                {"movement": "I. Molto allegro", "time_signature": "2/2"},
-                {"movement": "II. Andante", "time_signature": "6/8"},
-                {"movement": "III. Menuetto: Allegretto", "time_signature": "3/4"},
-                {"movement": "IV. Finale: Allegro assai", "time_signature": "2/2"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro", "time_signature": "4/4"},
-                {"movement": "II. Andante", "time_signature": "3/4"},
-                {"movement": "III. Menuetto", "time_signature": "3/4"},
-                {"movement": "IV. Allegro", "time_signature": "2/2"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Piano Concertos
-    concertos = {
-        20: {"key": "D minor", "k": "466"},
-        21: {"key": "C major", "k": "467", "nickname": "Elvira Madigan"},
-        23: {"key": "A major", "k": "488"},
-        24: {"key": "C minor", "k": "491"},
-        27: {"key": "B-flat major", "k": "595"}
-    }
-    
-    for num, info in concertos.items():
-        title = f"Piano Concerto No. {num} in {info['key']}, K. {info['k']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        movements = [
-            {"movement": "I. Allegro", "time_signature": "4/4"},
-            {"movement": "II. Andante", "time_signature": "3/4"},
-            {"movement": "III. Allegro assai", "time_signature": "6/8"}
-        ]
-        
-        output_data[composer][title] = movements
-    
-    # Eine kleine Nachtmusik
-    output_data[composer]["Serenade No. 13 for strings in G major, K. 525 (\"Eine kleine Nachtmusik\")"] = [
-        {"movement": "I. Allegro", "time_signature": "4/4"},
-        {"movement": "II. Romanze: Andante", "time_signature": "2/4"},
-        {"movement": "III. Menuetto: Allegretto", "time_signature": "3/4"},
-        {"movement": "IV. Rondo: Allegro", "time_signature": "2/4"}
-    ]
-    
-    # Requiem
-    output_data[composer]["Requiem in D minor, K. 626"] = [
-        {"movement": "I. Introitus: Requiem aeternam", "time_signature": "4/4"},
-        {"movement": "II. Kyrie eleison", "time_signature": "4/4"},
-        {"movement": "III. Sequentia: Dies irae", "time_signature": "4/4"},
-        {"movement": "IV. Offertorium: Domine Jesu Christe", "time_signature": "3/4"},
-        {"movement": "V. Sanctus", "time_signature": "4/4"},
-        {"movement": "VI. Benedictus", "time_signature": "4/4"},
-        {"movement": "VII. Agnus Dei", "time_signature": "4/4"},
-        {"movement": "VIII. Communio: Lux aeterna", "time_signature": "4/4"}
-    ]
-    
-    # Piano Sonatas
-    sonatas = {
-        8: {"key": "A minor", "k": "310"},
-        11: {"key": "A major", "k": "331", "nickname": "Alla Turca"},
-        14: {"key": "C minor", "k": "457"},
-        16: {"key": "C major", "k": "545", "nickname": "Sonata facile"}
-    }
-    
-    for num, info in sonatas.items():
-        title = f"Piano Sonata No. {num} in {info['key']}, K. {info['k']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        # Special case for Sonata 11 (Alla Turca)
-        if num == 11:
-            movements = [
-                {"movement": "I. Andante grazioso", "time_signature": "6/8"},
-                {"movement": "II. Menuetto", "time_signature": "3/4"},
-                {"movement": "III. Alla Turca: Allegretto", "time_signature": "2/4"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro", "time_signature": "4/4"},
-                {"movement": "II. Andante", "time_signature": "3/4"},
-                {"movement": "III. Allegretto", "time_signature": "2/4"}
-            ]
-        
-        output_data[composer][title] = movements
-
-def add_bach(output_data):
-    """Add Bach's major works"""
-    composer = "Johann Sebastian Bach"
-    output_data[composer] = {}
-    
-    # Brandenburg Concertos
-    for i in range(1, 7):
-        keys = ["F major", "F major", "G major", "G major", "D major", "B-flat major"]
-        key = keys[i-1]
-        
-        title = f"Brandenburg Concerto No. {i} in {key}, BWV {1046 + i - 1}"
-        
-        # Different movements for each concerto
-        if i == 3:
-            movements = [
-                {"movement": "I. (Allegro)", "time_signature": "2/2"},
-                {"movement": "II. Adagio", "time_signature": "4/4"},
-                {"movement": "III. Allegro", "time_signature": "12/8"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro", "time_signature": "4/4"},
-                {"movement": "II. Adagio", "time_signature": "4/4"},
-                {"movement": "III. Allegro", "time_signature": "3/8"},
-                {"movement": "IV. Menuetto", "time_signature": "3/4"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # The Well-Tempered Clavier (just a few representative pieces)
-    wtc_keys = [
-        {"key": "C major", "bwv": "846"},
-        {"key": "C minor", "bwv": "847"},
-        {"key": "D major", "bwv": "850"},
-        {"key": "F-sharp major", "bwv": "858"},
-        {"key": "B-flat minor", "bwv": "867"}
-    ]
-    
-    for info in wtc_keys:
-        title = f"Prelude and Fugue in {info['key']}, BWV {info['bwv']} (WTC Book I)"
-        
-        movements = [
-            {"movement": "Prelude", "time_signature": "4/4"},
-            {"movement": "Fugue", "time_signature": "4/4"}
-        ]
-        
-        output_data[composer][title] = movements
-    
-    # Orchestral Suites
-    for i in range(1, 5):
-        keys = ["C major", "B minor", "D major", "D major"]
-        key = keys[i-1]
-        
-        title = f"Orchestral Suite No. {i} in {key}, BWV {1066 + i - 1}"
-        
-        # Suite No. 3 contains Air on the G String
-        if i == 3:
-            movements = [
-                {"movement": "I. Ouverture", "time_signature": "4/4"},
-                {"movement": "II. Air (\"Air on the G String\")", "time_signature": "4/4"},
-                {"movement": "III. Gavotte", "time_signature": "2/2"},
-                {"movement": "IV. Bourrée", "time_signature": "2/2"},
-                {"movement": "V. Gigue", "time_signature": "6/8"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Ouverture", "time_signature": "4/4"},
-                {"movement": "II. Allemande", "time_signature": "4/4"},
-                {"movement": "III. Courante", "time_signature": "3/4"},
-                {"movement": "IV. Sarabande", "time_signature": "3/4"},
-                {"movement": "V. Menuetto", "time_signature": "3/4"},
-                {"movement": "VI. Gigue", "time_signature": "6/8"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Goldberg Variations
-    output_data[composer]["Goldberg Variations, BWV 988"] = [
-        {"movement": "Aria", "time_signature": "3/4"},
-        {"movement": "Variation 1", "time_signature": "3/4"},
-        {"movement": "Variation 2", "time_signature": "2/4"},
-        {"movement": "Variation 3: Canone all'Unisono", "time_signature": "12/8"},
-        {"movement": "Variation 4", "time_signature": "3/8"},
-        {"movement": "Variation 5", "time_signature": "3/4"}
-    ]
-    
-    # Mass in B minor
-    output_data[composer]["Mass in B minor, BWV 232"] = [
-        {"movement": "I. Kyrie eleison", "time_signature": "4/4"},
-        {"movement": "II. Gloria in excelsis Deo", "time_signature": "3/8"},
-        {"movement": "III. Credo in unum Deum", "time_signature": "4/4"},
-        {"movement": "IV. Sanctus", "time_signature": "4/4"},
-        {"movement": "V. Agnus Dei", "time_signature": "4/4"}
-    ]
-
-def add_chopin(output_data):
-    """Add Chopin's major works"""
-    composer = "Frédéric Chopin"
-    output_data[composer] = {}
-    
-    # Nocturnes (a selection)
-    nocturnes = {
-        1: {"key": "B-flat minor", "opus": "Op. 9 No. 1"},
-        2: {"key": "E-flat major", "opus": "Op. 9 No. 2"},
-        3: {"key": "B major", "opus": "Op. 9 No. 3"},
-        4: {"key": "F major", "opus": "Op. 15 No. 1"},
-        5: {"key": "F-sharp major", "opus": "Op. 15 No. 2"},
-        8: {"key": "D-flat major", "opus": "Op. 27 No. 2"}
-    }
-    
-    for num, info in nocturnes.items():
-        title = f"Nocturne No. {num} in {info['key']}, {info['opus']}"
-        
-        output_data[composer][title] = [
-            {"movement": "Andante", "time_signature": "4/4"}
-        ]
-    
-    # Ballades
-    ballades = {
-        1: {"key": "G minor", "opus": "Op. 23"},
-        2: {"key": "F major", "opus": "Op. 38"},
-        3: {"key": "A-flat major", "opus": "Op. 47"},
-        4: {"key": "F minor", "opus": "Op. 52"}
-    }
-    
-    for num, info in ballades.items():
-        title = f"Ballade No. {num} in {info['key']}, {info['opus']}"
-        
-        output_data[composer][title] = [
-            {"movement": "Largo - Moderato", "time_signature": "6/4"}
-        ]
-    
-    # Piano Sonatas
-    sonatas = {
-        2: {"key": "B-flat minor", "opus": "Op. 35", "nickname": "Funeral March"},
-        3: {"key": "B minor", "opus": "Op. 58"}
-    }
-    
-    for num, info in sonatas.items():
-        title = f"Piano Sonata No. {num} in {info['key']}, {info['opus']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        if num == 2:
-            movements = [
-                {"movement": "I. Grave - Doppio movimento", "time_signature": "4/4"},
-                {"movement": "II. Scherzo", "time_signature": "3/4"},
-                {"movement": "III. Marche funèbre: Lento", "time_signature": "4/4"},
-                {"movement": "IV. Finale: Presto", "time_signature": "2/2"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro maestoso", "time_signature": "4/4"},
-                {"movement": "II. Scherzo: Molto vivace", "time_signature": "3/4"},
-                {"movement": "III. Largo", "time_signature": "4/4"},
-                {"movement": "IV. Finale: Presto non tanto", "time_signature": "6/8"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Études
-    etudes = [
-        {"key": "C major", "opus": "Op. 10 No. 1"},
-        {"key": "A minor", "opus": "Op. 10 No. 2", "nickname": "Chromatique"},
-        {"key": "E major", "opus": "Op. 10 No. 3", "nickname": "Tristesse"},
-        {"key": "C-sharp minor", "opus": "Op. 10 No. 4"},
-        {"key": "G-flat major", "opus": "Op. 10 No. 5", "nickname": "Black Keys"},
-        {"key": "C minor", "opus": "Op. 10 No. 12", "nickname": "Revolutionary"}
-    ]
-    
-    for i, info in enumerate(etudes, 1):
-        title = f"Étude in {info['key']}, {info['opus']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        output_data[composer][title] = [
-            {"movement": "Allegro", "time_signature": "4/4"}
-        ]
-    
-    # Preludes
-    output_data[composer]["24 Preludes, Op. 28"] = [
-        {"movement": "No. 1 in C major: Agitato", "time_signature": "4/4"},
-        {"movement": "No. 2 in A minor: Lento", "time_signature": "2/2"},
-        {"movement": "No. 4 in E minor: Largo", "time_signature": "2/2"},
-        {"movement": "No. 6 in B minor: Lento assai", "time_signature": "3/4"},
-        {"movement": "No. 7 in A major: Andantino", "time_signature": "3/4"},
-        {"movement": "No. 15 in D-flat major: Sostenuto (\"Raindrop\")", "time_signature": "4/4"},
-        {"movement": "No. 20 in C minor: Largo", "time_signature": "4/4"}
-    ]
-
-def add_tchaikovsky(output_data):
-    """Add Tchaikovsky's major works"""
-    composer = "Pyotr Ilyich Tchaikovsky"
-    output_data[composer] = {}
-    
-    # Symphonies
-    symphonies = {
-        1: {"key": "G minor", "opus": "Op. 13", "nickname": "Winter Daydreams"},
-        4: {"key": "F minor", "opus": "Op. 36"},
-        5: {"key": "E minor", "opus": "Op. 64"},
-        6: {"key": "B minor", "opus": "Op. 74", "nickname": "Pathétique"}
-    }
-    
-    for num, info in symphonies.items():
-        title = f"Symphony No. {num} in {info['key']}, {info['opus']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        # Special case for Symphony No. 6
-        if num == 6:
-            movements = [
-                {"movement": "I. Adagio - Allegro non troppo", "time_signature": "4/4"},
-                {"movement": "II. Allegro con grazia", "time_signature": "5/4"},
-                {"movement": "III. Allegro molto vivace", "time_signature": "2/4"},
-                {"movement": "IV. Adagio lamentoso - Andante", "time_signature": "4/4"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro", "time_signature": "4/4"},
-                {"movement": "II. Andante", "time_signature": "3/4"},
-                {"movement": "III. Scherzo", "time_signature": "3/4"},
-                {"movement": "IV. Finale: Allegro", "time_signature": "2/2"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Ballets
-    ballets = {
-        "Swan Lake, Op. 20": [
-            {"movement": "Introduction", "time_signature": "4/4"},
-            {"movement": "Act I No. 2: Valse", "time_signature": "3/4"},
-            {"movement": "Act II No. 10: Scene", "time_signature": "4/4"},
-            {"movement": "Act II No. 13: Dance of the Swans", "time_signature": "4/4"},
-            {"movement": "Act III: Spanish Dance", "time_signature": "3/4"},
-            {"movement": "Act IV: Finale", "time_signature": "4/4"}
-        ],
-        "The Nutcracker, Op. 71": [
-            {"movement": "Overture", "time_signature": "2/2"},
-            {"movement": "Act I: March", "time_signature": "4/4"},
-            {"movement": "Act I: Dance of the Sugar Plum Fairy", "time_signature": "4/4"},
-            {"movement": "Act II: Russian Dance (Trepak)", "time_signature": "2/4"},
-            {"movement": "Act II: Waltz of the Flowers", "time_signature": "3/4"},
-            {"movement": "Act II: Pas de deux", "time_signature": "4/4"}
-        ],
-        "The Sleeping Beauty, Op. 66": [
-            {"movement": "Introduction: La Fée des lilas", "time_signature": "4/4"},
-            {"movement": "Act I: Pas d'action", "time_signature": "3/4"},
-            {"movement": "Act I: Valse", "time_signature": "3/4"},
-            {"movement": "Act III: Pas de quatre", "time_signature": "2/4"},
-            {"movement": "Act III: Apothéose", "time_signature": "4/4"}
-        ]
-    }
-    
-    for title, movements in ballets.items():
-        output_data[composer][title] = movements
-    
-    # Piano Concerto No. 1
-    output_data[composer]["Piano Concerto No. 1 in B-flat minor, Op. 23"] = [
-        {"movement": "I. Allegro non troppo e molto maestoso - Allegro con spirito", "time_signature": "4/4"},
-        {"movement": "II. Andantino semplice - Prestissimo", "time_signature": "3/4"},
-        {"movement": "III. Allegro con fuoco", "time_signature": "3/4"}
-    ]
-    
-    # Violin Concerto
-    output_data[composer]["Violin Concerto in D major, Op. 35"] = [
-        {"movement": "I. Allegro moderato", "time_signature": "4/4"},
-        {"movement": "II. Canzonetta: Andante", "time_signature": "3/4"},
-        {"movement": "III. Finale: Allegro vivacissimo", "time_signature": "2/4"}
-    ]
-    
-    # 1812 Overture
-    output_data[composer]["1812 Overture, Op. 49"] = [
-        {"movement": "Largo - Allegro giusto", "time_signature": "4/4"}
-    ]
-
-def add_brahms(output_data):
-    """Add Brahms' major works"""
-    composer = "Johannes Brahms"
-    output_data[composer] = {}
-    
-    # Symphonies
-    symphonies = {
-        1: {"key": "C minor", "opus": "Op. 68"},
-        2: {"key": "D major", "opus": "Op. 73"},
-        3: {"key": "F major", "opus": "Op. 90"},
-        4: {"key": "E minor", "opus": "Op. 98"}
-    }
-    
-    for num, info in symphonies.items():
-        title = f"Symphony No. {num} in {info['key']}, {info['opus']}"
-        
-        # Special case for Symphony No. 4
-        if num == 4:
-            movements = [
-                {"movement": "I. Allegro non troppo", "time_signature": "2/2"},
-                {"movement": "II. Andante moderato", "time_signature": "6/8"},
-                {"movement": "III. Allegro giocoso", "time_signature": "2/4"},
-                {"movement": "IV. Allegro energico e passionato (Passacaglia)", "time_signature": "3/4"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Un poco sostenuto - Allegro", "time_signature": "4/4"},
-                {"movement": "II. Andante sostenuto", "time_signature": "3/4"},
-                {"movement": "III. Un poco allegretto e grazioso", "time_signature": "2/4"},
-                {"movement": "IV. Adagio - Più andante - Allegro non troppo, ma con brio", "time_signature": "4/4"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Piano Concertos
-    concertos = {
-        1: {"key": "D minor", "opus": "Op. 15"},
-        2: {"key": "B-flat major", "opus": "Op. 83"}
-    }
-    
-    for num, info in concertos.items():
-        title = f"Piano Concerto No. {num} in {info['key']}, {info['opus']}"
-        
-        if num == 2:
-            movements = [
-                {"movement": "I. Allegro non troppo", "time_signature": "4/4"},
-                {"movement": "II. Allegro appassionato", "time_signature": "3/4"},
-                {"movement": "III. Andante", "time_signature": "2/4"},
-                {"movement": "IV. Allegretto grazioso", "time_signature": "2/4"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Maestoso", "time_signature": "4/4"},
-                {"movement": "II. Adagio", "time_signature": "3/4"},
-                {"movement": "III. Rondo: Allegro non troppo", "time_signature": "6/8"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Violin Concerto
-    output_data[composer]["Violin Concerto in D major, Op. 77"] = [
-        {"movement": "I. Allegro non troppo", "time_signature": "4/4"},
-        {"movement": "II. Adagio", "time_signature": "3/4"},
-        {"movement": "III. Allegro giocoso, ma non troppo vivace", "time_signature": "2/4"}
-    ]
-    
-    # German Requiem
-    output_data[composer]["Ein deutsches Requiem (A German Requiem), Op. 45"] = [
-        {"movement": "I. Selig sind, die da Leid tragen", "time_signature": "4/4"},
-        {"movement": "II. Denn alles Fleisch es ist wie Gras", "time_signature": "3/4"},
-        {"movement": "III. Herr, lehre doch mich", "time_signature": "4/4"},
-        {"movement": "IV. Wie lieblich sind deine Wohnungen", "time_signature": "3/4"},
-        {"movement": "V. Ihr habt nun Traurigkeit", "time_signature": "4/4"},
-        {"movement": "VI. Denn wir haben hie keine bleibende Statt", "time_signature": "4/4"},
-        {"movement": "VII. Selig sind die Toten", "time_signature": "3/4"}
-    ]
-    
-    # Hungarian Dances
-    output_data[composer]["Hungarian Dances, WoO 1"] = [
-        {"movement": "No. 1 in G minor: Allegro molto", "time_signature": "2/4"},
-        {"movement": "No. 5 in F-sharp minor: Allegro", "time_signature": "2/4"},
-        {"movement": "No. 6 in D major: Vivace", "time_signature": "2/4"}
-    ]
-
-def add_haydn(output_data):
-    """Add Haydn's major works"""
-    composer = "Joseph Haydn"
-    output_data[composer] = {}
-    
-    # Symphonies
-    symphonies = {
-        45: {"key": "F-sharp minor", "nickname": "Farewell"},
-        94: {"key": "G major", "nickname": "Surprise"},
-        101: {"key": "D major", "nickname": "The Clock"},
-        104: {"key": "D major", "nickname": "London"}
-    }
-    
-    for num, info in symphonies.items():
-        title = f"Symphony No. {num} in {info['key']}"
-        if info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        # Special case for Symphony No. 94 "Surprise"
-        if num == 94:
-            movements = [
-                {"movement": "I. Adagio cantabile - Vivace assai", "time_signature": "6/8"},
-                {"movement": "II. Andante", "time_signature": "2/4"},
-                {"movement": "III. Menuetto: Allegro molto", "time_signature": "3/4"},
-                {"movement": "IV. Finale: Allegro molto", "time_signature": "2/4"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Adagio - Allegro", "time_signature": "4/4"},
-                {"movement": "II. Andante", "time_signature": "3/4"},
-                {"movement": "III. Menuetto: Allegretto", "time_signature": "3/4"},
-                {"movement": "IV. Finale: Presto", "time_signature": "2/2"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # String Quartets
-    quartets = {
-        "String Quartet in C major, Op. 76 No. 3 (\"Emperor\")": [
-            {"movement": "I. Allegro", "time_signature": "4/4"},
-            {"movement": "II. Poco adagio; cantabile", "time_signature": "2/4"},
-            {"movement": "III. Menuetto: Allegro", "time_signature": "3/4"},
-            {"movement": "IV. Finale: Presto", "time_signature": "2/2"}
-        ],
-        "String Quartet in D minor, Op. 76 No. 2 (\"Quinten\")": [
-            {"movement": "I. Allegro", "time_signature": "4/4"},
-            {"movement": "II. Andante o più tosto allegretto", "time_signature": "3/4"},
-            {"movement": "III. Menuetto: Allegro ma non troppo", "time_signature": "3/4"},
-            {"movement": "IV. Finale: Vivace assai", "time_signature": "2/4"}
-        ]
-    }
-    
-    for title, movements in quartets.items():
-        output_data[composer][title] = movements
-    
-    # The Creation
-    output_data[composer]["The Creation, Hob. XXI:2"] = [
-        {"movement": "Part I: Introduction: The Representation of Chaos", "time_signature": "4/4"},
-        {"movement": "Part I: In the beginning God created Heaven and Earth", "time_signature": "4/4"},
-        {"movement": "Part II: On mighty pens uplifted soars", "time_signature": "3/4"},
-        {"movement": "Part III: In rosy mantle appears", "time_signature": "6/8"}
-    ]
-
-def add_schubert(output_data):
-    """Add Schubert's major works"""
-    composer = "Franz Schubert"
-    output_data[composer] = {}
-    
-    # Symphonies
-    symphonies = {
-        5: {"key": "B-flat major", "d": "485"},
-        8: {"key": "B minor", "d": "759", "nickname": "Unfinished"},
-        9: {"key": "C major", "d": "944", "nickname": "Great"}
-    }
-    
-    for num, info in symphonies.items():
-        title = f"Symphony No. {num} in {info['key']}, D. {info['d']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        # Special case for Symphony No. 8 "Unfinished"
-        if num == 8:
-            movements = [
-                {"movement": "I. Allegro moderato", "time_signature": "3/4"},
-                {"movement": "II. Andante con moto", "time_signature": "3/8"}
-            ]
-        else:
-            movements = [
-                {"movement": "I. Allegro", "time_signature": "4/4"},
-                {"movement": "II. Andante con moto", "time_signature": "3/4"},
-                {"movement": "III. Scherzo: Allegro vivace", "time_signature": "3/4"},
-                {"movement": "IV. Allegro vivace", "time_signature": "2/2"}
-            ]
-        
-        output_data[composer][title] = movements
-    
-    # Piano Sonatas
-    sonatas = {
-        14: {"key": "A minor", "d": "784"},
-        18: {"key": "G major", "d": "894", "nickname": "Fantasie"},
-        21: {"key": "B-flat major", "d": "960"}
-    }
-    
-    for num, info in sonatas.items():
-        title = f"Piano Sonata No. {num} in {info['key']}, D. {info['d']}"
-        if 'nickname' in info and info['nickname']:
-            title += f' ("{info["nickname"]}")'
-        
-        movements = [
-            {"movement": "I. Allegro", "time_signature": "4/4"},
-            {"movement": "II. Andante", "time_signature": "3/4"},
-            {"movement": "III. Scherzo: Allegro vivace", "time_signature": "3/4"},
-            {"movement": "IV. Allegro ma non troppo", "time_signature": "2/2"}
-        ]
-        
-        output_data[composer][title] = movements
-    
-    # Lieder
-    lieder = {
-        "Erlkönig, D. 328": [
-            {"movement": "Erlkönig", "time_signature": "4/4"}
-        ],
-        "Die Forelle (The Trout), D. 550": [
-            {"movement": "Die Forelle", "time_signature": "2/4"}
-        ],
-        "Gretchen am Spinnrade, D. 118": [
-            {"movement": "Gretchen am Spinnrade", "time_signature": "6/8"}
-        ],
-        "Winterreise, D. 911": [
-            {"movement": "No. 1: Gute Nacht", "time_signature": "4/4"},
-            {"movement": "No. 5: Der Lindenbaum", "time_signature": "3/4"},
-            {"movement": "No. 24: Der Leiermann", "time_signature": "3/4"}
-        ]
-    }
-    
-    for title, movements in lieder.items():
-        output_data[composer][title] = movements
-    
-    # Trout Quintet
-    output_data[composer]["Piano Quintet in A major, D. 667 (\"Trout\")"] = [
-        {"movement": "I. Allegro vivace", "time_signature": "4/4"},
-        {"movement": "II. Andante", "time_signature": "3/4"},
-        {"movement": "III. Scherzo: Presto", "time_signature": "3/4"},
-        {"movement": "IV. Theme and Variations: Andantino", "time_signature": "2/4"},
-        {"movement": "V. Finale: Allegro giusto", "time_signature": "6/8"}
-    ]
-
-def add_debussy(output_data):
-    """Add Debussy's major works"""
-    composer = "Claude Debussy"
-    output_data[composer] = {}
-    
-    # Orchestral Works
-    orchestral = {
-        "Prélude à l'après-midi d'un faune (Prelude to the Afternoon of a Faun), L. 86": [
-            {"movement": "Très modéré", "time_signature": "9/8"}
-        ],
-        "La Mer (The Sea), L. 109": [
-            {"movement": "I. De l'aube à midi sur la mer", "time_signature": "6/8"},
-            {"movement": "II. Jeux de vagues", "time_signature": "6/8"},
-            {"movement": "III. Dialogue du vent et de la mer", "time_signature": "4/4"}
-        ],
-        "Nocturnes, L. 91": [
-            {"movement": "I. Nuages", "time_signature": "6/4"},
-            {"movement": "II. Fêtes", "time_signature": "4/4"},
-            {"movement": "III. Sirènes", "time_signature": "6/8"}
-        ]
-    }
-    
-    for title, movements in orchestral.items():
-        output_data[composer][title] = movements
-    
-    # Piano Works
-    piano_suites = {
-        "Suite bergamasque, L. 75": [
-            {"movement": "I. Prélude", "time_signature": "4/4"},
-            {"movement": "II. Menuet", "time_signature": "3/4"},
-            {"movement": "III. Clair de lune", "time_signature": "9/8"},
-            {"movement": "IV. Passepied", "time_signature": "4/4"}
-        ],
-        "Préludes, Book 1, L. 117": [
-            {"movement": "I. Danseuses de Delphes (Dancers of Delphi)", "time_signature": "3/4"},
-            {"movement": "II. Voiles (Sails)", "time_signature": "4/4"},
-            {"movement": "III. Le vent dans la plaine (The Wind in the Plain)", "time_signature": "2/4"},
-            {"movement": "IV. Les sons et les parfums tournent dans l'air du soir (Sounds and Fragrances Swirl in the Evening Air)", "time_signature": "3/4"},
-            {"movement": "VIII. La fille aux cheveux de lin (The Girl with the Flaxen Hair)", "time_signature": "2/4"},
-            {"movement": "XII. Minstrels", "time_signature": "2/4"}
-        ],
-        "Children's Corner, L. 113": [
-            {"movement": "I. Doctor Gradus ad Parnassum", "time_signature": "4/4"},
-            {"movement": "II. Jimbo's Lullaby", "time_signature": "4/4"},
-            {"movement": "III. Serenade for the Doll", "time_signature": "2/4"},
-            {"movement": "IV. The Snow is Dancing", "time_signature": "4/4"},
-            {"movement": "V. The Little Shepherd", "time_signature": "4/4"},
-            {"movement": "VI. Golliwog's Cakewalk", "time_signature": "6/8"}
-        ]
-    }
-    
-    for title, movements in piano_suites.items():
-        output_data[composer][title] = movements
-    
-    # Images
-    output_data[composer]["Images, Set 1, L. 110"] = [
-        {"movement": "I. Reflets dans l'eau (Reflections in the Water)", "time_signature": "4/4"},
-        {"movement": "II. Hommage à Rameau (Homage to Rameau)", "time_signature": "3/2"},
-        {"movement": "III. Mouvement", "time_signature": "2/4"}
-    ]
-    
-    # Pelléas et Mélisande
-    output_data[composer]["Pelléas et Mélisande, L. 88 (opera)"] = [
-        {"movement": "Act I, Scene 1: Je ne pourrai plus sortir de cette forêt", "time_signature": "4/4"},
-        {"movement": "Act III, Scene 1: Mes longs cheveux descendent", "time_signature": "6/4"},
-        {"movement": "Act IV, Scene 4: Maintenant que le père de Pelléas est sauvé", "time_signature": "4/4"}
-    ]
-
-def add_ravel(output_data):
-    """Add Ravel's major works"""
-    composer = "Maurice Ravel"
-    output_data[composer] = {}
-    
-    # Orchestral Works
-    orchestral = {
-        "Boléro": [
-            {"movement": "Tempo di Bolero moderato assai", "time_signature": "3/4"}
-        ],
-        "Rapsodie espagnole": [
-            {"movement": "I. Prélude à la nuit", "time_signature": "2/4"},
-            {"movement": "II. Malagueña", "time_signature": "3/4"},
-            {"movement": "III. Habanera", "time_signature": "2/4"},
-            {"movement": "IV. Feria", "time_signature": "6/8"}
-        ],
-        "La valse": [
-            {"movement": "Poème chorégraphique", "time_signature": "3/4"}
-        ],
-        "Pavane pour une infante défunte": [
-            {"movement": "Lent", "time_signature": "4/4"}
-        ]
-    }
-    
-    for title, movements in orchestral.items():
-        output_data[composer][title] = movements
-    
-    # Piano Works
-    piano_works = {
-        "Jeux d'eau": [
-            {"movement": "Jeux d'eau", "time_signature": "4/4"}
-        ],
-        "Miroirs": [
-            {"movement": "I. Noctuelles", "time_signature": "3/4"},
-            {"movement": "II. Oiseaux tristes", "time_signature": "2/4"},
-            {"movement": "III. Une barque sur l'océan", "time_signature": "6/8"},
-            {"movement": "IV. Alborada del gracioso", "time_signature": "6/8"},
-            {"movement": "V. La vallée des cloches", "time_signature": "4/4"}
-        ],
-        "Gaspard de la nuit": [
-            {"movement": "I. Ondine", "time_signature": "4/4"},
-            {"movement": "II. Le Gibet", "time_signature": "6/4"},
-            {"movement": "III. Scarbo", "time_signature": "3/4"}
-        ]
-    }
-    
-    for title, movements in piano_works.items():
-        output_data[composer][title] = movements
-    
-    # Chamber Music
-    output_data[composer]["String Quartet in F major"] = [
-        {"movement": "I. Allegro moderato - Très doux", "time_signature": "4/4"},
-        {"movement": "II. Assez vif - Très rythmé", "time_signature": "3/4"},
-        {"movement": "III. Très lent", "time_signature": "4/4"},
-        {"movement": "IV. Vif et agité", "time_signature": "5/8"}
-    ]
-    
-    # Piano Concertos
-    output_data[composer]["Piano Concerto in G major"] = [
-        {"movement": "I. Allegramente", "time_signature": "3/4"},
-        {"movement": "II. Adagio assai", "time_signature": "3/4"},
-        {"movement": "III. Presto", "time_signature": "2/4"}
-    ]
-    
-    output_data[composer]["Piano Concerto for the Left Hand in D major"] = [
-        {"movement": "Lento - Allegro - Lento", "time_signature": "4/4"}
-    ]
-    
-    # Daphnis et Chloé
-    output_data[composer]["Daphnis et Chloé (ballet)"] = [
-        {"movement": "Part I: Introduction et Danse religieuse", "time_signature": "4/4"},
-        {"movement": "Part II: Lever du jour", "time_signature": "5/4"},
-        {"movement": "Part III: Danse générale", "time_signature": "5/4"}
-    ]
-
-def merge_with_existing_data(new_data, existing_path):
-    """Merge newly generated data with existing data"""
-    print(f"Attempting to merge with existing data at: {existing_path}")
-    
-    try:
-        with open(existing_path, 'r', encoding='utf-8') as f:
-            existing_data = json.load(f)
-            print(f"Successfully loaded existing data with {len(existing_data)} composers")
-    except Exception as e:
-        print(f"Error loading existing data: {str(e)}")
-        print("Creating a new dataset instead.")
-        existing_data = {}
-    
-    # Create a merged dataset
-    merged_data = existing_data.copy()
-    
-    # Add new data where it doesn't exist in the original
-    for composer, works in new_data.items():
-        if composer not in merged_data:
-            merged_data[composer] = {}
-        
-        for work_title, movements in works.items():
-            # Skip if work already exists (preserve manual corrections)
-            if work_title not in merged_data[composer]:
-                merged_data[composer][work_title] = movements
-    
-    # Save merged data
-    output_path = 'expanded_time_signatures.json'
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(merged_data, f, indent=2, ensure_ascii=False)
-    
-    # Statistics
-    old_composers = len(existing_data)
-    old_works = sum(len(works) for works in existing_data.values())
-    
-    new_composers = len(merged_data) - old_composers
-    new_works = sum(len(works) for works in merged_data.values()) - old_works
-    
-    print(f"Merged data saved to {output_path}")
-    print(f"Added {new_composers} new composers and {new_works} new works to the existing dataset.")
-    
-    return merged_data
-
-def main():
-    """Main function to run the script"""
-    print("Classical Music Time Signature Dataset Generator")
-    print("===============================================")
-    print("This script creates a comprehensive dataset of classical music time signatures")
-    print("without requiring the music21 library.")
-    print("")
-    print("Options:")
-    print("1: Generate complete classical dataset")
-    print("2: Merge with existing dataset")
-    
-    while True:
-        choice = input("Enter your choice (1 or 2): ")
-        if choice in ['1', '2']:
-            break
-        print("Invalid choice. Please enter 1 or 2.")
-    
-    if choice == '1':
-        # Generate new dataset
-        dataset = create_classical_dataset()
-        
-        # Ask if user wants to merge with existing data
-        merge_choice = input("Do you want to merge with existing data? (y/n): ")
-        if merge_choice.lower() == 'y':
-            existing_path = input("Enter path to existing JSON file: ")
-            merge_with_existing_data(dataset, existing_path)
+# =================================
+# === YouTube Audio Player Code ===
+# =================================
+def youtube_audio_player(query, use_direct_video=False, height=90):
+    """
+    Creates a YouTube audio-only player by stripping video elements.
+    
+    Parameters:
+        query: The search query for YouTube
+        use_direct_video: Try to get a specific video instead of search results
+        height: Height of the player (default: 90px)
+    
+    Returns:
+        HTML component that plays only audio from YouTube
+    """
+    
+    # Encode the search query for URL
+    encoded_query = urllib.parse.quote(query)
+    
+    # Try to get a specific video ID first if requested
+    video_id = None
+    if use_direct_video:
+        video_id = fetch_first_youtube_video_id(query)
+    
+    if video_id:
+        # If we have a specific video ID, use it
+        html = f"""
+        <div class="audio-player">
+            <iframe id="youtube-audio" 
+                width="100%" 
+                height="{height}" 
+                src="https://www.youtube.com/embed/{video_id}?autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope;" 
+                style="border-radius: 4px;">
+            </iframe>
+            <div style="font-size: 0.8em; text-align: right; padding-right: 5px;">
+                <a href="https://www.youtube.com/watch?v={video_id}" target="_blank">
+                    Open in YouTube
+                </a>
+            </div>
+        </div>
+        """
     else:
-        # Merge with existing data
-        print("Enter path to existing JSON file:")
-        existing_path = input("> ")
-        
-        # Generate new dataset and merge
-        dataset = create_classical_dataset()
-        merge_with_existing_data(dataset, existing_path)
+        # Otherwise use search results
+        html = f"""
+        <div class="audio-player">
+            <iframe id="youtube-audio" 
+                width="100%" 
+                height="{height}" 
+                src="https://www.youtube.com/embed?listType=search&list={encoded_query}&autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope;" 
+                style="border-radius: 4px;">
+            </iframe>
+            <div style="font-size: 0.8em; text-align: right; padding-right: 5px;">
+                <a href="https://www.youtube.com/results?search_query={encoded_query}" target="_blank">
+                    More on YouTube
+                </a>
+            </div>
+        </div>
+        """
+    return html
 
+def fetch_first_youtube_video_id(query):
+    """
+    Attempts to fetch the first YouTube video ID for a given search query.
+    This is a more advanced approach but may break if YouTube changes their page structure.
+    """
+    try:
+        # Create search URL
+        search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(query)}"
+        
+        # Add a user agent to mimic a browser request
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+        
+        # Make the request
+        response = requests.get(search_url, headers=headers)
+        
+        if response.status_code == 200:
+            # Use regex to find video IDs in the page content
+            video_ids = re.findall(r"watch\?v=(\S{11})", response.text)
+            
+            if video_ids:
+                return video_ids[0]  # Return the first match
+    except Exception as e:
+        st.error(f"Error fetching YouTube data: {str(e)}")
+    
+    return None
+
+# ===============================
+# === Database Loading & Cache ===
+# ===============================
+@st.cache_data
+def load_imslp_database(path='imslp_scores_corrected.json'):
+    """Load and cache the IMSLP database"""
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        st.error(f"Failed to load IMSLP data: {e}")
+        return {}
+
+# ===========================
+# === Search Functionality ===
+# ===========================
+def search_works(query, imslp_db, max_results=10):
+    """Enhanced search function with smarter matching"""
+    if not query or not imslp_db:
+        return []
+    
+    query = query.lower().strip()
+    results = []
+    
+    # Extract composer and work information if possible
+    composer_match = None
+    work_type_match = None
+    number_match = None
+    
+    # Common composer names
+    composers = [c.lower() for c in imslp_db.keys()]
+    composer_match = next((c for c in composers if c.lower() in query), None)
+    
+    # Common work types
+    work_types = ["symphony", "sonata", "concerto", "quartet", "nocturne", "etude", "prelude"]
+    work_type_match = next((wt for wt in work_types if wt in query), None)
+    
+    # Look for numbers (both digits and spelled out)
+    number_patterns = [
+        r'\b(\d+)\b',  # Numbers like 5, 40
+        r'\bno\.?\s*(\d+)\b',  # No. 5, No 5
+        r'\bnumber\s*(\d+)\b',  # Number 5
+        r'\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b'  # Spelled out
+    ]
+    
+    for pattern in number_patterns:
+        match = re.search(pattern, query, re.IGNORECASE)
+        if match:
+            number_match = match.group(1)
+            if number_match in ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']:
+                # Convert spelled numbers to digits
+                number_words = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 
+                               'six': '6', 'seven': '7', 'eight': '8', 'nine': '9', 'ten': '10',
+                               'eleven': '11', 'twelve': '12'}
+                number_match = number_words[number_match]
+            break
+    
+    # Also handle common nickname-based searches like "moonlight", "pathetique", etc.
+    nicknames = {
+        "moonlight": ("Ludwig van Beethoven", "Piano Sonata No. 14 in C-sharp minor, Op. 27 No. 2"),
+        "pathetique": ("Ludwig van Beethoven", "Piano Sonata No. 8 in C minor, Op. 13"),
+        "waldstein": ("Ludwig van Beethoven", "Piano Sonata No. 21 in C major, Op. 53"),
+        "appassionata": ("Ludwig van Beethoven", "Piano Sonata No. 23 in F minor, Op. 57"),
+        "jupiter": ("Wolfgang Amadeus Mozart", "Symphony No. 41 in C major, K. 551"),
+        "eroica": ("Ludwig van Beethoven", "Symphony No. 3 in E-flat major, Op. 55"),
+        "pastoral": ("Ludwig van Beethoven", "Symphony No. 6 in F major, Op. 68"),
+        "surprise": ("Joseph Haydn", "Symphony No. 94 in G major, Hob. I:94"),
+        "unfinished": ("Franz Schubert", "Symphony No. 8 in B minor, D. 759")
+    }
+    
+    for nickname, (composer, work) in nicknames.items():
+        if nickname in query.lower():
+            if composer in imslp_db and work in imslp_db[composer]:
+                return [{
+                    "composer": composer,
+                    "work": work,
+                    "movements": imslp_db[composer][work],
+                    "score": 10  # High score for exact nickname match
+                }]
+    
+    # Search through database with smarter matching
+    for composer, works in imslp_db.items():
+        # Skip if a composer was specified and doesn't match
+        if composer_match and composer_match not in composer.lower():
+            continue
+            
+        for work_title in works:
+            # Calculate match score based on multiple factors
+            score = 0
+            
+            # If work type matches (symphony, sonata, etc)
+            if work_type_match and work_type_match in work_title.lower():
+                score += 3
+            
+            # If number matches exactly (like "Symphony No. 5" or "Symphony No. 40")
+            if number_match:
+                number_in_title = re.search(r'No\.\s*(\d+)|Number\s*(\d+)|\bNo\s*(\d+)|\b(\d+)\b', work_title)
+                if number_in_title:
+                    # Get the matched number regardless of which group captured it
+                    title_number = next((g for g in number_in_title.groups() if g is not None), None)
+                    if title_number and title_number == number_match:
+                        score += 5
+                    # Partial number match (for double-digit numbers)
+                    elif title_number and number_match in title_number:
+                        score += 2
+            
+            # Overall text similarity
+            text_similarity = difflib.SequenceMatcher(None, query, f"{composer} {work_title}".lower()).ratio()
+            score += text_similarity * 2
+            
+            # Add to results if score is significant
+            if score > 0.5:
+                results.append({
+                    "composer": composer,
+                    "work": work_title,
+                    "movements": works[work_title],
+                    "score": score
+                })
+    
+    # Sort by score (highest first)
+    results.sort(key=lambda x: x["score"], reverse=True)
+    return results[:max_results]
+
+# =============================
+# === Time Signature Methods ===
+# =============================
+def get_movements_by_time_signature(imslp_db, time_signature):
+    """Find all movements with a specific time signature"""
+    results = []
+    for composer, works in imslp_db.items():
+        for work_title, movements in works.items():
+            for movement in movements:
+                if movement["time_signature"] == time_signature:
+                    results.append({
+                        "composer": composer,
+                        "work": work_title,
+                        "movement": movement["movement"],
+                        "time_signature": movement["time_signature"]
+                    })
+    return results
+
+def get_unique_time_signatures(imslp_db):
+    """Get a sorted list of all unique time signatures in the database"""
+    signatures = set()
+    for composer, works in imslp_db.items():
+        for work in works.values():
+            for movement in work:
+                signatures.add(movement["time_signature"])
+    return sorted(list(signatures))
+
+# ==============================
+# === Visualization Methods ===
+# ==============================
+def create_time_signature_visualizations(imslp_db):
+    """Create visualizations for time signature analysis"""
+    # Collect data for visualization
+    data = []
+    for composer, works in imslp_db.items():
+        for work_title, movements in works.items():
+            for movement in movements:
+                data.append({
+                    'composer': composer,
+                    'work': work_title,
+                    'movement': movement['movement'],
+                    'time_signature': movement['time_signature']
+                })
+    
+    # Convert to DataFrame for easy manipulation
+    df = pd.DataFrame(data)
+    
+    # Overall time signature distribution
+    sig_counts = df['time_signature'].value_counts().reset_index()
+    sig_counts.columns = ['time_signature', 'count']
+    
+    # Create interactive bar chart
+    chart = alt.Chart(sig_counts).mark_bar().encode(
+        x=alt.X('time_signature:N', sort='-y', title='Time Signature'),
+        y=alt.Y('count:Q', title='Number of Movements'),
+        color=alt.Color('time_signature:N', legend=None),
+        tooltip=['time_signature', 'count']
+    ).properties(
+        width=600,
+        height=400,
+        title='Distribution of Time Signatures in Classical Works'
+    ).interactive()
+    
+    # Get top composers (by number of works)
+    top_composers = df['composer'].value_counts().nlargest(8).index.tolist()
+    
+    # Filter for top composers
+    composer_df = df[df['composer'].isin(top_composers)]
+    
+    # Group by composer and time signature to count movements
+    composer_counts = composer_df.groupby(['composer', 'time_signature']).size().reset_index(name='count')
+    
+    # Create heatmap
+    heatmap = alt.Chart(composer_counts).mark_rect().encode(
+        x=alt.X('time_signature:N', title='Time Signature'),
+        y=alt.Y('composer:N', title='Composer'),
+        color=alt.Color('count:Q', scale=alt.Scale(scheme='viridis'), title='Number of Movements'),
+        tooltip=['composer', 'time_signature', 'count']
+    ).properties(
+        width=600,
+        height=400,
+        title='Time Signature Usage by Major Composers'
+    ).interactive()
+    
+    return chart, heatmap
+
+def create_comparison_chart(imslp_db, sig1, sig2):
+    """Create a chart comparing usage of two time signatures"""
+    # Collect data for selected signatures
+    compare_data = []
+    for composer, works in imslp_db.items():
+        sig1_count = 0
+        sig2_count = 0
+        
+        for work in works.values():
+            for movement in work:
+                if movement["time_signature"] == sig1:
+                    sig1_count += 1
+                elif movement["time_signature"] == sig2:
+                    sig2_count += 1
+        
+        # Only include composers who have at least one movement in either signature
+        if sig1_count > 0 or sig2_count > 0:
+            compare_data.append({"composer": composer, "signature": sig1, "count": sig1_count})
+            compare_data.append({"composer": composer, "signature": sig2, "count": sig2_count})
+    
+    # Convert to DataFrame
+    compare_df = pd.DataFrame(compare_data)
+    
+    # Filter to top composers by total count for readability
+    top_composers = compare_df.groupby('composer')['count'].sum().nlargest(10).index.tolist()
+    compare_df = compare_df[compare_df['composer'].isin(top_composers)]
+    
+    # Create grouped bar chart
+    comparison_chart = alt.Chart(compare_df).mark_bar().encode(
+        x=alt.X('composer:N', sort='-y', title='Composer'),
+        y=alt.Y('count:Q', title='Number of Movements'),
+        color=alt.Color('signature:N', title='Time Signature'),
+        tooltip=['composer', 'signature', 'count']
+    ).properties(
+        width=600,
+        height=400,
+        title=f'Comparison: {sig1} vs {sig2} Usage by Top Composers'
+    ).interactive()
+    
+    return comparison_chart
+
+# =======================
+# === Main Application ===
+# =======================
+def main():
+    # Fixed header at the top
+    with st.container():
+        st.markdown('<div class="main-header">', unsafe_allow_html=True)
+        st.title("🎵 Classical Time Signature Explorer")
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Load database
+    imslp_db = load_imslp_database()
+    
+    # Get unique time signatures for later use
+    time_signatures_list = get_unique_time_signatures(imslp_db)
+    
+    # Create main tabs
+    tab1, tab2, tab3 = st.tabs(["🔍 Search Works", "🎲 Random by Time Signature", "📊 Visualizations"])
+    
+    # ========================
+    # === Search Works Tab ===
+    # ========================
+    with tab1:
+        st.markdown("""
+        Search for a classical work by composer, work type, number, or nickname:
+        - Examples: "Mozart Symphony 40", "Beethoven Moonlight Sonata", "Bach Brandenburg 3"
+        """)
+        
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            query = st.text_input("Enter Work Title:", key="search_query")
+        
+        with col2:
+            st.markdown("<br>", unsafe_allow_html=True)  # Add some spacing
+            search_button = st.button("Search", key="search_button", use_container_width=True)
+        
+        if query and (search_button or 'last_query' not in st.session_state or st.session_state.last_query != query):
+            st.session_state.last_query = query
+            
+            with st.spinner("Searching..."):
+                results = search_works(query, imslp_db)
+            
+            if results:
+                st.success(f"Found {len(results)} matching works")
+                
+                # Display results in a more compact format
+                for i, result in enumerate(results):
+                    with st.expander(f"**{result['composer']}**: {result['work']}", expanded=(i==0)):
+                        st.markdown('<div class="result-card">', unsafe_allow_html=True)
+                        
+                        # Movements section
+                        for mv in result["movements"]:
+                            st.markdown(
+                                f"<div class='movement-item'>{mv['movement']} — "
+                                f"<span class='time-signature'>{mv['time_signature']}</span></div>", 
+                                unsafe_allow_html=True
+                            )
+                        
+                        # Media integration section - Audio player and Score
+                        st.markdown("<div class='media-container'>", unsafe_allow_html=True)
+                        
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.markdown("<h4>🎧 Listen</h4>", unsafe_allow_html=True)
+                            search_term = f"{result['composer']} {result['work']}"
+                            st.components.v1.html(youtube_audio_player(search_term), height=120)
+                        
+                        with col2:
+                            st.markdown("<h4>📜 Score</h4>", unsafe_allow_html=True)
+                            search_term = f"{result['composer']} {result['work']} score"
+                            encoded_query = urllib.parse.quote(f"site:imslp.org {search_term}")
+                            search_url = f"https://www.google.com/search?q={encoded_query}"
+                            st.markdown(f"""
+                            <div style="text-align: center; margin-top: 20px;">
+                                <a href="{search_url}" target="_blank" style="text-decoration: none;">
+                                    <button style="padding: 10px 20px; background-color: #4CAF50; color: white; 
+                                                  border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+                                        View Score on IMSLP
+                                    </button>
+                                </a>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        st.markdown("</div>", unsafe_allow_html=True)
+                        
+                        # External links
+                        st.markdown("<div class='media-buttons'>", unsafe_allow_html=True)
+                        query_encoded = urllib.parse.quote(f"{result['work']} {result['composer']}")
+                        
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            spotify_url = f"https://open.spotify.com/search/{query_encoded}"
+                            st.markdown(f"[🎧 Listen on Spotify]({spotify_url})")
+                        
+                        with col2:
+                            youtube_url = f"https://www.youtube.com/results?search_query={query_encoded}"
+                            st.markdown(f"[▶️ Watch on YouTube]({youtube_url})")
+                        
+                        with col3:
+                            imslp_url = f"https://www.google.com/search?q=site%3Aimslp.org+score+pdf+{query_encoded}"
+                            st.markdown(f"[📜 View Full Score]({imslp_url})")
+                        
+                        st.markdown("</div>", unsafe_allow_html=True)
+                        st.markdown('</div>', unsafe_allow_html=True)
+            else:
+                st.warning("No matches found. Try a different search term.")
+    
+    # ==================================
+    # === Random by Time Signature Tab ===
+    # ==================================
+    with tab2:
+        st.markdown("### 🎲 Find Random Works by Time Signature")
+        
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            selected_signature = st.selectbox("Select Time Signature:", time_signatures_list)
+        
+        with col2:
+            st.markdown("<br>", unsafe_allow_html=True)  # Add some spacing
+            random_button = st.button("Show 5 Random Examples", use_container_width=True)
+        
+        st.markdown(f"### Works in {selected_signature} Time")
+        
+        if random_button or 'last_signature' not in st.session_state or st.session_state.last_signature != selected_signature:
+            st.session_state.last_signature = selected_signature
+            
+            with st.spinner("Finding examples..."):
+                matching_movements = get_movements_by_time_signature(imslp_db, selected_signature)
+            
+            if matching_movements:
+                # Select 5 random movements, or all if less than 5
+                samples = random.sample(matching_movements, min(5, len(matching_movements)))
+                
+                # Display in a nice format
+                for i, sample in enumerate(samples):
+                    st.markdown(f"<div class='result-card'>", unsafe_allow_html=True)
+                    
+                    st.markdown(f"""
+                    <h3>{sample['composer']}</h3>
+                    <p>{sample['work']}</p>
+                    <div class='movement-item'>
+                        {sample['movement']} — <span class='time-signature'>{sample['time_signature']}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    
+                    # Media integration
+                    search_term = f"{sample['composer']} {sample['work']} {sample['movement']}"
+                    st.components.v1.html(youtube_audio_player(search_term), height=120)
+                    
+                    query_encoded = urllib.parse.quote(f"{sample['work']} {sample['composer']}")
+                    imslp_url = f"https://www.google.com/search?q=site%3Aimslp.org+score+pdf+{query_encoded}"
+                    st.markdown(f"[📜 View Score]({imslp_url})")
+                    
+                    st.markdown("</div>", unsafe_allow_html=True)
+            else:
+                st.warning(f"No works found with {selected_signature} time signature.")
+    
+    # ============================
+    # === Visualizations Tab ===
+    # ============================
+    with tab3:
+        st.markdown("### 📊 Time Signature Analysis")
+        
+        # Create and display visualizations
+        with st.spinner("Generating visualizations..."):
+            chart, heatmap = create_time_signature_visualizations(imslp_db)
+            
+            st.altair_chart(chart, use_container_width=True)
+            st.altair_chart(heatmap, use_container_width=True)
+        
+        # Time signature explorer
+        st.markdown("### Explorer: Compare Two Time Signatures")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            sig1 = st.selectbox("First Time Signature:", time_signatures_list, 
+                                index=time_signatures_list.index('4/4') if '4/4' in time_signatures_list else 0)
+        
+        with col2:
+            remaining_sigs = [sig for sig in time_signatures_list if sig != sig1]
+            sig2 = st.selectbox("Second Time Signature:", remaining_sigs, 
+                               index=remaining_sigs.index('3/4') if '3/4' in remaining_sigs else 0)
+        
+        # Create comparison chart
+        if sig1 and sig2:
+            with st.spinner("Generating comparison..."):
+                comparison_chart = create_comparison_chart(imslp_db, sig1, sig2)
+                st.altair_chart(comparison_chart, use_container_width=True)
+            
+            # Show examples of each signature
+            st.markdown(f"#### Example Movements in {sig1} Time:")
+            examples_1 = get_movements_by_time_signature(imslp_db, sig1)
+            if examples_1:
+                for ex in random.sample(examples_1, min(3, len(examples_1))):
+                    st.markdown(f"- **{ex['composer']}**: {ex['work']} - {ex['movement']}")
+            
+            st.markdown(f"#### Example Movements in {sig2} Time:")
+            examples_2 = get_movements_by_time_signature(imslp_db, sig2)
+            if examples_2:
+                for ex in random.sample(examples_2, min(3, len(examples_2))):
+                    st.markdown(f"- **{ex['composer']}**: {ex['work']} - {ex['movement']}")
+
+    # ===============
+    # === Sidebar ===
+    # ===============
+    with st.sidebar:
+        st.markdown("### ℹ️ About This Tool")
+        st.write("""
+        This tool helps you explore classical music time signatures through search, 
+        random discovery, and data visualization. Listen to works while viewing time 
+        signature information.
+        """)
+        
+        # Add time signature distribution
+        st.markdown("### 📊 Time Signature Distribution")
+        signature_counts = {}
+        for composer, works in imslp_db.items():
+            for work in works.values():
+                for movement in work:
+                    sig = movement["time_signature"]
+                    if sig in signature_counts:
+                        signature_counts[sig] += 1
+                    else:
+                        signature_counts[sig] = 1
+        
+        # Sort by frequency, descending
+        sorted_sigs = sorted(signature_counts.items(), key=lambda x: x[1], reverse=True)
+        
+        for sig, count in sorted_sigs[:10]:  # Show top 10
+            st.text(f"{sig}: {count} movements")
+        
+        if len(sorted_sigs) > 10:
+            with st.expander("Show all time signatures"):
+                for sig, count in sorted_sigs[10:]:
+                    st.text(f"{sig}: {count} movements")
+        
+        # Data collection tool link
+        st.markdown("### 🔧 Data Collection")
+        st.markdown("""
+        Want to expand the dataset? Use the 
+        [music21](https://web.mit.edu/music21/) Python library 
+        to extract time signatures from more classical works.
+        """)
+
+# Run the app
 if __name__ == "__main__":
     main()
