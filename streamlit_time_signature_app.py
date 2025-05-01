@@ -1,704 +1,996 @@
 import streamlit as st
-import difflib
-import json
-import urllib.parse
-import random
-import re
 import pandas as pd
-import altair as alt
-import requests
-from bs4 import BeautifulSoup
+import json
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from collections import Counter, defaultdict
+import re
+import plotly.express as px
+import plotly.graph_objects as go
+from matplotlib.colors import LinearSegmentedColormap
 
-# =============================================
-# === Configure Page and Custom CSS Styling ===
-# =============================================
+# Set page configuration
 st.set_page_config(
-    page_title="Classical Time Signature Explorer",
+    page_title="Classical Time Signature Analysis",
+    page_icon="🎵",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for fixed header and compact layout
+# Custom CSS for better appearance
 st.markdown("""
 <style>
-    /* Top header customization */
-    .main-header {
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background-color: white;
-        padding: 10px 0;
-        border-bottom: 1px solid #e0e0e0;
-        margin-bottom: 10px;
-    }
-    
-    /* Make page title smaller and more compact */
-    h1 {
-        font-size: 2rem !important;
-        margin-top: -15px !important;
-        margin-bottom: 0px !important;
-    }
-    
-    /* Make tabs sticky */
-    .stTabs [data-baseweb="tab-list"] {
-        position: sticky;
-        top: 60px;
-        z-index: 998;
-        background-color: white;
-        padding: 2px 0;
-    }
-    
-    /* Result cards styling */
-    .result-card {
-        border: 1px solid #e0e0e0;
-        border-radius: 5px;
-        padding: 15px;
-        margin-bottom: 15px;
-        background-color: #f9f9f9;
-    }
-    
-    .movement-item {
-        margin: 5px 0;
-        padding: 5px 0;
-        border-bottom: 1px dotted #e0e0e0;
-    }
-    
-    .time-signature {
-        font-family: monospace;
-        background-color: #f0f0f0;
-        padding: 2px 8px;
-        border-radius: 3px;
-        font-weight: bold;
-        color: #d63384;
-    }
-    
-    /* Media integration */
-    .media-container {
-        display: flex;
-        margin-top: 10px;
-    }
-    
-    .media-container > div {
-        flex: 1;
-        padding: 5px;
-    }
-    
-    .media-buttons {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
-    }
-    
-    /* Make expander headers more compact */
-    .streamlit-expanderHeader {
-        font-size: 1rem !important;
-        padding: 0.5rem !important;
-    }
-    
-    /* Compact sidebar */
-    .css-1oe6wy4 {
+    .block-container {
         padding-top: 2rem;
+        padding-bottom: 2rem;
     }
-    
-    /* Audio player styling */
-    .audio-player {
-        background-color: #f0f0f0;
-        border-radius: 8px;
-        padding: 5px;
-        margin-bottom: 10px;
+    h1, h2, h3 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 2px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .metric-container {
+        background-color: #f0f2f6;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        text-align: center;
+    }
+    .metric-value {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .metric-label {
+        font-size: 1rem;
+        color: #555;
+    }
+    .st-emotion-cache-16txtl3 h1 {
+        font-weight: 700;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# =================================
-# === YouTube Audio Player Code ===
-# =================================
-def youtube_audio_player(query, use_direct_video=False, height=90):
-    """
-    Creates a YouTube audio-only player by stripping video elements.
+# Functions for data manipulation
+def load_json_file(file):
+    try:
+        if isinstance(file, str):
+            # Load from file path
+            with open(file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        else:
+            # Load from uploaded file
+            return json.load(file)
+    except Exception as e:
+        st.error(f"Error loading JSON file: {e}")
+        return None
+
+def extract_time_signatures(data):
+    """Extract time signatures with relevant metadata from the database"""
+    signatures = []
     
-    Parameters:
-        query: The search query for YouTube
-        use_direct_video: Try to get a specific video instead of search results
-        height: Height of the player (default: 90px)
+    for composer, works in data.items():
+        for work_title, movements in works.items():
+            for i, movement in enumerate(movements):
+                # Extract time signature
+                time_sig = movement.get('time_signature')
+                if time_sig:
+                    # Add metadata
+                    signatures.append({
+                        'composer': composer,
+                        'work': work_title,
+                        'movement': movement.get('movement', f"Movement {i+1}"),
+                        'time_signature': time_sig
+                    })
     
-    Returns:
-        HTML component that plays only audio from YouTube
-    """
+    return signatures
+
+def normalize_time_signature(time_sig):
+    """Normalize time signature format"""
+    # Handle common time (C) and cut time (C|)
+    if time_sig == 'C':
+        return '4/4'
+    elif time_sig == 'C|':
+        return '2/2'
     
-    # Encode the search query for URL
-    encoded_query = urllib.parse.quote(query)
+    # Handle fraction format
+    if '/' in time_sig:
+        return time_sig
     
-    # Try to get a specific video ID first if requested
-    video_id = None
-    if use_direct_video:
-        video_id = fetch_first_youtube_video_id(query)
-    
-    if video_id:
-        # If we have a specific video ID, use it
-        html = f"""
-        <div class="audio-player">
-            <iframe id="youtube-audio" 
-                width="100%" 
-                height="{height}" 
-                src="https://www.youtube.com/embed/{video_id}?autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope;" 
-                style="border-radius: 4px;">
-            </iframe>
-            <div style="font-size: 0.8em; text-align: right; padding-right: 5px;">
-                <a href="https://www.youtube.com/watch?v={video_id}" target="_blank">
-                    Open in YouTube
-                </a>
-            </div>
-        </div>
-        """
+    return time_sig
+
+def parse_time_signature(time_sig):
+    """Parse time signature into numerator and denominator"""
+    if '/' in time_sig:
+        try:
+            num, denom = map(int, time_sig.split('/'))
+            return num, denom
+        except:
+            return None, None
+    return None, None
+
+def get_time_signature_category(time_sig):
+    """Categorize time signatures into groups"""
+    if time_sig in ['2/4', '2/2', '2/8']:
+        return 'Duple'
+    elif time_sig in ['3/4', '3/8', '3/2']:
+        return 'Triple'
+    elif time_sig in ['4/4', '4/8', '4/2']:
+        return 'Quadruple'
+    elif time_sig in ['6/8', '6/4']:
+        return 'Compound Duple'
+    elif time_sig in ['9/8', '9/4']:
+        return 'Compound Triple'
+    elif time_sig in ['12/8', '12/4']:
+        return 'Compound Quadruple'
+    elif time_sig in ['5/4', '5/8', '7/8', '7/4']:
+        return 'Irregular'
     else:
-        # Otherwise use search results
-        html = f"""
-        <div class="audio-player">
-            <iframe id="youtube-audio" 
-                width="100%" 
-                height="{height}" 
-                src="https://www.youtube.com/embed?listType=search&list={encoded_query}&autoplay=0&controls=1&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope;" 
-                style="border-radius: 4px;">
-            </iframe>
-            <div style="font-size: 0.8em; text-align: right; padding-right: 5px;">
-                <a href="https://www.youtube.com/results?search_query={encoded_query}" target="_blank">
-                    More on YouTube
-                </a>
-            </div>
-        </div>
-        """
-    return html
+        return 'Other'
 
-def fetch_first_youtube_video_id(query):
-    """
-    Attempts to fetch the first YouTube video ID for a given search query.
-    This is a more advanced approach but may break if YouTube changes their page structure.
-    """
-    try:
-        # Create search URL
-        search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(query)}"
-        
-        # Add a user agent to mimic a browser request
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
-        
-        # Make the request
-        response = requests.get(search_url, headers=headers)
-        
-        if response.status_code == 200:
-            # Use regex to find video IDs in the page content
-            video_ids = re.findall(r"watch\?v=(\S{11})", response.text)
-            
-            if video_ids:
-                return video_ids[0]  # Return the first match
-    except Exception as e:
-        st.error(f"Error fetching YouTube data: {str(e)}")
-    
-    return None
-
-# ===============================
-# === Database Loading & Cache ===
-# ===============================
-@st.cache_data
-def load_imslp_database(path='imslp_scores_corrected.json'):
-    """Load and cache the IMSLP database"""
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        st.error(f"Failed to load IMSLP data: {e}")
-        return {}
-
-# ===========================
-# === Search Functionality ===
-# ===========================
-def search_works(query, imslp_db, max_results=10):
-    """Enhanced search function with smarter matching"""
-    if not query or not imslp_db:
-        return []
-    
-    query = query.lower().strip()
-    results = []
-    
-    # Extract composer and work information if possible
-    composer_match = None
-    work_type_match = None
-    number_match = None
-    
-    # Common composer names
-    composers = [c.lower() for c in imslp_db.keys()]
-    composer_match = next((c for c in composers if c.lower() in query), None)
-    
-    # Common work types
-    work_types = ["symphony", "sonata", "concerto", "quartet", "nocturne", "etude", "prelude"]
-    work_type_match = next((wt for wt in work_types if wt in query), None)
-    
-    # Look for numbers (both digits and spelled out)
-    number_patterns = [
-        r'\b(\d+)\b',  # Numbers like 5, 40
-        r'\bno\.?\s*(\d+)\b',  # No. 5, No 5
-        r'\bnumber\s*(\d+)\b',  # Number 5
-        r'\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b'  # Spelled out
-    ]
-    
-    for pattern in number_patterns:
-        match = re.search(pattern, query, re.IGNORECASE)
-        if match:
-            number_match = match.group(1)
-            if number_match in ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']:
-                # Convert spelled numbers to digits
-                number_words = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 
-                               'six': '6', 'seven': '7', 'eight': '8', 'nine': '9', 'ten': '10',
-                               'eleven': '11', 'twelve': '12'}
-                number_match = number_words[number_match]
-            break
-    
-    # Also handle common nickname-based searches like "moonlight", "pathetique", etc.
-    nicknames = {
-        "moonlight": ("Ludwig van Beethoven", "Piano Sonata No. 14 in C-sharp minor, Op. 27 No. 2"),
-        "pathetique": ("Ludwig van Beethoven", "Piano Sonata No. 8 in C minor, Op. 13"),
-        "waldstein": ("Ludwig van Beethoven", "Piano Sonata No. 21 in C major, Op. 53"),
-        "appassionata": ("Ludwig van Beethoven", "Piano Sonata No. 23 in F minor, Op. 57"),
-        "jupiter": ("Wolfgang Amadeus Mozart", "Symphony No. 41 in C major, K. 551"),
-        "eroica": ("Ludwig van Beethoven", "Symphony No. 3 in E-flat major, Op. 55"),
-        "pastoral": ("Ludwig van Beethoven", "Symphony No. 6 in F major, Op. 68"),
-        "surprise": ("Joseph Haydn", "Symphony No. 94 in G major, Hob. I:94"),
-        "unfinished": ("Franz Schubert", "Symphony No. 8 in B minor, D. 759")
+def get_composer_era(composer):
+    """Determine a composer's musical era"""
+    eras = {
+        'Johann Sebastian Bach': 'Baroque',
+        'George Frideric Handel': 'Baroque',
+        'Antonio Vivaldi': 'Baroque',
+        'Wolfgang Amadeus Mozart': 'Classical',
+        'Ludwig van Beethoven': 'Classical',
+        'Joseph Haydn': 'Classical',
+        'Franz Schubert': 'Romantic',
+        'Frédéric Chopin': 'Romantic',
+        'Felix Mendelssohn': 'Romantic',
+        'Johannes Brahms': 'Romantic',
+        'Richard Wagner': 'Romantic',
+        'Pyotr Ilyich Tchaikovsky': 'Romantic',
+        'Claude Debussy': 'Impressionist',
+        'Maurice Ravel': 'Impressionist',
+        'Sergei Rachmaninoff': 'Late Romantic',
+        'Igor Stravinsky': 'Modern',
+        'Béla Bartók': 'Modern',
+        'Giacomo Puccini': 'Romantic',
+        'Gustav Mahler': 'Late Romantic',
+        'Robert Schumann': 'Romantic',
+        'Franz Liszt': 'Romantic',
+        'Edvard Grieg': 'Romantic'
     }
     
-    for nickname, (composer, work) in nicknames.items():
-        if nickname in query.lower():
-            if composer in imslp_db and work in imslp_db[composer]:
-                return [{
-                    "composer": composer,
-                    "work": work,
-                    "movements": imslp_db[composer][work],
-                    "score": 10  # High score for exact nickname match
-                }]
+    # Try exact match
+    if composer in eras:
+        return eras[composer]
     
-    # Search through database with smarter matching
-    for composer, works in imslp_db.items():
-        # Skip if a composer was specified and doesn't match
-        if composer_match and composer_match not in composer.lower():
-            continue
-            
-        for work_title in works:
-            # Calculate match score based on multiple factors
-            score = 0
-            
-            # If work type matches (symphony, sonata, etc)
-            if work_type_match and work_type_match in work_title.lower():
-                score += 3
-            
-            # If number matches exactly (like "Symphony No. 5" or "Symphony No. 40")
-            if number_match:
-                number_in_title = re.search(r'No\.\s*(\d+)|Number\s*(\d+)|\bNo\s*(\d+)|\b(\d+)\b', work_title)
-                if number_in_title:
-                    # Get the matched number regardless of which group captured it
-                    title_number = next((g for g in number_in_title.groups() if g is not None), None)
-                    if title_number and title_number == number_match:
-                        score += 5
-                    # Partial number match (for double-digit numbers)
-                    elif title_number and number_match in title_number:
-                        score += 2
-            
-            # Overall text similarity
-            text_similarity = difflib.SequenceMatcher(None, query, f"{composer} {work_title}".lower()).ratio()
-            score += text_similarity * 2
-            
-            # Add to results if score is significant
-            if score > 0.5:
-                results.append({
-                    "composer": composer,
-                    "work": work_title,
-                    "movements": works[work_title],
-                    "score": score
-                })
+    # Try partial match
+    for known_composer, era in eras.items():
+        if known_composer in composer or composer in known_composer:
+            return era
     
-    # Sort by score (highest first)
-    results.sort(key=lambda x: x["score"], reverse=True)
-    return results[:max_results]
+    return 'Unknown'
 
-# =============================
-# === Time Signature Methods ===
-# =============================
-def get_movements_by_time_signature(imslp_db, time_signature):
-    """Find all movements with a specific time signature"""
-    results = []
-    for composer, works in imslp_db.items():
-        for work_title, movements in works.items():
-            for movement in movements:
-                if movement["time_signature"] == time_signature:
-                    results.append({
-                        "composer": composer,
-                        "work": work_title,
-                        "movement": movement["movement"],
-                        "time_signature": movement["time_signature"]
-                    })
-    return results
+def analyze_time_signatures(signatures):
+    """Comprehensive analysis of time signatures"""
+    # Count occurrences of each time signature
+    time_sig_counts = Counter()
+    composer_time_sigs = defaultdict(Counter)
+    era_time_sigs = defaultdict(Counter)
+    
+    # Create dataframe for more detailed analysis
+    if not signatures:
+        return {
+            'total_movements': 0,
+            'unique_time_signatures': 0,
+            'time_signature_counts': {},
+            'composer_time_signatures': {},
+            'era_time_signatures': {}
+        }
+    
+    df = pd.DataFrame(signatures)
+    
+    # Add era information
+    df['era'] = df['composer'].apply(get_composer_era)
+    
+    # Normalize time signatures
+    df['normalized_time_signature'] = df['time_signature'].apply(normalize_time_signature)
+    
+    # Add time signature category
+    df['category'] = df['normalized_time_signature'].apply(get_time_signature_category)
+    
+    # Extract numerator and denominator
+    df['numerator'], df['denominator'] = zip(*df['normalized_time_signature'].apply(parse_time_signature))
+    
+    # Count occurrences
+    for sig in signatures:
+        time_sig = normalize_time_signature(sig['time_signature'])
+        
+        # Count overall
+        time_sig_counts[time_sig] += 1
+        
+        # Count by composer
+        composer_time_sigs[sig['composer']][time_sig] += 1
+        
+        # Count by era
+        era = get_composer_era(sig['composer'])
+        era_time_sigs[era][time_sig] += 1
+    
+    return {
+        'total_movements': len(signatures),
+        'unique_time_signatures': len(time_sig_counts),
+        'time_signature_counts': dict(time_sig_counts.most_common()),
+        'composer_time_signatures': {comp: dict(sigs) for comp, sigs in composer_time_sigs.items()},
+        'era_time_signatures': {era: dict(sigs) for era, sigs in era_time_sigs.items()},
+        'dataframe': df
+    }
 
-def get_unique_time_signatures(imslp_db):
-    """Get a sorted list of all unique time signatures in the database"""
-    signatures = set()
-    for composer, works in imslp_db.items():
-        for work in works.values():
-            for movement in work:
-                signatures.add(movement["time_signature"])
-    return sorted(list(signatures))
+# Visualization functions
+def create_time_signature_distribution_chart(analysis):
+    """Create a bar chart of time signature distribution"""
+    if not analysis['time_signature_counts']:
+        return None
+    
+    # Get top 15 time signatures
+    top_sigs = dict(sorted(analysis['time_signature_counts'].items(), 
+                          key=lambda x: x[1], reverse=True)[:15])
+    
+    fig = px.bar(
+        x=list(top_sigs.keys()),
+        y=list(top_sigs.values()),
+        labels={'x': 'Time Signature', 'y': 'Count'},
+        title='Most Common Time Signatures',
+        color=list(top_sigs.values()),
+        color_continuous_scale='Viridis'
+    )
+    
+    fig.update_layout(
+        xaxis_title='Time Signature',
+        yaxis_title='Number of Movements',
+        coloraxis_showscale=False
+    )
+    
+    return fig
 
-# ==============================
-# === Visualization Methods ===
-# ==============================
-def create_time_signature_visualizations(imslp_db):
-    """Create visualizations for time signature analysis"""
-    # Collect data for visualization
-    data = []
-    for composer, works in imslp_db.items():
-        for work_title, movements in works.items():
-            for movement in movements:
-                data.append({
-                    'composer': composer,
-                    'work': work_title,
-                    'movement': movement['movement'],
-                    'time_signature': movement['time_signature']
-                })
+def create_time_signature_by_era_chart(analysis):
+    """Create a stacked bar chart of time signatures by era"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
     
-    # Convert to DataFrame for easy manipulation
-    df = pd.DataFrame(data)
+    df = analysis['dataframe']
     
-    # Overall time signature distribution
-    sig_counts = df['time_signature'].value_counts().reset_index()
-    sig_counts.columns = ['time_signature', 'count']
+    # Get top 6 time signatures
+    top_sigs = list(dict(sorted(analysis['time_signature_counts'].items(), 
+                               key=lambda x: x[1], reverse=True)[:6]).keys())
     
-    # Create interactive bar chart
-    chart = alt.Chart(sig_counts).mark_bar().encode(
-        x=alt.X('time_signature:N', sort='-y', title='Time Signature'),
-        y=alt.Y('count:Q', title='Number of Movements'),
-        color=alt.Color('time_signature:N', legend=None),
-        tooltip=['time_signature', 'count']
-    ).properties(
-        width=600,
-        height=400,
-        title='Distribution of Time Signatures in Classical Works'
-    ).interactive()
+    # Filter to just these time signatures
+    filtered_df = df[df['normalized_time_signature'].isin(top_sigs)]
     
-    # Get top composers (by number of works)
-    top_composers = df['composer'].value_counts().nlargest(8).index.tolist()
+    # Group by era and time signature
+    era_counts = filtered_df.groupby(['era', 'normalized_time_signature']).size().reset_index(name='count')
     
-    # Filter for top composers
-    composer_df = df[df['composer'].isin(top_composers)]
+    # Sort eras chronologically
+    era_order = ['Baroque', 'Classical', 'Romantic', 'Late Romantic', 'Impressionist', 'Modern', 'Unknown']
+    era_counts['era'] = pd.Categorical(era_counts['era'], categories=era_order, ordered=True)
+    era_counts = era_counts.sort_values('era')
     
-    # Group by composer and time signature to count movements
-    composer_counts = composer_df.groupby(['composer', 'time_signature']).size().reset_index(name='count')
+    fig = px.bar(
+        era_counts,
+        x='era',
+        y='count',
+        color='normalized_time_signature',
+        title='Time Signatures by Musical Era',
+        labels={'normalized_time_signature': 'Time Signature'},
+        color_discrete_sequence=px.colors.qualitative.Bold
+    )
+    
+    fig.update_layout(
+        xaxis_title='Musical Era',
+        yaxis_title='Number of Movements',
+        legend_title='Time Signature'
+    )
+    
+    return fig
+
+def create_composer_heatmap(analysis, selected_composers=None):
+    """Create a heatmap of time signatures used by composers"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
+    
+    df = analysis['dataframe']
+    
+    # Filter to selected composers if provided
+    if selected_composers and len(selected_composers) > 0:
+        df = df[df['composer'].isin(selected_composers)]
+    
+    # Get top 10 composers by movement count
+    top_composers = df['composer'].value_counts().nlargest(10).index.tolist()
+    
+    # Get top 10 time signatures
+    top_sigs = df['normalized_time_signature'].value_counts().nlargest(10).index.tolist()
+    
+    # Create pivot table
+    pivot_data = df[df['composer'].isin(top_composers) & 
+                   df['normalized_time_signature'].isin(top_sigs)]
+    
+    pivot = pivot_data.pivot_table(
+        index='composer',
+        columns='normalized_time_signature',
+        aggfunc='size',
+        fill_value=0
+    )
+    
+    # Sort composers by era and name
+    composer_era = {composer: get_composer_era(composer) for composer in pivot.index}
+    era_order = {'Baroque': 0, 'Classical': 1, 'Romantic': 2, 'Late Romantic': 3, 
+                'Impressionist': 4, 'Modern': 5, 'Unknown': 6}
+    
+    pivot = pivot.reset_index()
+    pivot['era'] = pivot['composer'].map(composer_era)
+    pivot['era_order'] = pivot['era'].map(era_order)
+    pivot = pivot.sort_values(['era_order', 'composer']).drop(['era', 'era_order'], axis=1)
+    pivot = pivot.set_index('composer')
     
     # Create heatmap
-    heatmap = alt.Chart(composer_counts).mark_rect().encode(
-        x=alt.X('time_signature:N', title='Time Signature'),
-        y=alt.Y('composer:N', title='Composer'),
-        color=alt.Color('count:Q', scale=alt.Scale(scheme='viridis'), title='Number of Movements'),
-        tooltip=['composer', 'time_signature', 'count']
-    ).properties(
-        width=600,
-        height=400,
-        title='Time Signature Usage by Major Composers'
-    ).interactive()
+    fig = px.imshow(
+        pivot,
+        labels=dict(x="Time Signature", y="Composer", color="Movement Count"),
+        x=pivot.columns,
+        y=pivot.index,
+        color_continuous_scale='Viridis',
+        aspect='auto',
+        title='Time Signature Usage by Composer'
+    )
     
-    return chart, heatmap
+    fig.update_layout(
+        xaxis_title='Time Signature',
+        yaxis_title='Composer'
+    )
+    
+    return fig
 
-def create_comparison_chart(imslp_db, sig1, sig2):
-    """Create a chart comparing usage of two time signatures"""
-    # Collect data for selected signatures
-    compare_data = []
-    for composer, works in imslp_db.items():
-        sig1_count = 0
-        sig2_count = 0
-        
-        for work in works.values():
-            for movement in work:
-                if movement["time_signature"] == sig1:
-                    sig1_count += 1
-                elif movement["time_signature"] == sig2:
-                    sig2_count += 1
-        
-        # Only include composers who have at least one movement in either signature
-        if sig1_count > 0 or sig2_count > 0:
-            compare_data.append({"composer": composer, "signature": sig1, "count": sig1_count})
-            compare_data.append({"composer": composer, "signature": sig2, "count": sig2_count})
+def create_time_signature_categories_chart(analysis):
+    """Create a pie chart of time signature categories"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
     
-    # Convert to DataFrame
-    compare_df = pd.DataFrame(compare_data)
+    df = analysis['dataframe']
     
-    # Filter to top composers by total count for readability
-    top_composers = compare_df.groupby('composer')['count'].sum().nlargest(10).index.tolist()
-    compare_df = compare_df[compare_df['composer'].isin(top_composers)]
+    # Count categories
+    category_counts = df['category'].value_counts()
     
-    # Create grouped bar chart
-    comparison_chart = alt.Chart(compare_df).mark_bar().encode(
-        x=alt.X('composer:N', sort='-y', title='Composer'),
-        y=alt.Y('count:Q', title='Number of Movements'),
-        color=alt.Color('signature:N', title='Time Signature'),
-        tooltip=['composer', 'signature', 'count']
-    ).properties(
-        width=600,
-        height=400,
-        title=f'Comparison: {sig1} vs {sig2} Usage by Top Composers'
-    ).interactive()
+    fig = px.pie(
+        values=category_counts.values,
+        names=category_counts.index,
+        title='Time Signature Categories',
+        color_discrete_sequence=px.colors.qualitative.Bold
+    )
     
-    return comparison_chart
+    fig.update_layout(
+        legend_title='Category'
+    )
+    
+    return fig
 
-# =======================
-# === Main Application ===
-# =======================
+def create_time_signature_correlations(analysis):
+    """Create a visualization of correlations between time signatures"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
+    
+    df = analysis['dataframe']
+    
+    # Get top 10 time signatures
+    top_sigs = list(dict(sorted(analysis['time_signature_counts'].items(), 
+                               key=lambda x: x[1], reverse=True)[:10]).keys())
+    
+    # For each composer, which time signatures do they use?
+    composer_time_sigs = df.groupby('composer')['normalized_time_signature'].apply(set)
+    
+    # Create correlation matrix
+    matrix = np.zeros((len(top_sigs), len(top_sigs)))
+    
+    for i, sig1 in enumerate(top_sigs):
+        for j, sig2 in enumerate(top_sigs):
+            # Count composers using both time signatures
+            count = sum(1 for sigs in composer_time_sigs if sig1 in sigs and sig2 in sigs)
+            matrix[i, j] = count
+    
+    # Normalize by dividing by diagonal values
+    for i in range(len(top_sigs)):
+        if matrix[i, i] > 0:
+            matrix[:, i] = matrix[:, i] / matrix[i, i]
+    
+    # Create heatmap
+    fig = px.imshow(
+        matrix,
+        labels=dict(x="Time Signature", y="Time Signature", color="Correlation"),
+        x=top_sigs,
+        y=top_sigs,
+        color_continuous_scale='RdBu_r',
+        zmin=0,
+        zmax=1,
+        title='Time Signature Co-occurrence (How often time signatures appear together in a composer\'s works)'
+    )
+    
+    return fig
+
+# Main application
 def main():
-    # Fixed header at the top
-    with st.container():
-        st.markdown('<div class="main-header">', unsafe_allow_html=True)
-        st.title("🎵 Classical Time Signature Explorer")
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.title("🎵 Classical Music Time Signature Analyzer")
     
-    # Load database
-    imslp_db = load_imslp_database()
+    st.markdown("""
+    This application analyzes time signatures in classical music compositions. 
+    Upload your JSON database to explore patterns and distributions across composers and musical eras.
+    """)
+
+    # File uploader
+    st.sidebar.header("Data Upload")
+    uploaded_file = st.sidebar.file_uploader(
+        "Upload JSON database of time signatures",
+        type="json",
+        help="Upload a JSON file in the format of imslp_scores_corrected.json"
+    )
     
-    # Get unique time signatures for later use
-    time_signatures_list = get_unique_time_signatures(imslp_db)
+    use_example_data = st.sidebar.checkbox("Use example data", value=not uploaded_file)
     
-    # Create main tabs
-    tab1, tab2, tab3 = st.tabs(["🔍 Search Works", "🎲 Random by Time Signature", "📊 Visualizations"])
+    data = None
     
-    # ========================
-    # === Search Works Tab ===
-    # ========================
+    if use_example_data:
+        # Provide a path to the example JSON file
+        example_path = 'imslp_scores_corrected.json'
+        try:
+            data = load_json_file(example_path)
+            st.sidebar.success("Loaded example data")
+        except:
+            st.sidebar.error(f"Example data not found at {example_path}")
+    elif uploaded_file:
+        data = load_json_file(uploaded_file)
+        if data:
+            st.sidebar.success("Data loaded successfully")
+    
+    if not data:
+        st.info("Please upload a JSON file with time signature data to begin analysis.")
+        
+        st.markdown("""
+        ## Expected JSON Format
+        
+        The analyzer expects data in the following format:
+        
+        ```json
+        {
+          "Composer Name": {
+            "Work Title": [
+              {
+                "movement": "Movement Title",
+                "time_signature": "4/4"
+              },
+              ...
+            ],
+            ...
+          },
+          ...
+        }
+        ```
+        """)
+        return
+    
+    # Extract and analyze time signatures
+    signatures = extract_time_signatures(data)
+    analysis = analyze_time_signatures(signatures)
+    
+    if not signatures:
+        st.error("No time signature data found in the uploaded file.")
+        return
+    
+    # Create tabs for different analyses
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "📊 Overview", 
+        "👩‍🎨 Composers", 
+        "🕰️ Time Signatures",
+        "🔍 Advanced Analysis"
+    ])
+    
     with tab1:
-        st.markdown("""
-        Search for a classical work by composer, work type, number, or nickname:
-        - Examples: "Mozart Symphony 40", "Beethoven Moonlight Sonata", "Bach Brandenburg 3"
-        """)
+        st.header("Overview")
         
-        col1, col2 = st.columns([3, 1])
+        # Display metrics
+        col1, col2, col3, col4 = st.columns(4)
         
         with col1:
-            query = st.text_input("Enter Work Title:", key="search_query")
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{analysis['total_movements']:,}</div>
+                <div class="metric-label">Total Movements</div>
+            </div>
+            """, unsafe_allow_html=True)
         
         with col2:
-            st.markdown("<br>", unsafe_allow_html=True)  # Add some spacing
-            search_button = st.button("Search", key="search_button", use_container_width=True)
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{len(analysis['composer_time_signatures']):,}</div>
+                <div class="metric-label">Composers</div>
+            </div>
+            """, unsafe_allow_html=True)
         
-        if query and (search_button or 'last_query' not in st.session_state or st.session_state.last_query != query):
-            st.session_state.last_query = query
-            
-            with st.spinner("Searching..."):
-                results = search_works(query, imslp_db)
-            
-            if results:
-                st.success(f"Found {len(results)} matching works")
+        with col3:
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{analysis['unique_time_signatures']:,}</div>
+                <div class="metric-label">Unique Time Signatures</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col4:
+            most_common = max(analysis['time_signature_counts'].items(), key=lambda x: x[1])[0]
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{most_common}</div>
+                <div class="metric-label">Most Common</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.subheader("Time Signature Distribution")
+        
+        # Display time signature distribution chart
+        fig1 = create_time_signature_distribution_chart(analysis)
+        if fig1:
+            st.plotly_chart(fig1, use_container_width=True)
+        
+        st.subheader("Time Signatures by Musical Era")
+        
+        # Display time signature by era chart
+        fig2 = create_time_signature_by_era_chart(analysis)
+        if fig2:
+            st.plotly_chart(fig2, use_container_width=True)
+        
+        st.subheader("Time Signature Categories")
+        
+        col1, col2 = st.columns([1, 2])
+        
+        with col1:
+            fig3 = create_time_signature_categories_chart(analysis)
+            if fig3:
+                st.plotly_chart(fig3, use_container_width=True)
+        
+        with col2:
+            if 'dataframe' in analysis:
+                df = analysis['dataframe']
+                category_desc = {
+                    'Duple': 'Time signatures with 2 beats per measure (2/4, 2/2, 2/8)',
+                    'Triple': 'Time signatures with 3 beats per measure (3/4, 3/8, 3/2)',
+                    'Quadruple': 'Time signatures with 4 beats per measure (4/4, 4/8, 4/2)',
+                    'Compound Duple': 'Time signatures with 2 groups of 3 beats (6/8, 6/4)',
+                    'Compound Triple': 'Time signatures with 3 groups of 3 beats (9/8, 9/4)',
+                    'Compound Quadruple': 'Time signatures with 4 groups of 3 beats (12/8, 12/4)',
+                    'Irregular': 'Time signatures with irregular groupings (5/4, 7/8, etc.)',
+                    'Other': 'Other unusual time signatures'
+                }
                 
-                # Display results in a more compact format
-                for i, result in enumerate(results):
-                    with st.expander(f"**{result['composer']}**: {result['work']}", expanded=(i==0)):
-                        st.markdown('<div class="result-card">', unsafe_allow_html=True)
-                        
-                        # Movements section
-                        for mv in result["movements"]:
-                            st.markdown(
-                                f"<div class='movement-item'>{mv['movement']} — "
-                                f"<span class='time-signature'>{mv['time_signature']}</span></div>", 
-                                unsafe_allow_html=True
-                            )
-                        
-                        # Media integration section - Audio player and Score
-                        st.markdown("<div class='media-container'>", unsafe_allow_html=True)
-                        
-                        col1, col2 = st.columns(2)
-                        
-                        with col1:
-                            st.markdown("<h4>🎧 Listen</h4>", unsafe_allow_html=True)
-                            search_term = f"{result['composer']} {result['work']}"
-                            st.components.v1.html(youtube_audio_player(search_term), height=120)
-                        
-                        with col2:
-                            st.markdown("<h4>📜 Score</h4>", unsafe_allow_html=True)
-                            search_term = f"{result['composer']} {result['work']} score"
-                            encoded_query = urllib.parse.quote(f"site:imslp.org {search_term}")
-                            search_url = f"https://www.google.com/search?q={encoded_query}"
-                            st.markdown(f"""
-                            <div style="text-align: center; margin-top: 20px;">
-                                <a href="{search_url}" target="_blank" style="text-decoration: none;">
-                                    <button style="padding: 10px 20px; background-color: #4CAF50; color: white; 
-                                                  border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
-                                        View Score on IMSLP
-                                    </button>
-                                </a>
-                            </div>
-                            """, unsafe_allow_html=True)
-                        
-                        st.markdown("</div>", unsafe_allow_html=True)
-                        
-                        # External links
-                        st.markdown("<div class='media-buttons'>", unsafe_allow_html=True)
-                        query_encoded = urllib.parse.quote(f"{result['work']} {result['composer']}")
-                        
-                        col1, col2, col3 = st.columns(3)
-                        with col1:
-                            spotify_url = f"https://open.spotify.com/search/{query_encoded}"
-                            st.markdown(f"[🎧 Listen on Spotify]({spotify_url})")
-                        
-                        with col2:
-                            youtube_url = f"https://www.youtube.com/results?search_query={query_encoded}"
-                            st.markdown(f"[▶️ Watch on YouTube]({youtube_url})")
-                        
-                        with col3:
-                            imslp_url = f"https://www.google.com/search?q=site%3Aimslp.org+score+pdf+{query_encoded}"
-                            st.markdown(f"[📜 View Full Score]({imslp_url})")
-                        
-                        st.markdown("</div>", unsafe_allow_html=True)
-                        st.markdown('</div>', unsafe_allow_html=True)
-            else:
-                st.warning("No matches found. Try a different search term.")
+                st.markdown("### Understanding Time Signature Categories")
+                
+                for category, desc in category_desc.items():
+                    count = df[df['category'] == category].shape[0]
+                    if count > 0:
+                        percent = (count / len(df) * 100)
+                        st.markdown(f"**{category}** ({count:,} movements, {percent:.1f}%): {desc}")
     
-    # ==================================
-    # === Random by Time Signature Tab ===
-    # ==================================
     with tab2:
-        st.markdown("### 🎲 Find Random Works by Time Signature")
+        st.header("Composer Analysis")
         
-        col1, col2 = st.columns([3, 1])
+        # Select composers to analyze
+        all_composers = list(analysis['composer_time_signatures'].keys())
+        default_composers = all_composers[:5] if len(all_composers) > 5 else all_composers
         
-        with col1:
-            selected_signature = st.selectbox("Select Time Signature:", time_signatures_list)
+        selected_composers = st.multiselect(
+            "Select composers to analyze",
+            options=sorted(all_composers),
+            default=default_composers
+        )
         
-        with col2:
-            st.markdown("<br>", unsafe_allow_html=True)  # Add some spacing
-            random_button = st.button("Show 5 Random Examples", use_container_width=True)
+        # Heatmap of composer time signature usage
+        st.subheader("Time Signature Usage by Composer")
+        fig4 = create_composer_heatmap(analysis, selected_composers if selected_composers else None)
+        if fig4:
+            st.plotly_chart(fig4, use_container_width=True)
         
-        st.markdown(f"### Works in {selected_signature} Time")
-        
-        if random_button or 'last_signature' not in st.session_state or st.session_state.last_signature != selected_signature:
-            st.session_state.last_signature = selected_signature
+        # Individual composer analysis
+        if selected_composers:
+            st.subheader("Individual Composer Analysis")
             
-            with st.spinner("Finding examples..."):
-                matching_movements = get_movements_by_time_signature(imslp_db, selected_signature)
+            composer_to_analyze = st.selectbox(
+                "Select a composer for detailed analysis",
+                options=selected_composers
+            )
             
-            if matching_movements:
-                # Select 5 random movements, or all if less than 5
-                samples = random.sample(matching_movements, min(5, len(matching_movements)))
+            if composer_to_analyze and 'dataframe' in analysis:
+                df = analysis['dataframe']
+                composer_df = df[df['composer'] == composer_to_analyze]
                 
-                # Display in a nice format
-                for i, sample in enumerate(samples):
-                    st.markdown(f"<div class='result-card'>", unsafe_allow_html=True)
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    # Composer's favorite time signatures
+                    time_sig_counts = composer_df['normalized_time_signature'].value_counts()
                     
-                    st.markdown(f"""
-                    <h3>{sample['composer']}</h3>
-                    <p>{sample['work']}</p>
-                    <div class='movement-item'>
-                        {sample['movement']} — <span class='time-signature'>{sample['time_signature']}</span>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    fig = px.pie(
+                        values=time_sig_counts.values,
+                        names=time_sig_counts.index,
+                        title=f"Time Signatures Used by {composer_to_analyze}",
+                        color_discrete_sequence=px.colors.qualitative.Bold
+                    )
+                    st.plotly_chart(fig, use_container_width=True)
+                
+                with col2:
+                    # Composer's time signature categories
+                    category_counts = composer_df['category'].value_counts()
                     
-                    # Media integration
-                    search_term = f"{sample['composer']} {sample['work']} {sample['movement']}"
-                    st.components.v1.html(youtube_audio_player(search_term), height=120)
+                    fig = px.bar(
+                        x=category_counts.index,
+                        y=category_counts.values,
+                        title=f"Time Signature Categories Used by {composer_to_analyze}",
+                        color=category_counts.values,
+                        color_continuous_scale='Viridis'
+                    )
                     
-                    query_encoded = urllib.parse.quote(f"{sample['work']} {sample['composer']}")
-                    imslp_url = f"https://www.google.com/search?q=site%3Aimslp.org+score+pdf+{query_encoded}"
-                    st.markdown(f"[📜 View Score]({imslp_url})")
+                    fig.update_layout(
+                        xaxis_title='Category',
+                        yaxis_title='Count',
+                        coloraxis_showscale=False
+                    )
                     
-                    st.markdown("</div>", unsafe_allow_html=True)
-            else:
-                st.warning(f"No works found with {selected_signature} time signature.")
+                    st.plotly_chart(fig, use_container_width=True)
+                
+                # List of works by this composer
+                st.subheader(f"Works by {composer_to_analyze}")
+                
+                works_df = composer_df.groupby('work').apply(
+                    lambda x: pd.Series({
+                        'Movements': len(x),
+                        'Time Signatures': ', '.join(sorted(x['normalized_time_signature'].unique()))
+                    })
+                ).reset_index()
+                
+                st.dataframe(
+                    works_df,
+                    column_config={
+                        "work": "Work Title",
+                        "Movements": st.column_config.NumberColumn("Movements"),
+                        "Time Signatures": "Time Signatures Used"
+                    },
+                    hide_index=True
+                )
     
-    # ============================
-    # === Visualizations Tab ===
-    # ============================
     with tab3:
-        st.markdown("### 📊 Time Signature Analysis")
+        st.header("Time Signature Analysis")
         
-        # Create and display visualizations
-        with st.spinner("Generating visualizations..."):
-            chart, heatmap = create_time_signature_visualizations(imslp_db)
+        # Select time signatures to analyze
+        all_time_sigs = list(analysis['time_signature_counts'].keys())
+        top_sigs = sorted(all_time_sigs, key=lambda x: analysis['time_signature_counts'][x], reverse=True)[:5]
+        
+        selected_time_sigs = st.multiselect(
+            "Select time signatures to analyze",
+            options=sorted(all_time_sigs, key=lambda x: (len(x), x)),
+            default=top_sigs
+        )
+        
+        if selected_time_sigs and 'dataframe' in analysis:
+            df = analysis['dataframe']
             
-            st.altair_chart(chart, use_container_width=True)
-            st.altair_chart(heatmap, use_container_width=True)
-        
-        # Time signature explorer
-        st.markdown("### Explorer: Compare Two Time Signatures")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            sig1 = st.selectbox("First Time Signature:", time_signatures_list, 
-                                index=time_signatures_list.index('4/4') if '4/4' in time_signatures_list else 0)
-        
-        with col2:
-            remaining_sigs = [sig for sig in time_signatures_list if sig != sig1]
-            sig2 = st.selectbox("Second Time Signature:", remaining_sigs, 
-                               index=remaining_sigs.index('3/4') if '3/4' in remaining_sigs else 0)
-        
-        # Create comparison chart
-        if sig1 and sig2:
-            with st.spinner("Generating comparison..."):
-                comparison_chart = create_comparison_chart(imslp_db, sig1, sig2)
-                st.altair_chart(comparison_chart, use_container_width=True)
+            # Compare selected time signatures
+            st.subheader("Comparison of Selected Time Signatures")
             
-            # Show examples of each signature
-            st.markdown(f"#### Example Movements in {sig1} Time:")
-            examples_1 = get_movements_by_time_signature(imslp_db, sig1)
-            if examples_1:
-                for ex in random.sample(examples_1, min(3, len(examples_1))):
-                    st.markdown(f"- **{ex['composer']}**: {ex['work']} - {ex['movement']}")
+            # Prepare data for comparison
+            compare_data = []
             
-            st.markdown(f"#### Example Movements in {sig2} Time:")
-            examples_2 = get_movements_by_time_signature(imslp_db, sig2)
-            if examples_2:
-                for ex in random.sample(examples_2, min(3, len(examples_2))):
-                    st.markdown(f"- **{ex['composer']}**: {ex['work']} - {ex['movement']}")
-
-    # ===============
-    # === Sidebar ===
-    # ===============
-    with st.sidebar:
-        st.markdown("### ℹ️ About This Tool")
-        st.write("""
-        This tool helps you explore classical music time signatures through search, 
-        random discovery, and data visualization. Listen to works while viewing time 
-        signature information.
-        """)
+            for sig in selected_time_sigs:
+                sig_df = df[df['normalized_time_signature'] == sig]
+                
+                # Count by era
+                era_counts = sig_df['era'].value_counts().to_dict()
+                
+                # Count by composer (top 3)
+                composer_counts = sig_df['composer'].value_counts().nlargest(3).to_dict()
+                top_composers = ", ".join(f"{c} ({n})" for c, n in composer_counts.items())
+                
+                compare_data.append({
+                    'Time Signature': sig,
+                    'Category': sig_df['category'].iloc[0] if not sig_df.empty else "Unknown",
+                    'Movement Count': len(sig_df),
+                    'Top Composers': top_composers,
+                    'Baroque': era_counts.get('Baroque', 0),
+                    'Classical': era_counts.get('Classical', 0),
+                    'Romantic': era_counts.get('Romantic', 0),
+                    'Late Romantic': era_counts.get('Late Romantic', 0),
+                    'Impressionist': era_counts.get('Impressionist', 0),
+                    'Modern': era_counts.get('Modern', 0)
+                })
+            
+            compare_df = pd.DataFrame(compare_data)
+            
+            st.dataframe(
+                compare_df,
+                column_config={
+                    "Time Signature": st.column_config.TextColumn("Time Signature"),
+                    "Category": st.column_config.TextColumn("Category"),
+                    "Movement Count": st.column_config.NumberColumn("Total Movements"),
+                    "Top Composers": st.column_config.TextColumn("Top Composers"),
+                    "Baroque": st.column_config.ProgressColumn("Baroque", format="%d", min_value=0),
+                    "Classical": st.column_config.ProgressColumn("Classical", format="%d", min_value=0), 
+                    "Romantic": st.column_config.ProgressColumn("Romantic", format="%d", min_value=0),
+                    "Late Romantic": st.column_config.ProgressColumn("Late Romantic", format="%d", min_value=0),
+                    "Impressionist": st.column_config.ProgressColumn("Impressionist", format="%d", min_value=0),
+                    "Modern": st.column_config.ProgressColumn("Modern", format="%d", min_value=0)
+                },
+                hide_index=True
+            )
+            
+            # Individual time signature analysis
+            time_sig_to_analyze = st.selectbox(
+                "Select a time signature for detailed analysis",
+                options=selected_time_sigs
+            )
+            
+            if time_sig_to_analyze:
+                st.subheader(f"Analysis of {time_sig_to_analyze} Time Signature")
+                
+                sig_df = df[df['normalized_time_signature'] == time_sig_to_analyze]
+                
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    # Composers using this time signature
+                    composer_counts = sig_df['composer'].value_counts().nlargest(10)
+                    
+                    fig = px.bar(
+                        x=composer_counts.index,
+                        y=composer_counts.values,
+                        title=f"Top Composers Using {time_sig_to_analyze}",
+                        color=composer_counts.values,
+                        color_continuous_scale='Viridis'
+                    )
+                    
+                    fig.update_layout(
+                        xaxis_title='Composer',
+                        yaxis_title='Count',
+                        coloraxis_showscale=False,
+                        xaxis_tickangle=-45
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+                
+                with col2:
+                    # Usage by era
+                    era_counts = sig_df['era'].value_counts()
+                    
+                    # Sort eras chronologically
+                    era_order = ['Baroque', 'Classical', 'Romantic', 'Late Romantic', 'Impressionist', 'Modern', 'Unknown']
+                    era_counts = era_counts.reindex(era_order, fill_value=0)
+                    
+                    fig = px.pie(
+                        values=era_counts.values,
+                        names=era_counts.index,
+                        title=f"Usage of {time_sig_to_analyze} by Era",
+                        color_discrete_sequence=px.colors.qualitative.Bold
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+                
+                # List of works using this time signature
+                st.subheader(f"Works using {time_sig_to_analyze}")
+                
+                works_df = sig_df.groupby(['composer', 'work']).size().reset_index(name='movement_count')
+                works_df = works_df.sort_values(['composer', 'movement_count'], ascending=[True, False])
+                
+                st.dataframe(
+                    works_df,
+                    column_config={
+                        "composer": "Composer",
+                        "work": "Work Title",
+                        "movement_count": st.column_config.NumberColumn("Movements with this Time Signature")
+                    },
+                    hide_index=True
+                )
+    
+    with tab4:
+        st.header("Advanced Analysis")
         
-        # Add time signature distribution
-        st.markdown("### 📊 Time Signature Distribution")
-        signature_counts = {}
-        for composer, works in imslp_db.items():
-            for work in works.values():
-                for movement in work:
-                    sig = movement["time_signature"]
-                    if sig in signature_counts:
-                        signature_counts[sig] += 1
-                    else:
-                        signature_counts[sig] = 1
-        
-        # Sort by frequency, descending
-        sorted_sigs = sorted(signature_counts.items(), key=lambda x: x[1], reverse=True)
-        
-        for sig, count in sorted_sigs[:10]:  # Show top 10
-            st.text(f"{sig}: {count} movements")
-        
-        if len(sorted_sigs) > 10:
-            with st.expander("Show all time signatures"):
-                for sig, count in sorted_sigs[10:]:
-                    st.text(f"{sig}: {count} movements")
-        
-        # Data collection tool link
-        st.markdown("### 🔧 Data Collection")
+        st.subheader("Time Signature Co-occurrence")
         st.markdown("""
-        Want to expand the dataset? Use the 
-        [music21](https://web.mit.edu/music21/) Python library 
-        to extract time signatures from more classical works.
+        This heatmap shows how often different time signatures appear together in a composer's works.
+        Higher values (darker colors) indicate time signatures that frequently co-occur.
         """)
+        
+        fig5 = create_time_signature_correlations(analysis)
+        if fig5:
+            st.plotly_chart(fig5, use_container_width=True)
+        
+        st.subheader("Time Signature Complexity by Era")
+        
+        if 'dataframe' in analysis:
+            df = analysis['dataframe']
+            
+            # Calculate complexity scores
+            def complexity_score(row):
+                # Simple metric: higher numerator and denominator = more complex
+                if pd.isna(row['numerator']) or pd.isna(row['denominator']):
+                    return None
+                
+                # Base score from numerator
+                num_score = 0
+                if row['numerator'] in [2, 4]:
+                    num_score = 1  # Common
+                elif row['numerator'] in [3]:
+                    num_score = 2  # Also common but slightly less so
+                elif row['numerator'] in [6, 9, 12]:
+                    num_score = 3  # Compound meters
+                else:
+                    num_score = 4  # Irregular meters
+                
+                # Modifier from denominator
+                denom_score = 0
+                if row['denominator'] in [4]:
+                    denom_score = 1  # Common
+                elif row['denominator'] in [2, 8]:
+                    denom_score = 2  # Less common
+                else:
+                    denom_score = 3  # Unusual
+                
+                return num_score + denom_score
+            
+            df['complexity'] = df.apply(complexity_score, axis=1)
+            
+            # Group by era and calculate average complexity
+            era_complexity = df.groupby('era')['complexity'].mean().reset_index()
+            
+            # Sort eras chronologically
+            era_order = ['Baroque', 'Classical', 'Romantic', 'Late Romantic', 'Impressionist', 'Modern', 'Unknown']
+            era_complexity['era'] = pd.Categorical(era_complexity['era'], categories=era_order, ordered=True)
+            era_complexity = era_complexity.sort_values('era')
+            
+            # Create chart
+            fig = px.bar(
+                era_complexity,
+                x='era',
+                y='complexity',
+                title='Average Time Signature Complexity by Era',
+                color='complexity',
+                color_continuous_scale='Viridis'
+            )
+            
+            fig.update_layout(
+                xaxis_title='Musical Era',
+                yaxis_title='Complexity Score',
+                coloraxis_showscale=False
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
+            
+            st.markdown("""
+            **Complexity Score Explanation:**
+            - Lower scores (1-2) indicate common time signatures like 2/4, 3/4, 4/4
+            - Medium scores (3-4) indicate compound meters like 6/8, 9/8
+            - Higher scores (5+) indicate irregular or unusual time signatures
+            """)
+        
+        # Time signature evolution over time
+        st.subheader("Time Signature Evolution")
+        
+        if 'dataframe' in analysis:
+            df = analysis['dataframe']
+            
+            # Define rough time periods for each era
+            era_periods = {
+                'Baroque': (1600, 1750),
+                'Classical': (1750, 1820),
+                'Romantic': (1820, 1900),
+                'Late Romantic': (1880, 1915),
+                'Impressionist': (1875, 1925),
+                'Modern': (1900, 1975),
+                'Unknown': (1800, 1900)  # Default for unknown
+            }
+            
+            # Assign midpoint year to each era
+            df['period_midpoint'] = df['era'].map(lambda x: sum(era_periods[x])/2)
+            
+            # Get top 6 time signatures
+            top_sigs = list(dict(sorted(analysis['time_signature_counts'].items(), 
+                                      key=lambda x: x[1], reverse=True)[:6]).keys())
+            
+            # Filter to just these time signatures
+            sig_df = df[df['normalized_time_signature'].isin(top_sigs)]
+            
+            # Group by era and time signature
+            era_sig_counts = sig_df.groupby(['era', 'normalized_time_signature']).size().reset_index(name='count')
+            
+            # Add era midpoint
+            era_sig_counts['period_midpoint'] = era_sig_counts['era'].map(lambda x: sum(era_periods[x])/2)
+            
+            # Create chart
+            fig = px.line(
+                era_sig_counts,
+                x='period_midpoint',
+                y='count',
+                color='normalized_time_signature',
+                title='Time Signature Usage Evolution',
+                labels={'period_midpoint': 'Time Period', 'count': 'Number of Movements'},
+                color_discrete_sequence=px.colors.qualitative.Bold
+            )
+            
+            fig.update_layout(
+                xaxis_title='Time Period',
+                yaxis_title='Number of Movements',
+                legend_title='Time Signature',
+                xaxis=dict(
+                    tickmode='array',
+                    tickvals=[1675, 1785, 1860, 1895, 1900, 1940],
+                    ticktext=['Baroque', 'Classical', 'Romantic', 'Late Romantic', 'Impressionist', 'Modern']
+                )
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
+            
+            st.markdown("""
+            **Note:** The time periods are approximate and based on commonly accepted era boundaries.
+            This is a simplified visualization of time signature evolution.
+            """)
+            
+            # Custom query section
+            st.subheader("Custom Query")
+            
+            st.markdown("""
+            Explore the dataset with custom filters to find specific patterns or examples.
+            """)
+            
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                filter_composer = st.multiselect(
+                    "Composer",
+                    options=["All"] + sorted(df['composer'].unique().tolist()),
+                    default=["All"]
+                )
+            
+            with col2:
+                filter_era = st.multiselect(
+                    "Era",
+                    options=["All"] + sorted(df['era'].unique().tolist()),
+                    default=["All"]
+                )
+            
+            with col3:
+                filter_time_sig = st.multiselect(
+                    "Time Signature",
+                    options=["All"] + sorted(df['normalized_time_signature'].unique().tolist()),
+                    default=["All"]
+                )
+            
+            # Apply filters
+            filtered_df = df.copy()
+            
+            if "All" not in filter_composer:
+                filtered_df = filtered_df[filtered_df['composer'].isin(filter_composer)]
+            
+            if "All" not in filter_era:
+                filtered_df = filtered_df[filtered_df['era'].isin(filter_era)]
+            
+            if "All" not in filter_time_sig:
+                filtered_df = filtered_df[filtered_df['normalized_time_signature'].isin(filter_time_sig)]
+            
+            # Display results
+            st.write(f"Found {len(filtered_df)} movements matching your criteria")
+            
+            if not filtered_df.empty:
+                st.dataframe(
+                    filtered_df[['composer', 'work', 'movement', 'normalized_time_signature', 'era']],
+                    column_config={
+                        "composer": "Composer",
+                        "work": "Work Title",
+                        "movement": "Movement",
+                        "normalized_time_signature": "Time Signature",
+                        "era": "Musical Era"
+                    },
+                    hide_index=True
+                )
 
-# Run the app
 if __name__ == "__main__":
     main()
