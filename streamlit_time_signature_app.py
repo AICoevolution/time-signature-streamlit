@@ -1,685 +1,1109 @@
-import requests
-from bs4 import BeautifulSoup
-import re
+import streamlit as st
+import pandas as pd
 import json
-import time
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from collections import Counter, defaultdict
+import re
+import plotly.express as px
+import plotly.graph_objects as go
+from urllib.parse import quote
 import os
-from urllib.parse import urljoin, unquote
-import sys
+from PIL import Image
 
-class KernExtractor:
-    """
-    Class to extract time signatures from Kern Humdrum database using the actual HTML structure
-    """
+# Set page configuration with custom logo if available
+if os.path.exists("logo.png"):
+    logo = Image.open("logo.png")
+    st.set_page_config(
+        page_title="Classical Time Signature Analysis",
+        page_icon=logo,
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+else:
+    st.set_page_config(
+        page_title="Classical Time Signature Analysis",
+        page_icon="🎵",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+
+# Custom CSS for better appearance
+st.markdown("""
+<style>
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    h1, h2, h3 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 2px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .metric-container {
+        background-color: #f0f2f6;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        text-align: center;
+    }
+    .metric-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #0e1117;  /* Darker color for better visibility */
+    }
+    .metric-label {
+        font-size: 1rem;
+        color: #262730;  /* Darker color for better visibility */
+    }
+    .st-emotion-cache-16txtl3 h1 {
+        font-weight: 700;
+    }
+    /* Media links styling */
+    .stButton>button {
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 4px;
+        padding: 0.3rem 0.5rem;
+        margin-right: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+    }
+    .stButton>button:hover {
+        background-color: #e0e0e0;
+    }
+    /* Search button styling */
+    .search-button {
+        background-color: #0078d4 !important;
+        color: white !important;
+        height: 38px !important;
+        margin-top: 1.5rem !important;
+    }
+    /* Logo styling */
+    .logo-img {
+        max-height: 60px;
+        margin-bottom: 20px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Functions for data manipulation
+def load_json_file(file):
+    try:
+        if isinstance(file, str):
+            # Load from file path
+            with open(file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        else:
+            # Load from uploaded file
+            return json.load(file)
+    except Exception as e:
+        st.error(f"Error loading JSON file: {e}")
+        return None
+
+def extract_time_signatures(data):
+    """Extract time signatures with relevant metadata from the database"""
+    signatures = []
     
-    def __init__(self, base_url="https://kern.humdrum.org"):
-        """Initialize with base URL and create necessary directories"""
-        self.base_url = base_url
-        self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
-        os.makedirs("output", exist_ok=True)
-        
-        # List of available composers in Kern
-        self.available_composers = [
-            "Adam", "Alkan", "Bach", "Banchieri", "Beethoven", "Billings", "Bossi", 
-            "Brahms", "Buxtehude", "Byrd", "Chopin", "Clementi", "Corelli", "Dufay", 
-            "Dunstable", "Field", "Flecha", "Foster", "Frescobaldi", "Gershwin", 
-            "Giovannelli", "Grieg", "Haydn", "Himmel", "Hummel", "Isaac", "Ives", 
-            "Joplin", "Josquin", "Landini", "Lassus", "Liszt", "MacDowell", 
-            "Mendelssohn", "Monteverdi", "Mozart", "Pachelbel", "Prokofiev", "Ravel", 
-            "Scarlatti", "Schubert", "Schumann", "Scriabin", "Sinding", "Sousa", 
-            "Turpin", "Vecchi", "Victoria", "Vivaldi", "Weber"
-        ]
-    
-    def search_composer(self, composer, result_type="Text"):
-        """
-        Search for works by a composer and return the search results HTML
-        
-        Args:
-            composer (str): Name of the composer to search for
-            result_type (str): Type of results (Text, Instrumental, etc.)
-            
-        Returns:
-            BeautifulSoup object of the search results page or None if failed
-        """
-        search_url = f"{self.base_url}/search?s=t&keyword={composer}&type={result_type}"
-        print(f"Searching for {composer} at: {search_url}")
-        
-        try:
-            response = requests.get(search_url, headers=self.headers)
-            if response.status_code != 200:
-                print(f"Error: Status code {response.status_code}")
-                return None
-            
-            # Save the HTML for debugging if needed
-            with open(f"output/{composer.lower().replace(' ', '_')}_search.html", "w", encoding="utf-8") as f:
-                f.write(response.text)
-            
-            return BeautifulSoup(response.text, 'html.parser')
-        
-        except Exception as e:
-            print(f"Error searching: {e}")
-            return None
-    
-    def extract_links_from_search(self, soup):
-        """
-        Extract links from the search results page using the exact HTML structure
-        
-        Args:
-            soup (BeautifulSoup): Parsed HTML of the search results page
-            
-        Returns:
-            list: List of dictionaries with work information and links
-        """
-        if not soup:
-            return []
-        
-        works = []
-        
-        # Find all table rows (each row represents a work)
-        rows = soup.find_all('tr')
-        print(f"Found {len(rows)} rows in the search results")
-        
-        for row in rows:
-            # Each work should have img elements with specific alt text or src attributes
-            s_link = None
-            h_link = None
-            m_link = None
-            k_link = None
-            v_link = None
-            
-            # Find all images in this row
-            img_elements = row.find_all('img')
-            for img in img_elements:
-                alt_text = img.get('alt', '')
-                img_src = img.get('src', '')
-                
-                # Find the parent <a> tag that contains the actual link
-                parent_link = img.parent
-                if parent_link and parent_link.name == 'a':
-                    href = parent_link.get('href', '')
+    for composer, works in data.items():
+        for work_title, movements in works.items():
+            for i, movement in enumerate(movements):
+                # Extract time signature
+                time_sig = movement.get('time_signature')
+                if time_sig:
+                    # Check if we have a PDF link
+                    pdf_link = None
+                    if 'score_link' in movement:
+                        pdf_link = movement['score_link']
                     
-                    if alt_text == 'PDF Score' or 'button-S.gif' in img_src:
-                        s_link = urljoin(self.base_url, href)
-                    elif alt_text == 'Humdrum File' or 'button-H.gif' in img_src:
-                        h_link = urljoin(self.base_url, href)
-                    elif alt_text == 'MIDI File' or 'button-M.gif' in img_src:
-                        m_link = urljoin(self.base_url, href)
-                    elif alt_text == 'Keyscape' or 'button-K.gif' in img_src:
-                        k_link = urljoin(self.base_url, href)
-                    elif alt_text == 'Verovio Humdrum Viewer' or 'button-V.gif' in img_src:
-                        v_link = urljoin(self.base_url, href)
+                    # Add metadata
+                    signatures.append({
+                        'composer': composer,
+                        'work': work_title,
+                        'movement': movement.get('movement', f"Movement {i+1}"),
+                        'time_signature': time_sig,
+                        'pdf_link': pdf_link
+                    })
+    
+    return signatures
+
+def normalize_time_signature(time_sig):
+    """Normalize time signature format"""
+    # Handle common time (C) and cut time (C|)
+    if time_sig == 'C':
+        return '4/4'
+    elif time_sig == 'C|':
+        return '2/2'
+    
+    # Handle fraction format
+    if '/' in time_sig:
+        return time_sig
+    
+    return time_sig
+
+def parse_time_signature(time_sig):
+    """Parse time signature into numerator and denominator"""
+    if '/' in time_sig:
+        try:
+            num, denom = map(int, time_sig.split('/'))
+            return num, denom
+        except:
+            return None, None
+    return None, None
+
+def get_time_signature_category(time_sig):
+    """Categorize time signatures into groups"""
+    if time_sig in ['2/4', '2/2', '2/8']:
+        return 'Duple'
+    elif time_sig in ['3/4', '3/8', '3/2']:
+        return 'Triple'
+    elif time_sig in ['4/4', '4/8', '4/2']:
+        return 'Quadruple'
+    elif time_sig in ['6/8', '6/4']:
+        return 'Compound Duple'
+    elif time_sig in ['9/8', '9/4']:
+        return 'Compound Triple'
+    elif time_sig in ['12/8', '12/4']:
+        return 'Compound Quadruple'
+    elif time_sig in ['5/4', '5/8', '7/8', '7/4']:
+        return 'Irregular'
+    else:
+        return 'Other'
+
+def get_composer_era(composer):
+    """Determine a composer's musical era"""
+    eras = {
+        'Johann Sebastian Bach': 'Baroque',
+        'George Frideric Handel': 'Baroque',
+        'Antonio Vivaldi': 'Baroque',
+        'Wolfgang Amadeus Mozart': 'Classical',
+        'Ludwig van Beethoven': 'Classical',
+        'Joseph Haydn': 'Classical',
+        'Franz Schubert': 'Romantic',
+        'Frédéric Chopin': 'Romantic',
+        'Felix Mendelssohn': 'Romantic',
+        'Johannes Brahms': 'Romantic',
+        'Richard Wagner': 'Romantic',
+        'Pyotr Ilyich Tchaikovsky': 'Romantic',
+        'Claude Debussy': 'Impressionist',
+        'Maurice Ravel': 'Impressionist',
+        'Sergei Rachmaninoff': 'Late Romantic',
+        'Igor Stravinsky': 'Modern',
+        'Béla Bartók': 'Modern',
+        'Giacomo Puccini': 'Romantic',
+        'Gustav Mahler': 'Late Romantic',
+        'Robert Schumann': 'Romantic',
+        'Franz Liszt': 'Romantic',
+        'Edvard Grieg': 'Romantic'
+    }
+    
+    # Try exact match
+    if composer in eras:
+        return eras[composer]
+    
+    # Try partial match
+    for known_composer, era in eras.items():
+        if known_composer in composer or composer in known_composer:
+            return era
+    
+    return 'Unknown'
+
+def analyze_time_signatures(signatures):
+    """Comprehensive analysis of time signatures"""
+    # Count occurrences of each time signature
+    time_sig_counts = Counter()
+    composer_time_sigs = defaultdict(Counter)
+    era_time_sigs = defaultdict(Counter)
+    
+    # Create dataframe for more detailed analysis
+    if not signatures:
+        return {
+            'total_movements': 0,
+            'unique_time_signatures': 0,
+            'time_signature_counts': {},
+            'composer_time_signatures': {},
+            'era_time_signatures': {}
+        }
+    
+    df = pd.DataFrame(signatures)
+    
+    # Add era information
+    df['era'] = df['composer'].apply(get_composer_era)
+    
+    # Normalize time signatures
+    df['normalized_time_signature'] = df['time_signature'].apply(normalize_time_signature)
+    
+    # Add time signature category
+    df['category'] = df['normalized_time_signature'].apply(get_time_signature_category)
+    
+    # Extract numerator and denominator
+    df['numerator'], df['denominator'] = zip(*df['normalized_time_signature'].apply(parse_time_signature))
+    
+    # Count occurrences
+    for sig in signatures:
+        time_sig = normalize_time_signature(sig['time_signature'])
+        
+        # Count overall
+        time_sig_counts[time_sig] += 1
+        
+        # Count by composer
+        composer_time_sigs[sig['composer']][time_sig] += 1
+        
+        # Count by era
+        era = get_composer_era(sig['composer'])
+        era_time_sigs[era][time_sig] += 1
+    
+    return {
+        'total_movements': len(signatures),
+        'unique_time_signatures': len(time_sig_counts),
+        'time_signature_counts': dict(time_sig_counts.most_common()),
+        'composer_time_signatures': {comp: dict(sigs) for comp, sigs in composer_time_sigs.items()},
+        'era_time_signatures': {era: dict(sigs) for era, sigs in era_time_sigs.items()},
+        'dataframe': df
+    }
+
+# Visualization functions
+def create_time_signature_distribution_chart(analysis):
+    """Create a bar chart of time signature distribution"""
+    if not analysis['time_signature_counts']:
+        return None
+    
+    # Get top 15 time signatures
+    top_sigs = dict(sorted(analysis['time_signature_counts'].items(), 
+                          key=lambda x: x[1], reverse=True)[:15])
+    
+    fig = px.bar(
+        x=list(top_sigs.keys()),
+        y=list(top_sigs.values()),
+        labels={'x': 'Time Signature', 'y': 'Count'},
+        title='Most Common Time Signatures',
+        color=list(top_sigs.values()),
+        color_continuous_scale='Viridis'
+    )
+    
+    fig.update_layout(
+        xaxis_title='Time Signature',
+        yaxis_title='Number of Movements',
+        coloraxis_showscale=False
+    )
+    
+    return fig
+
+def create_time_signature_by_era_chart(analysis):
+    """Create a stacked bar chart of time signatures by era"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
+    
+    df = analysis['dataframe']
+    
+    # Get top 6 time signatures
+    top_sigs = list(dict(sorted(analysis['time_signature_counts'].items(), 
+                               key=lambda x: x[1], reverse=True)[:6]).keys())
+    
+    # Filter to just these time signatures
+    filtered_df = df[df['normalized_time_signature'].isin(top_sigs)]
+    
+    # Group by era and time signature
+    era_counts = filtered_df.groupby(['era', 'normalized_time_signature']).size().reset_index(name='count')
+    
+    # Sort eras chronologically
+    era_order = ['Baroque', 'Classical', 'Romantic', 'Late Romantic', 'Impressionist', 'Modern', 'Unknown']
+    era_counts['era'] = pd.Categorical(era_counts['era'], categories=era_order, ordered=True)
+    era_counts = era_counts.sort_values('era')
+    
+    fig = px.bar(
+        era_counts,
+        x='era',
+        y='count',
+        color='normalized_time_signature',
+        title='Time Signatures by Musical Era',
+        labels={'normalized_time_signature': 'Time Signature'},
+        color_discrete_sequence=px.colors.qualitative.Bold
+    )
+    
+    fig.update_layout(
+        xaxis_title='Musical Era',
+        yaxis_title='Number of Movements',
+        legend_title='Time Signature'
+    )
+    
+    return fig
+
+def create_composer_heatmap(analysis, selected_composers=None):
+    """Create a heatmap of time signatures used by composers"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
+    
+    df = analysis['dataframe']
+    
+    # Filter to selected composers if provided
+    if selected_composers and len(selected_composers) > 0:
+        df = df[df['composer'].isin(selected_composers)]
+    
+    # Get top 10 composers by movement count
+    top_composers = df['composer'].value_counts().nlargest(10).index.tolist()
+    
+    # Get top 10 time signatures
+    top_sigs = df['normalized_time_signature'].value_counts().nlargest(10).index.tolist()
+    
+    # Create pivot table
+    pivot_data = df[df['composer'].isin(top_composers) & 
+                   df['normalized_time_signature'].isin(top_sigs)]
+    
+    pivot = pivot_data.pivot_table(
+        index='composer',
+        columns='normalized_time_signature',
+        aggfunc='size',
+        fill_value=0
+    )
+    
+    # Sort composers by era and name
+    composer_era = {composer: get_composer_era(composer) for composer in pivot.index}
+    era_order = {'Baroque': 0, 'Classical': 1, 'Romantic': 2, 'Late Romantic': 3, 
+                'Impressionist': 4, 'Modern': 5, 'Unknown': 6}
+    
+    pivot = pivot.reset_index()
+    pivot['era'] = pivot['composer'].map(composer_era)
+    pivot['era_order'] = pivot['era'].map(era_order)
+    pivot = pivot.sort_values(['era_order', 'composer']).drop(['era', 'era_order'], axis=1)
+    pivot = pivot.set_index('composer')
+    
+    # Create heatmap
+    fig = px.imshow(
+        pivot,
+        labels=dict(x="Time Signature", y="Composer", color="Movement Count"),
+        x=pivot.columns,
+        y=pivot.index,
+        color_continuous_scale='Viridis',
+        aspect='auto',
+        title='Time Signature Usage by Composer'
+    )
+    
+    fig.update_layout(
+        xaxis_title='Time Signature',
+        yaxis_title='Composer'
+    )
+    
+    return fig
+
+def create_time_signature_categories_chart(analysis):
+    """Create a pie chart of time signature categories"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
+    
+    df = analysis['dataframe']
+    
+    # Count categories
+    category_counts = df['category'].value_counts()
+    
+    fig = px.pie(
+        values=category_counts.values,
+        names=category_counts.index,
+        title='Time Signature Categories',
+        color_discrete_sequence=px.colors.qualitative.Bold
+    )
+    
+    fig.update_layout(
+        legend_title='Category'
+    )
+    
+    return fig
+
+def create_time_signature_correlations(analysis):
+    """Create a visualization of correlations between time signatures"""
+    if 'dataframe' not in analysis or analysis['dataframe'].empty:
+        return None
+    
+    df = analysis['dataframe']
+    
+    # Get top 10 time signatures
+    top_sigs = list(dict(sorted(analysis['time_signature_counts'].items(), 
+                               key=lambda x: x[1], reverse=True)[:10]).keys())
+    
+    # For each composer, which time signatures do they use?
+    composer_time_sigs = df.groupby('composer')['normalized_time_signature'].apply(set)
+    
+    # Create correlation matrix
+    matrix = np.zeros((len(top_sigs), len(top_sigs)))
+    
+    for i, sig1 in enumerate(top_sigs):
+        for j, sig2 in enumerate(top_sigs):
+            # Count composers using both time signatures
+            count = sum(1 for sigs in composer_time_sigs if sig1 in sigs and sig2 in sigs)
+            matrix[i, j] = count
+    
+    # Normalize by dividing by diagonal values
+    for i in range(len(top_sigs)):
+        if matrix[i, i] > 0:
+            matrix[:, i] = matrix[:, i] / matrix[i, i]
+    
+    # Create heatmap
+    fig = px.imshow(
+        matrix,
+        labels=dict(x="Time Signature", y="Time Signature", color="Correlation"),
+        x=top_sigs,
+        y=top_sigs,
+        color_continuous_scale='RdBu_r',
+        zmin=0,
+        zmax=1,
+        title='Time Signature Co-occurrence (How often time signatures appear together in a composer\'s works)'
+    )
+    
+    return fig
+
+def display_media_links(row):
+    """Display media links as actual clickable buttons"""
+    composer = row['composer']
+    work = row['work']
+    
+    # Create search query for YouTube
+    youtube_query = quote(f"{composer} {work}")
+    youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+    
+    # Create search query for Spotify
+    spotify_query = quote(f"{composer} {work}")
+    spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+    
+    # Use columns for the buttons
+    col1, col2, col3, col4 = st.columns([1, 1, 1, 7])
+    
+    with col1:
+        st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+    
+    with col2:
+        st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+    
+    with col3:
+        # PDF link (if available)
+        if pd.notna(row.get('pdf_link')):
+            st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+
+# Main application
+def main():
+    # Display logo if available
+    if os.path.exists("logo.png"):
+        col1, col2 = st.columns([1, 3])
+        with col1:
+            st.image("logo.png", width=150)
+        with col2:
+            st.title("Classical Music Time Signature Analyzer")
+    else:
+        st.title("🎵 Classical Music Time Signature Analyzer")
+    
+    st.markdown("""
+    This application analyzes time signatures in classical music compositions. 
+    Upload your JSON database to explore patterns and distributions across composers and musical eras.
+    """)
+
+    # File uploader
+    st.sidebar.header("Data Upload")
+    uploaded_file = st.sidebar.file_uploader(
+        "Upload JSON database of time signatures",
+        type="json",
+        help="Upload a JSON file in the format of imslp_scores_corrected.json"
+    )
+    
+    use_example_data = st.sidebar.checkbox("Use example data", value=not uploaded_file)
+    
+    data = None
+    
+    if use_example_data:
+        # Provide a path to the example JSON file
+        example_path = 'imslp_scores_corrected.json'
+        try:
+            data = load_json_file(example_path)
+            st.sidebar.success("Loaded example data")
+        except:
+            st.sidebar.error(f"Example data not found at {example_path}")
+    elif uploaded_file:
+        data = load_json_file(uploaded_file)
+        if data:
+            st.sidebar.success("Data loaded successfully")
+    
+    if not data:
+        st.info("Please upload a JSON file with time signature data to begin analysis.")
+        
+        st.markdown("""
+        ## Expected JSON Format
+        
+        The analyzer expects data in the following format:
+        
+        ```json
+        {
+          "Composer Name": {
+            "Work Title": [
+              {
+                "movement": "Movement Title",
+                "time_signature": "4/4"
+              },
+              ...
+            ],
+            ...
+          },
+          ...
+        }
+        ```
+        """)
+        return
+    
+    # Extract and analyze time signatures
+    signatures = extract_time_signatures(data)
+    analysis = analyze_time_signatures(signatures)
+    
+    if not signatures:
+        st.error("No time signature data found in the uploaded file.")
+        return
+    
+    # Create tabs for different analyses - starting with Advanced now
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "🔍 Custom Query", 
+        "📊 Overview", 
+        "👩‍🎨 Composers", 
+        "🕰️ Time Signatures"
+    ])
+    
+    # Custom Query Tab (now first)
+    with tab1:
+        st.header("Custom Query")
+        
+        st.markdown("""
+        Explore the dataset with custom filters to find specific patterns or examples.
+        """)
+        
+        with st.form("query_form"):
+            col1, col2, col3 = st.columns(3)
             
-            # Get the work title - it's often in the last link of the row
-            title = None
-            info_link = None
+            with col1:
+                filter_composer = st.multiselect(
+                    "Composer",
+                    options=["All"] + sorted(analysis['dataframe']['composer'].unique().tolist()),
+                    default=["All"]
+                )
             
-            # Look for links containing "format=info" which are usually work titles
-            info_links = row.find_all('a', href=lambda href: href and 'format=info' in href)
-            if info_links:
-                info_link = info_links[-1]  # Use the last one if multiple exist
-                title = info_link.text.strip()
-                info_url = urljoin(self.base_url, info_link.get('href', ''))
+            with col2:
+                filter_era = st.multiselect(
+                    "Era",
+                    options=["All"] + sorted(analysis['dataframe']['era'].unique().tolist()),
+                    default=["All"]
+                )
             
-            # If no title found, try to get any text from the row
-            if not title:
-                text_content = row.get_text().strip()
-                if text_content:
-                    # Try to extract a meaningful title from the text content
-                    title = re.sub(r'\s+', ' ', text_content)
+            with col3:
+                filter_time_sig = st.multiselect(
+                    "Time Signature",
+                    options=["All"] + sorted(analysis['dataframe']['normalized_time_signature'].unique().tolist()),
+                    default=["All"]
+                )
             
-            # Only add works that have both a title and Humdrum (H) link
-            if title and h_link:
-                work_info = {
-                    'title': title,
-                    'links': {
-                        'H': h_link
-                    }
+            # Submit button
+            submitted = st.form_submit_button("Search", use_container_width=True)
+        
+        if submitted:
+            # Apply filters
+            filtered_df = analysis['dataframe'].copy()
+            
+            if "All" not in filter_composer:
+                filtered_df = filtered_df[filtered_df['composer'].isin(filter_composer)]
+            
+            if "All" not in filter_era:
+                filtered_df = filtered_df[filtered_df['era'].isin(filter_era)]
+            
+            if "All" not in filter_time_sig:
+                filtered_df = filtered_df[filtered_df['normalized_time_signature'].isin(filter_time_sig)]
+            
+            # Display results count
+            st.write(f"Found {len(filtered_df)} movements matching your criteria")
+            
+            if not filtered_df.empty:
+                # Group by work to avoid duplicates
+                unique_works = filtered_df.drop_duplicates(['composer', 'work']).copy()
+                
+                # Display as a regular table without the media_links column
+                st.dataframe(
+                    unique_works[['composer', 'work', 'normalized_time_signature', 'era']],
+                    column_config={
+                        "composer": "Composer",
+                        "work": "Work Title", 
+                        "normalized_time_signature": "Time Signature",
+                        "era": "Musical Era"
+                    },
+                    hide_index=True,
+                    use_container_width=True,
+                    height=400
+                )
+                
+                # Show selected works with media links
+                st.subheader("Selected Works")
+                st.write("Click on a work to see media links and details:")
+                
+                # Create an expander for each work
+                for _, row in unique_works.iterrows():
+                    with st.expander(f"{row['composer']} - {row['work']}"):
+                        # Display media links
+                        st.markdown("#### Media Links")
+                        col1, col2, col3 = st.columns([1, 1, 8])
+                        
+                        with col1:
+                            youtube_query = quote(f"{row['composer']} {row['work']}")
+                            youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                            st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+                        
+                        with col2:
+                            spotify_query = quote(f"{row['composer']} {row['work']}")
+                            spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                            st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                        
+                        with col3:
+                            if pd.notna(row.get('pdf_link')):
+                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                        
+                        # Show work details - all movements
+                        st.markdown("#### Movements")
+                        work_movements = filtered_df[(filtered_df['composer'] == row['composer']) & 
+                                                   (filtered_df['work'] == row['work'])]
+                        
+                        for _, movement in work_movements.iterrows():
+                            st.markdown(f"**{movement['movement']}** - {movement['normalized_time_signature']}")
+                        
+                        # Show era
+                        st.markdown(f"**Era:** {row['era']}")
+        else:
+            # Show all data by default with pagination
+            st.subheader("All Works")
+            
+            # Group by work to avoid duplicates
+            all_works = analysis['dataframe'].drop_duplicates(['composer', 'work']).copy()
+            
+            # Calculate pagination
+            items_per_page = 25
+            total_pages = (len(all_works) + items_per_page - 1) // items_per_page
+            
+            col1, col2 = st.columns([3, 1])
+            with col2:
+                page = st.number_input("Page", min_value=1, max_value=total_pages, value=1)
+            
+            start_idx = (page - 1) * items_per_page
+            end_idx = min(start_idx + items_per_page, len(all_works))
+            
+            # Display paged results
+            st.dataframe(
+                all_works.iloc[start_idx:end_idx][['composer', 'work', 'normalized_time_signature', 'era']],
+                column_config={
+                    "composer": "Composer",
+                    "work": "Work Title",
+                    "normalized_time_signature": "Time Signature",
+                    "era": "Musical Era"
+                },
+                hide_index=True,
+                use_container_width=True
+            )
+            
+            st.write(f"Showing {start_idx+1}-{end_idx} of {len(all_works)} works")
+            
+            # Create an expander for each shown work
+            for _, row in all_works.iloc[start_idx:end_idx].iterrows():
+                with st.expander(f"{row['composer']} - {row['work']}"):
+                    # Display media links
+                    st.markdown("#### Media Links")
+                    col1, col2, col3 = st.columns([1, 1, 8])
+                    
+                    with col1:
+                        youtube_query = quote(f"{row['composer']} {row['work']}")
+                        youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                        st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+                    
+                    with col2:
+                        spotify_query = quote(f"{row['composer']} {row['work']}")
+                        spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                        st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                    
+                    with col3:
+                        if pd.notna(row.get('pdf_link')):
+                            st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                    
+                    # Show work details - all movements
+                    st.markdown("#### Movements")
+                    work_movements = analysis['dataframe'][(analysis['dataframe']['composer'] == row['composer']) & 
+                                               (analysis['dataframe']['work'] == row['work'])]
+                    
+                    for _, movement in work_movements.iterrows():
+                        st.markdown(f"**{movement['movement']}** - {movement['normalized_time_signature']}")
+                    
+                    # Show era
+                    st.markdown(f"**Era:** {row['era']}")
+    
+    with tab2:
+        st.header("Overview")
+        
+        # Display metrics
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{analysis['total_movements']:,}</div>
+                <div class="metric-label">Total Movements</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{len(analysis['composer_time_signatures']):,}</div>
+                <div class="metric-label">Composers</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col3:
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{analysis['unique_time_signatures']:,}</div>
+                <div class="metric-label">Unique Time Signatures</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col4:
+            most_common = max(analysis['time_signature_counts'].items(), key=lambda x: x[1])[0]
+            st.markdown(f"""
+            <div class="metric-container">
+                <div class="metric-value">{most_common}</div>
+                <div class="metric-label">Most Common</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.subheader("Time Signature Distribution")
+        
+        # Display time signature distribution chart
+        fig1 = create_time_signature_distribution_chart(analysis)
+        if fig1:
+            st.plotly_chart(fig1, use_container_width=True)
+        
+        st.subheader("Time Signatures by Musical Era")
+        
+        # Display time signature by era chart
+        fig2 = create_time_signature_by_era_chart(analysis)
+        if fig2:
+            st.plotly_chart(fig2, use_container_width=True)
+        
+        st.subheader("Time Signature Categories")
+        
+        col1, col2 = st.columns([1, 2])
+        
+        with col1:
+            fig3 = create_time_signature_categories_chart(analysis)
+            if fig3:
+                st.plotly_chart(fig3, use_container_width=True)
+        
+        with col2:
+            if 'dataframe' in analysis:
+                df = analysis['dataframe']
+                category_desc = {
+                    'Duple': 'Time signatures with 2 beats per measure (2/4, 2/2, 2/8)',
+                    'Triple': 'Time signatures with 3 beats per measure (3/4, 3/8, 3/2)',
+                    'Quadruple': 'Time signatures with 4 beats per measure (4/4, 4/8, 4/2)',
+                    'Compound Duple': 'Time signatures with 2 groups of 3 beats (6/8, 6/4)',
+                    'Compound Triple': 'Time signatures with 3 groups of 3 beats (9/8, 9/4)',
+                    'Compound Quadruple': 'Time signatures with 4 groups of 3 beats (12/8, 12/4)',
+                    'Irregular': 'Time signatures with irregular groupings (5/4, 7/8, etc.)',
+                    'Other': 'Other unusual time signatures'
                 }
                 
-                # Add other links if they exist
-                if s_link:
-                    work_info['links']['S'] = s_link
-                if m_link:
-                    work_info['links']['M'] = m_link
-                if k_link:
-                    work_info['links']['K'] = k_link
-                if v_link:
-                    work_info['links']['V'] = v_link
-                if info_link:
-                    work_info['links']['info'] = info_url
+                st.markdown("### Understanding Time Signature Categories")
                 
-                works.append(work_info)
-        
-        print(f"Extracted {len(works)} works with H links")
-        return works
+                for category, desc in category_desc.items():
+                    count = df[df['category'] == category].shape[0]
+                    if count > 0:
+                        percent = (count / len(df) * 100)
+                        st.markdown(f"**{category}** ({count:,} movements, {percent:.1f}%): {desc}")
     
-    def extract_time_signature(self, h_link, s_link=None):
-        """
-        Extract time signature and metadata from a Humdrum file
+    with tab3:
+        st.header("Composer Analysis")
         
-        Args:
-            h_link (str): URL to the Humdrum file (H link)
-            s_link (str, optional): URL to the PDF score (S link)
-            
-        Returns:
-            dict: Dictionary with time signature and metadata
-        """
-        result = {
-            'time_signature': None,
-            'title': None,
-            'composer': None,
-            'catalog_number': None,
-            'reference_records': {},
-            'pdf_link': s_link  # Store PDF link directly in metadata
-        }
+        # Select composers to analyze
+        all_composers = list(analysis['composer_time_signatures'].keys())
+        default_composers = all_composers[:5] if len(all_composers) > 5 else all_composers
         
-        try:
-            print(f"Accessing: {h_link}")
+        selected_composers = st.multiselect(
+            "Select composers to analyze",
+            options=sorted(all_composers),
+            default=default_composers
+        )
+        
+        # Heatmap of composer time signature usage
+        st.subheader("Time Signature Usage by Composer")
+        fig4 = create_composer_heatmap(analysis, selected_composers if selected_composers else None)
+        if fig4:
+            st.plotly_chart(fig4, use_container_width=True)
+        
+        # Individual composer analysis
+        if selected_composers:
+            st.subheader("Individual Composer Analysis")
             
-            # Handle different URL formats
-            if '&format=kern' in h_link:
-                # Direct kern format
-                response = requests.get(h_link, headers=self.headers)
-                content_type = 'text/plain'
-            else:
-                # JSON format
-                response = requests.get(h_link, headers=self.headers)
-                content_type = response.headers.get('Content-Type', '')
+            composer_to_analyze = st.selectbox(
+                "Select a composer for detailed analysis",
+                options=selected_composers
+            )
             
-            if response.status_code != 200:
-                print(f"Error: Status code {response.status_code}")
-                return result
-            
-            # Process response based on content type
-            if 'application/json' in content_type:
-                try:
-                    data = response.json()
-                    
-                    if isinstance(data, dict) and 'data' in data:
-                        content = data['data']
-                    else:
-                        content = str(data)
-                except:
-                    content = response.text
-            else:
-                content = response.text
-            
-            # Save raw content for debugging (only if debugging flag is set)
-            if os.environ.get("KERN_DEBUG", "0") == "1":
-                filename = f"output/humdrum_sample_{int(time.time())}.txt"
-                with open(filename, 'w', encoding='utf-8') as f:
-                    f.write(content[:10000])  # Save first 10000 characters
-            
-            # Extract time signature - look for *M pattern
-            time_sig_match = re.search(r'\*M(\d+)/(\d+)', content)
-            if time_sig_match:
-                result['time_signature'] = f"{time_sig_match.group(1)}/{time_sig_match.group(2)}"
-            else:
-                # Try mensural notation format
-                met_match = re.search(r'\*met\(([^)]+)\)', content)
-                if met_match:
-                    result['time_signature'] = met_match.group(1)
-            
-            # Extract metadata from reference records (lines starting with !!!)
-            ref_records = re.findall(r'!!!([^:]+):\s*(.+)', content)
-            for key, value in ref_records:
-                result['reference_records'][key] = value.strip()
+            if composer_to_analyze and 'dataframe' in analysis:
+                df = analysis['dataframe']
+                composer_df = df[df['composer'] == composer_to_analyze]
                 
-                # Extract specific metadata
-                if key == 'OTL':  # Original Title
-                    result['title'] = value.strip()
-                elif key == 'COM':  # Composer
-                    result['composer'] = value.strip()
-                elif key in ['SCT', 'ONB', 'OPC']:  # Catalog numbers
-                    result['catalog_number'] = value.strip()
-            
-            return result
-        
-        except Exception as e:
-            print(f"Error extracting time signature: {e}")
-            return result
-    
-    def process_composer(self, composer, max_works=None):
-        """
-        Process works by a composer and extract time signatures
-        
-        Args:
-            composer (str): Name of the composer
-            max_works (int, optional): Maximum number of works to process
-            
-        Returns:
-            dict: Dictionary of works with their time signatures
-        """
-        # Search for the composer
-        soup = self.search_composer(composer)
-        if not soup:
-            return {}
-        
-        # Extract links
-        works = self.extract_links_from_search(soup)
-        
-        # Limit works if specified
-        if max_works and max_works < len(works):
-            works = works[:max_works]
-            print(f"Processing {max_works} out of {len(works)} works")
-        
-        composer_data = {}
-        
-        # Process each work
-        for i, work in enumerate(works):
-            print(f"\nProcessing work {i+1}/{len(works)}: {work['title']}")
-            
-            # Extract time signature
-            if 'H' in work['links']:
-                # Get the PDF link if available
-                s_link = work['links'].get('S', None)
+                col1, col2 = st.columns(2)
                 
-                metadata = self.extract_time_signature(work['links']['H'], s_link)
+                with col1:
+                    # Composer's favorite time signatures
+                    time_sig_counts = composer_df['normalized_time_signature'].value_counts()
+                    
+                    fig = px.pie(
+                        values=time_sig_counts.values,
+                        names=time_sig_counts.index,
+                        title=f"Time Signatures Used by {composer_to_analyze}",
+                        color_discrete_sequence=px.colors.qualitative.Bold
+                    )
+                    st.plotly_chart(fig, use_container_width=True)
                 
-                if metadata['time_signature']:
-                    print(f"  Found time signature: {metadata['time_signature']}")
+                with col2:
+                    # Composer's time signature categories
+                    category_counts = composer_df['category'].value_counts()
                     
-                    # Determine the work title
-                    work_title = metadata['title'] if metadata['title'] else work['title']
+                    fig = px.bar(
+                        x=category_counts.index,
+                        y=category_counts.values,
+                        title=f"Time Signature Categories Used by {composer_to_analyze}",
+                        color=category_counts.values,
+                        color_continuous_scale='Viridis'
+                    )
                     
-                    # Add catalog number if available
-                    if metadata['catalog_number'] and metadata['catalog_number'] not in work_title:
-                        work_title = f"{work_title} {metadata['catalog_number']}"
+                    fig.update_layout(
+                        xaxis_title='Category',
+                        yaxis_title='Count',
+                        coloraxis_showscale=False
+                    )
                     
-                    # Create movement entry
-                    if work_title not in composer_data:
-                        composer_data[work_title] = []
-                    
-                    # Determine movement title (use work title if no specific movement title)
-                    movement_title = work['title']
-                    
-                    # Add the movement with PDF link
-                    movement_data = {
-                        "movement": movement_title,
-                        "time_signature": metadata['time_signature'],
-                    }
-                    
-                    # Only add PDF link if it exists
-                    if metadata['pdf_link']:
-                        movement_data["pdf_link"] = metadata['pdf_link']
-                    
-                    # Check if this movement already exists
-                    exists = False
-                    for existing in composer_data[work_title]:
-                        if existing['movement'] == movement_title or existing['time_signature'] == metadata['time_signature']:
-                            exists = True
-                            break
-                    
-                    if not exists:
-                        composer_data[work_title].append(movement_data)
-                    
-                    # If PDF link is available, log it
-                    if s_link:
-                        print(f"  PDF Score available: {s_link}")
+                    st.plotly_chart(fig, use_container_width=True)
                 
-                else:
-                    print("  No time signature found")
-            
-            # Delay to avoid overloading the server
-            time.sleep(1)
-        
-        return composer_data
-    
-    def save_composer_data(self, composer, composer_data):
-        """
-        Save composer data to a JSON file
-        
-        Args:
-            composer (str): Composer name
-            composer_data (dict): Dictionary of works with time signatures
-            
-        Returns:
-            str: Path to the saved file
-        """
-        # Clean composer name for filename
-        clean_composer = re.sub(r'[^\w\s]', '', composer).replace(' ', '_').lower()
-        filename = f"output/{clean_composer}_time_signatures.json"
-        
-        # Format for saving
-        output_data = {composer: composer_data}
-        
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(output_data, f, indent=2, ensure_ascii=False)
-        
-        print(f"\nSaved time signatures to {filename}")
-        return filename
-    
-    def merge_with_imslp_data(self, imslp_file, composer, composer_data):
-        """
-        Merge extracted data with the existing IMSLP database
-        
-        Args:
-            imslp_file (str): Path to the IMSLP JSON file
-            composer (str): Composer name
-            composer_data (dict): Dictionary of works with time signatures
-            
-        Returns:
-            dict: Merged data
-        """
-        try:
-            # Load IMSLP data
-            with open(imslp_file, 'r', encoding='utf-8') as f:
-                imslp_data = json.load(f)
-            
-            # Check if composer exists
-            if composer not in imslp_data:
-                print(f"\nComposer '{composer}' not found in IMSLP data. Adding as new entry.")
-                imslp_data[composer] = {}
-            
-            # Track additions
-            new_works = 0
-            updated_works = 0
-            new_movements = 0
-            
-            # Add works to IMSLP data
-            for work_title, movements in composer_data.items():
-                # Try to find a matching work
-                best_match = None
-                best_match_score = 0
+                # List of works by this composer
+                st.subheader(f"Works by {composer_to_analyze}")
                 
-                for imslp_title in imslp_data[composer].keys():
-                    # Simple matching score based on common words
-                    work_words = set(work_title.lower().split())
-                    imslp_words = set(imslp_title.lower().split())
-                    common_words = work_words.intersection(imslp_words)
-                    
-                    # Score based on percentage of common words
-                    if len(work_words) > 0 and len(imslp_words) > 0:
-                        match_score = len(common_words) / max(len(work_words), len(imslp_words))
+                # Group by work to avoid duplicates
+                composer_works = composer_df.drop_duplicates(['work']).copy()
+                
+                # Display works in a table
+                st.dataframe(
+                    composer_works[['work', 'normalized_time_signature', 'era']],
+                    column_config={
+                        "work": "Work Title",
+                        "normalized_time_signature": "Time Signature",
+                        "era": "Musical Era"
+                    },
+                    hide_index=True,
+                    use_container_width=True
+                )
+                
+                # Create an expander for each work
+                for _, row in composer_works.iterrows():
+                    with st.expander(f"{row['work']}"):
+                        # Display media links
+                        st.markdown("#### Media Links")
+                        col1, col2, col3 = st.columns([1, 1, 8])
                         
-                        # Prefer matches with higher scores
-                        if match_score > best_match_score and match_score > 0.3:  # At least 30% match
-                            best_match = imslp_title
-                            best_match_score = match_score
-                
-                if best_match:
-                    print(f"\nMatched '{work_title}' to existing work '{best_match}'")
-                    
-                    # Add new movements
-                    for movement in movements:
-                        # Check if this time signature already exists
-                        exists = False
-                        for existing in imslp_data[composer][best_match]:
-                            if existing['time_signature'] == movement['time_signature']:
-                                # Update PDF link if not exists in existing
-                                if 'pdf_link' not in existing and 'pdf_link' in movement and movement['pdf_link']:
-                                    existing['pdf_link'] = movement['pdf_link']
-                                    print(f"  Updated PDF link for {existing['movement']}")
-                                exists = True
-                                break
+                        with col1:
+                            youtube_query = quote(f"{composer_to_analyze} {row['work']}")
+                            youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                            st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
                         
-                        if not exists:
-                            imslp_data[composer][best_match].append(movement)
-                            new_movements += 1
-                            print(f"  Added movement: {movement['movement']} ({movement['time_signature']})")
+                        with col2:
+                            spotify_query = quote(f"{composer_to_analyze} {row['work']}")
+                            spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                            st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                        
+                        with col3:
+                            if pd.notna(row.get('pdf_link')):
+                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                        
+                        # Show work details - all movements
+                        st.markdown("#### Movements")
+                        work_movements = composer_df[composer_df['work'] == row['work']]
+                        
+                        for _, movement in work_movements.iterrows():
+                            st.markdown(f"**{movement['movement']}** - {movement['normalized_time_signature']}")
+    
+    with tab4:
+        st.header("Time Signature Analysis")
+        
+        # Select time signatures to analyze
+        all_time_sigs = list(analysis['time_signature_counts'].keys())
+        top_sigs = sorted(all_time_sigs, key=lambda x: analysis['time_signature_counts'][x], reverse=True)[:5]
+        
+        selected_time_sigs = st.multiselect(
+            "Select time signatures to analyze",
+            options=sorted(all_time_sigs, key=lambda x: (len(x), x)),
+            default=top_sigs
+        )
+        
+        if selected_time_sigs and 'dataframe' in analysis:
+            df = analysis['dataframe']
+            
+            # Compare selected time signatures
+            st.subheader("Comparison of Selected Time Signatures")
+            
+            # Prepare data for comparison
+            compare_data = []
+            
+            for sig in selected_time_sigs:
+                sig_df = df[df['normalized_time_signature'] == sig]
+                
+                # Count by era
+                era_counts = sig_df['era'].value_counts().to_dict()
+                
+                # Count by composer (top 3)
+                composer_counts = sig_df['composer'].value_counts().nlargest(3).to_dict()
+                top_composers = ", ".join(f"{c} ({n})" for c, n in composer_counts.items())
+                
+                compare_data.append({
+                    'Time Signature': sig,
+                    'Category': sig_df['category'].iloc[0] if not sig_df.empty else "Unknown",
+                    'Movement Count': len(sig_df),
+                    'Top Composers': top_composers,
+                    'Baroque': era_counts.get('Baroque', 0),
+                    'Classical': era_counts.get('Classical', 0),
+                    'Romantic': era_counts.get('Romantic', 0),
+                    'Late Romantic': era_counts.get('Late Romantic', 0),
+                    'Impressionist': era_counts.get('Impressionist', 0),
+                    'Modern': era_counts.get('Modern', 0)
+                })
+            
+            compare_df = pd.DataFrame(compare_data)
+            
+            st.dataframe(
+                compare_df,
+                column_config={
+                    "Time Signature": st.column_config.TextColumn("Time Signature"),
+                    "Category": st.column_config.TextColumn("Category"),
+                    "Movement Count": st.column_config.NumberColumn("Total Movements"),
+                    "Top Composers": st.column_config.TextColumn("Top Composers"),
+                    "Baroque": st.column_config.ProgressColumn("Baroque", format="%d", min_value=0),
+                    "Classical": st.column_config.ProgressColumn("Classical", format="%d", min_value=0), 
+                    "Romantic": st.column_config.ProgressColumn("Romantic", format="%d", min_value=0),
+                    "Late Romantic": st.column_config.ProgressColumn("Late Romantic", format="%d", min_value=0),
+                    "Impressionist": st.column_config.ProgressColumn("Impressionist", format="%d", min_value=0),
+                    "Modern": st.column_config.ProgressColumn("Modern", format="%d", min_value=0)
+                },
+                hide_index=True
+            )
+            
+            # Individual time signature analysis
+            time_sig_to_analyze = st.selectbox(
+                "Select a time signature for detailed analysis",
+                options=selected_time_sigs
+            )
+            
+            if time_sig_to_analyze:
+                st.subheader(f"Analysis of {time_sig_to_analyze} Time Signature")
+                
+                sig_df = df[df['normalized_time_signature'] == time_sig_to_analyze]
+                
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    # Composers using this time signature
+                    composer_counts = sig_df['composer'].value_counts().nlargest(10)
                     
-                    updated_works += 1
-                else:
-                    # Add as new work
-                    imslp_data[composer][work_title] = movements
-                    new_works += 1
-                    new_movements += len(movements)
-                    print(f"\nAdded new work: {work_title} with {len(movements)} movements")
-            
-            # Save merged data
-            merged_file = f"output/imslp_scores_updated.json"
-            with open(merged_file, 'w', encoding='utf-8') as f:
-                json.dump(imslp_data, f, indent=2, ensure_ascii=False)
-            
-            print(f"\nMerged data saved to {merged_file}")
-            print(f"Added {new_works} new works and {new_movements} new movements")
-            print(f"Updated {updated_works} existing works")
-            
-            return imslp_data
-            
-        except Exception as e:
-            print(f"Error merging with IMSLP data: {e}")
-            return None
-    
-    def process_all_composers(self, imslp_file, max_works_per_composer=1000):
-        """
-        Process all available composers in the Kern database
-        
-        Args:
-            imslp_file (str): Path to the IMSLP JSON file
-            max_works_per_composer (int): Maximum works to process per composer
-            
-        Returns:
-            dict: Dictionary with results for each composer
-        """
-        results = {}
-        
-        # Create a progress log file
-        progress_log = f"output/all_composers_progress_{int(time.time())}.txt"
-        with open(progress_log, 'w', encoding='utf-8') as f:
-            f.write(f"Starting extraction of all composers at {time.ctime()}\n")
-            f.write(f"Max works per composer: {max_works_per_composer}\n\n")
-        
-        # Process each composer
-        for i, composer in enumerate(self.available_composers):
-            try:
-                print(f"\n\n{'='*50}")
-                print(f"Processing composer {i+1}/{len(self.available_composers)}: {composer}")
-                print(f"{'='*50}")
-                
-                # Log progress
-                with open(progress_log, 'a', encoding='utf-8') as f:
-                    f.write(f"\n{'='*30}\n")
-                    f.write(f"Starting {composer} at {time.ctime()}\n")
-                
-                # Process the composer
-                composer_data = self.process_composer(composer, max_works_per_composer)
-                
-                # If data found, save and merge
-                if composer_data:
-                    # Save to separate file
-                    file_path = self.save_composer_data(composer, composer_data)
+                    fig = px.bar(
+                        x=composer_counts.index,
+                        y=composer_counts.values,
+                        title=f"Top Composers Using {time_sig_to_analyze}",
+                        color=composer_counts.values,
+                        color_continuous_scale='Viridis'
+                    )
                     
-                    # Merge with IMSLP data
-                    self.merge_with_imslp_data(imslp_file, composer, composer_data)
+                    fig.update_layout(
+                        xaxis_title='Composer',
+                        yaxis_title='Count',
+                        coloraxis_showscale=False,
+                        xaxis_tickangle=-45
+                    )
                     
-                    # Store results
-                    results[composer] = {
-                        "works_found": len(composer_data),
-                        "file_path": file_path
-                    }
+                    st.plotly_chart(fig, use_container_width=True)
+                
+                with col2:
+                    # Usage by era
+                    era_counts = sig_df['era'].value_counts()
                     
-                    # Log progress
-                    with open(progress_log, 'a', encoding='utf-8') as f:
-                        f.write(f"Completed {composer}: Found {len(composer_data)} works\n")
-                else:
-                    print(f"No data found for {composer}")
+                    # Sort eras chronologically
+                    era_order = ['Baroque', 'Classical', 'Romantic', 'Late Romantic', 'Impressionist', 'Modern', 'Unknown']
+                    era_counts = era_counts.reindex(era_order, fill_value=0)
                     
-                    # Log progress
-                    with open(progress_log, 'a', encoding='utf-8') as f:
-                        f.write(f"No data found for {composer}\n")
+                    fig = px.pie(
+                        values=era_counts.values,
+                        names=era_counts.index,
+                        title=f"Usage of {time_sig_to_analyze} by Era",
+                        color_discrete_sequence=px.colors.qualitative.Bold
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
                 
-                # Wait between composers to avoid overloading the server
-                time.sleep(3)
+                # List of works using this time signature
+                st.subheader(f"Works using {time_sig_to_analyze}")
                 
-            except Exception as e:
-                print(f"Error processing {composer}: {e}")
+                # Group by work and composer to avoid duplicates
+                sig_works = sig_df.drop_duplicates(['composer', 'work']).copy()
                 
-                # Log error
-                with open(progress_log, 'a', encoding='utf-8') as f:
-                    f.write(f"Error processing {composer}: {e}\n")
+                # Display works in a table
+                st.dataframe(
+                    sig_works[['composer', 'work', 'era']],
+                    column_config={
+                        "composer": "Composer",
+                        "work": "Work Title",
+                        "era": "Musical Era"
+                    },
+                    hide_index=True,
+                    use_container_width=True
+                )
                 
-                # Continue with next composer
-                continue
-        
-        # Log completion
-        with open(progress_log, 'a', encoding='utf-8') as f:
-            f.write(f"\nCompleted all composers at {time.ctime()}\n")
-            f.write(f"Results: {json.dumps(results, indent=2)}\n")
-        
-        return results
-
-def main():
-    """Main function to run the script"""
-    print("Enhanced Kern Humdrum Time Signature Extractor")
-    print("=============================================")
-    print("This script extracts time signatures from the Kern Humdrum database")
-    print("and saves PDF links for each piece.")
-    
-    extractor = KernExtractor()
-    
-    # Options menu
-    print("\nOptions:")
-    print("1: Extract time signatures for a composer")
-    print("2: Merge with imslp_scores_corrected.json")
-    print("3: Extract and merge for ALL composers (limit 1000 works each)")
-    print("4: Extract and merge for a SINGLE composer")
-    print("5: Batch process multiple composers")
-    
-    choice = input("\nEnter your choice (1-5): ")
-    
-    if choice == "1":
-        composer = input("\nEnter composer name (e.g., Bach, Beethoven): ")
-        max_works_input = input("Maximum number of works to process (enter for all, 'all' for all): ")
-        
-        # Handle different input formats for max_works
-        if not max_works_input.strip() or max_works_input.lower() == 'all':
-            max_works = None
-        else:
-            try:
-                max_works = int(max_works_input)
-            except ValueError:
-                print(f"Invalid input: '{max_works_input}'. Using default (all).")
-                max_works = None
-        
-        composer_data = extractor.process_composer(composer, max_works)
-        if composer_data:
-            extractor.save_composer_data(composer, composer_data)
-    
-    elif choice == "2":
-        composer = input("\nEnter composer name: ")
-        composer_file = input("Enter path to extracted composer data JSON: ")
-        imslp_file = input("Enter path to imslp_scores_corrected.json: ")
-        
-        try:
-            # Load composer data
-            with open(composer_file, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-            
-            if composer in data:
-                composer_data = data[composer]
-                extractor.merge_with_imslp_data(imslp_file, composer, composer_data)
-            else:
-                print(f"Composer '{composer}' not found in {composer_file}")
-        
-        except Exception as e:
-            print(f"Error loading files: {e}")
-    
-    elif choice == "3":
-        print("\nThis will extract and merge data for ALL available composers in Kern.")
-        print("Each composer will be limited to a maximum of 1000 works.")
-        print("This will take a long time and generate a lot of data.")
-        
-        confirm = input("Are you sure you want to continue? (y/n): ")
-        if confirm.lower() != 'y':
-            print("Operation cancelled.")
-            return
-        
-        imslp_file = input("Enter path to imslp_scores_corrected.json: ")
-        
-        # Check if the file exists
-        if not os.path.exists(imslp_file):
-            print(f"Error: File '{imslp_file}' does not exist.")
-            return
-        
-        print("\nStarting extraction for all composers...")
-        print("Progress will be logged to output/all_composers_progress_[timestamp].txt")
-        print("You can check this file for progress updates.")
-        
-        # Set debug flag to avoid creating too many files
-        os.environ["KERN_DEBUG"] = "0"
-        
-        # Process all composers
-        results = extractor.process_all_composers(imslp_file, 1000)
-        
-        # Print summary
-        print("\n\nExtraction complete! Summary:")
-        print(f"Processed {len(results)} composers")
-        total_works = sum(result['works_found'] for result in results.values())
-        print(f"Total works found: {total_works}")
-        
-        # Final merged file
-        print(f"Final merged data saved to: output/imslp_scores_updated.json")
-    
-    elif choice == "4":
-        composer = input("\nEnter composer name (e.g., Bach, Beethoven): ")
-        imslp_file = input("Enter path to imslp_scores_corrected.json: ")
-        max_works_input = input("Maximum number of works to process (enter for all, 'all' for all): ")
-        
-        # Handle different input formats for max_works
-        if not max_works_input.strip() or max_works_input.lower() == 'all':
-            max_works = None
-        else:
-            try:
-                max_works = int(max_works_input)
-            except ValueError:
-                print(f"Invalid input: '{max_works_input}'. Using default (all).")
-                max_works = None
-        
-        # Check if the IMSLP file exists
-        if not os.path.exists(imslp_file):
-            print(f"Error: File '{imslp_file}' does not exist.")
-            return
-        
-        # Extract data
-        composer_data = extractor.process_composer(composer, max_works)
-        if composer_data:
-            # Save extracted data
-            extractor.save_composer_data(composer, composer_data)
-            
-            # Merge with IMSLP data
-            extractor.merge_with_imslp_data(imslp_file, composer, composer_data)
-    
-    elif choice == "5":
-        composers_input = input("\nEnter composer names separated by commas: ")
-        composers = [c.strip() for c in composers_input.split(',')]
-        
-        imslp_file = input("Enter path to imslp_scores_corrected.json: ")
-        max_works_input = input("Maximum works per composer (enter for all, 'all' for all): ")
-        
-        # Handle different input formats for max_works
-        if not max_works_input.strip() or max_works_input.lower() == 'all':
-            max_works = None
-        else:
-            try:
-                max_works = int(max_works_input)
-            except ValueError:
-                print(f"Invalid input: '{max_works_input}'. Using default (all).")
-                max_works = None
-        
-        # Check if the IMSLP file exists
-        if not os.path.exists(imslp_file):
-            print(f"Error: File '{imslp_file}' does not exist.")
-            return
-        
-        for composer in composers:
-            print(f"\n========== Processing {composer} ==========")
-            composer_data = extractor.process_composer(composer, max_works)
-            if composer_data:
-                extractor.save_composer_data(composer, composer_data)
-                extractor.merge_with_imslp_data(imslp_file, composer, composer_data)
-    
-    else:
-        print("Invalid choice. Please run the script again with a valid option.")
+                # Create expanders for each work
+                for _, row in sig_works.iterrows():
+                    with st.expander(f"{row['composer']} - {row['work']}"):
+                        # Display media links
+                        st.markdown("#### Media Links")
+                        col1, col2, col3 = st.columns([1, 1, 8])
+                        
+                        with col1:
+                            youtube_query = quote(f"{row['composer']} {row['work']}")
+                            youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                            st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+                        
+                        with col2:
+                            spotify_query = quote(f"{row['composer']} {row['work']}")
+                            spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                            st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                        
+                        with col3:
+                            if pd.notna(row.get('pdf_link')):
+                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                        
+                        # Show work details - all movements with this time signature
+                        st.markdown("#### Movements with this Time Signature")
+                        time_sig_movements = sig_df[(sig_df['composer'] == row['composer']) & 
+                                                   (sig_df['work'] == row['work'])]
+                        
+                        for _, movement in time_sig_movements.iterrows():
+                            st.markdown(f"**{movement['movement']}** - {time_sig_to_analyze}")
+                
+                # Time signature co-occurrence
+                st.subheader("Time Signature Co-occurrence")
+                st.markdown("""
+                This heatmap shows how often this time signature appears together with others in a composer's works.
+                """)
+                
+                fig5 = create_time_signature_correlations(analysis)
+                if fig5:
+                    st.plotly_chart(fig5, use_container_width=True)
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\n\nOperation cancelled by user.")
-        sys.exit(0)
-    except Exception as e:
-        print(f"\n\nUnexpected error: {e}")
-        sys.exit(1)
+    main()
