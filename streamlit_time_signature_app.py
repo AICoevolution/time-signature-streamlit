@@ -119,8 +119,8 @@ def extract_time_signatures(data):
                 if time_sig:
                     # Check if we have a PDF link
                     pdf_link = None
-                    if 'score_link' in movement:
-                        pdf_link = movement['score_link']
+                    if 'pdf_link' in movement:
+                        pdf_link = movement['pdf_link']
                     
                     # Add metadata
                     signatures.append({
@@ -580,10 +580,10 @@ def main():
             col1, col2, col3 = st.columns(3)
             
             with col1:
-                filter_composer = st.multiselect(
-                    "Composer",
-                    options=["All"] + sorted(analysis['dataframe']['composer'].unique().tolist()),
-                    default=["All"]
+                # Simple text search instead of composer dropdown
+                search_text = st.text_input(
+                    "Search",
+                    placeholder="Enter composer or work title (e.g., 'mozart symphony', 'beethoven quartet')"
                 )
             
             with col2:
@@ -602,13 +602,17 @@ def main():
             
             # Submit button
             submitted = st.form_submit_button("Search", use_container_width=True)
-        
+
         if submitted:
             # Apply filters
             filtered_df = analysis['dataframe'].copy()
             
-            if "All" not in filter_composer:
-                filtered_df = filtered_df[filtered_df['composer'].isin(filter_composer)]
+            # Text search - search in both composer and work fields
+            if search_text:
+                filtered_df = filtered_df[
+                    (filtered_df['composer'].str.lower().str.contains(search_text.lower())) | 
+                    (filtered_df['work'].str.lower().str.contains(search_text.lower()))
+                ]
             
             if "All" not in filter_era:
                 filtered_df = filtered_df[filtered_df['era'].isin(filter_era)]
