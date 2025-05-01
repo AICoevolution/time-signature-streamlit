@@ -3,7 +3,8 @@
     "Symphony No. 5 in C minor, Op. 67": [
       {
         "movement": "I. Allegro con brio",
-        "time_signature": "2/2"
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata17-3.krn&format=pdf"
       },
       {
         "movement": "II. Andante con moto",
