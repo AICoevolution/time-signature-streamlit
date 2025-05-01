@@ -90,19 +90,6 @@ st.markdown("""
         max-height: 60px;
         margin-bottom: 20px;
     }
-    /* Anchor link styling */
-    a {
-        color: #1a73e8;
-        text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-    
-    /* Fix for sticky header */
-    div.element-container {
-        scroll-margin-top: 3rem;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -622,22 +609,12 @@ def main():
                 # Group by work to avoid duplicates
                 unique_works = filtered_df.drop_duplicates(['composer', 'work']).copy()
                 
-                # Add index column for linking to expanders
-                unique_works['index'] = range(len(unique_works))
-                
-                # Add links column for clickable titles
-                unique_works['link'] = unique_works.apply(
-                    lambda row: f'<a href="#work_{row["index"]}" target="_self">{row["work"]}</a>', 
-                    axis=1
-                )
-                
-                # Display as a table with clickable titles
-                st.markdown("Click on a work title to jump to its details", unsafe_allow_html=True)
+                # Display as a regular table without links
                 st.dataframe(
-                    unique_works[['composer', 'link', 'normalized_time_signature', 'era']],
+                    unique_works[['composer', 'work', 'normalized_time_signature', 'era']],
                     column_config={
                         "composer": "Composer",
-                        "link": st.column_config.Column("Work Title", width="large"),
+                        "work": "Work Title",
                         "normalized_time_signature": "Time Signature",
                         "era": "Musical Era"
                     },
@@ -649,15 +626,12 @@ def main():
                 # Show selected works with media links
                 st.subheader("Selected Works")
                 
-                # Create an expander for each work with anchors for jumping
+                # Create an expander for each work
                 for i, row in unique_works.iterrows():
-                    # Add anchor for navigation
-                    st.markdown(f'<div id="work_{row["index"]}"></div>', unsafe_allow_html=True)
-                    
                     with st.expander(f"{row['composer']} - {row['work']}", expanded=False):
                         # Display media links
                         st.markdown("#### Media Links")
-                        col1, col2, col3 = st.columns([1, 1, 8])
+                        col1, col2, col3, col4 = st.columns([1, 1, 1, 7])
                         
                         with col1:
                             youtube_query = quote(f"{row['composer']} {row['work']}")
@@ -669,6 +643,12 @@ def main():
                             spotify_link = f"https://open.spotify.com/search/{spotify_query}"
                             st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
                         
+                        with col3:
+                            # Add IMSLP link
+                            imslp_query = quote(f"imslp {row['composer']} {row['work']} pdf")
+                            imslp_link = f"https://www.google.com/search?q={imslp_query}"
+                            st.markdown(f"[![IMSLP](https://img.icons8.com/ios-filled/32/000000/sheet-music.png)]({imslp_link})")
+                        
                         # Get all movements for this work to check for PDF links
                         work_movements = filtered_df[(filtered_df['composer'] == row['composer']) & 
                                                    (filtered_df['work'] == row['work'])]
@@ -676,10 +656,10 @@ def main():
                         # Check if any movement has a PDF link
                         pdf_links = work_movements['pdf_link'].dropna().tolist()
                         
-                        with col3:
+                        with col4:
                             if pdf_links:
                                 # Use the first available PDF link
-                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
+                                st.markdown(f"[![Kern PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
                         
                         # Show work details - all movements
                         st.markdown("#### Movements")
@@ -696,15 +676,6 @@ def main():
             # Group by work to avoid duplicates
             all_works = analysis['dataframe'].drop_duplicates(['composer', 'work']).copy()
             
-            # Add index column for linking to expanders
-            all_works['index'] = range(len(all_works))
-            
-            # Add links column for clickable titles
-            all_works['link'] = all_works.apply(
-                lambda row: f'<a href="#all_work_{row["index"]}" target="_self">{row["work"]}</a>', 
-                axis=1
-            )
-            
             # Calculate pagination
             items_per_page = 25
             total_pages = max(1, (len(all_works) + items_per_page - 1) // items_per_page)
@@ -716,13 +687,12 @@ def main():
             start_idx = (page - 1) * items_per_page
             end_idx = min(start_idx + items_per_page, len(all_works))
             
-            # Display paged results with clickable titles
-            st.markdown("Click on a work title to jump to its details", unsafe_allow_html=True)
+            # Display paged results without links
             st.dataframe(
-                all_works.iloc[start_idx:end_idx][['composer', 'link', 'normalized_time_signature', 'era']],
+                all_works.iloc[start_idx:end_idx][['composer', 'work', 'normalized_time_signature', 'era']],
                 column_config={
                     "composer": "Composer",
-                    "link": st.column_config.Column("Work Title", width="large"),
+                    "work": "Work Title",
                     "normalized_time_signature": "Time Signature",
                     "era": "Musical Era"
                 },
@@ -734,13 +704,10 @@ def main():
             
             # Create an expander for each shown work
             for _, row in all_works.iloc[start_idx:end_idx].iterrows():
-                # Add anchor for navigation
-                st.markdown(f'<div id="all_work_{row["index"]}"></div>', unsafe_allow_html=True)
-                
                 with st.expander(f"{row['composer']} - {row['work']}", expanded=False):
                     # Display media links
                     st.markdown("#### Media Links")
-                    col1, col2, col3 = st.columns([1, 1, 8])
+                    col1, col2, col3, col4 = st.columns([1, 1, 1, 7])
                     
                     with col1:
                         youtube_query = quote(f"{row['composer']} {row['work']}")
@@ -752,17 +719,23 @@ def main():
                         spotify_link = f"https://open.spotify.com/search/{spotify_query}"
                         st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
                     
+                    with col3:
+                        # Add IMSLP link
+                        imslp_query = quote(f"imslp {row['composer']} {row['work']} pdf")
+                        imslp_link = f"https://www.google.com/search?q={imslp_query}"
+                        st.markdown(f"[![IMSLP](https://img.icons8.com/ios-filled/32/000000/sheet-music.png)]({imslp_link})")
+                    
                     # Get all movements for this work to check for PDF links
                     work_movements = analysis['dataframe'][(analysis['dataframe']['composer'] == row['composer']) & 
-                                              (analysis['dataframe']['work'] == row['work'])]
+                                          (analysis['dataframe']['work'] == row['work'])]
                     
                     # Check if any movement has a PDF link
                     pdf_links = work_movements['pdf_link'].dropna().tolist()
                     
-                    with col3:
+                    with col4:
                         if pdf_links:
                             # Use the first available PDF link
-                            st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
+                            st.markdown(f"[![Kern PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
                     
                     # Show work details - all movements
                     st.markdown("#### Movements")
@@ -929,21 +902,11 @@ def main():
                 # Group by work to avoid duplicates
                 composer_works = composer_df.drop_duplicates(['work']).copy()
                 
-                # Add index column for linking to expanders
-                composer_works['index'] = range(len(composer_works))
-                
-                # Add links column for clickable titles
-                composer_works['link'] = composer_works.apply(
-                    lambda row: f'<a href="#composer_work_{row["index"]}" target="_self">{row["work"]}</a>', 
-                    axis=1
-                )
-                
-                # Display works in a table with clickable titles
-                st.markdown("Click on a work title to jump to its details", unsafe_allow_html=True)
+                # Display works in a table without clickable links
                 st.dataframe(
-                    composer_works[['link', 'normalized_time_signature', 'era']],
+                    composer_works[['work', 'normalized_time_signature', 'era']],
                     column_config={
-                        "link": st.column_config.Column("Work Title", width="large"),
+                        "work": "Work Title",
                         "normalized_time_signature": "Time Signature",
                         "era": "Musical Era"
                     },
@@ -951,15 +914,12 @@ def main():
                     use_container_width=True
                 )
                 
-                # Create an expander for each work with anchors for jumping
+                # Create an expander for each work
                 for i, row in composer_works.iterrows():
-                    # Add anchor for navigation
-                    st.markdown(f'<div id="composer_work_{row["index"]}"></div>', unsafe_allow_html=True)
-                    
                     with st.expander(f"{row['work']}", expanded=False):
                         # Display media links
                         st.markdown("#### Media Links")
-                        col1, col2, col3 = st.columns([1, 1, 8])
+                        col1, col2, col3, col4 = st.columns([1, 1, 1, 7])
                         
                         with col1:
                             youtube_query = quote(f"{composer_to_analyze} {row['work']}")
@@ -971,16 +931,22 @@ def main():
                             spotify_link = f"https://open.spotify.com/search/{spotify_query}"
                             st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
                         
+                        with col3:
+                            # Add IMSLP link
+                            imslp_query = quote(f"imslp {composer_to_analyze} {row['work']} pdf")
+                            imslp_link = f"https://www.google.com/search?q={imslp_query}"
+                            st.markdown(f"[![IMSLP](https://img.icons8.com/ios-filled/32/000000/sheet-music.png)]({imslp_link})")
+                        
                         # Get all movements for this work
                         work_movements = composer_df[composer_df['work'] == row['work']]
                         
                         # Check if any movement has a PDF link
                         pdf_links = work_movements['pdf_link'].dropna().tolist()
                         
-                        with col3:
+                        with col4:
                             if pdf_links:
                                 # Use the first available PDF link
-                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
+                                st.markdown(f"[![Kern PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
                         
                         # Show work details - all movements
                         st.markdown("#### Movements")
@@ -1109,37 +1075,24 @@ def main():
                 # Group by work and composer to avoid duplicates
                 sig_works = sig_df.drop_duplicates(['composer', 'work']).copy()
                 
-                # Add index for linking
-                sig_works['index'] = range(len(sig_works))
-                
-                # Add links column for clickable titles
-                sig_works['link'] = sig_works.apply(
-                    lambda row: f'<a href="#sig_work_{row["index"]}" target="_self">{row["work"]}</a>', 
-                    axis=1
-                )
-                
-                # Display works in a table with clickable titles
-                st.markdown("Click on a work title to jump to its details", unsafe_allow_html=True)
+                # Display works in a table without clickable links
                 st.dataframe(
-                    sig_works[['composer', 'link', 'era']],
+                    sig_works[['composer', 'work', 'era']],
                     column_config={
                         "composer": "Composer",
-                        "link": st.column_config.Column("Work Title", width="large"),
+                        "work": "Work Title",
                         "era": "Musical Era"
                     },
                     hide_index=True,
                     use_container_width=True
                 )
                 
-                # Create expanders for each work with anchors for jumping
+                # Create expanders for each work
                 for i, row in sig_works.iterrows():
-                    # Add anchor for navigation
-                    st.markdown(f'<div id="sig_work_{row["index"]}"></div>', unsafe_allow_html=True)
-                    
                     with st.expander(f"{row['composer']} - {row['work']}", expanded=False):
                         # Display media links
                         st.markdown("#### Media Links")
-                        col1, col2, col3 = st.columns([1, 1, 8])
+                        col1, col2, col3, col4 = st.columns([1, 1, 1, 7])
                         
                         with col1:
                             youtube_query = quote(f"{row['composer']} {row['work']}")
@@ -1151,15 +1104,21 @@ def main():
                             spotify_link = f"https://open.spotify.com/search/{spotify_query}"
                             st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
                         
+                        with col3:
+                            # Add IMSLP link
+                            imslp_query = quote(f"imslp {row['composer']} {row['work']} pdf")
+                            imslp_link = f"https://www.google.com/search?q={imslp_query}"
+                            st.markdown(f"[![IMSLP](https://img.icons8.com/ios-filled/32/000000/sheet-music.png)]({imslp_link})")
+                        
                         # Check if any movement has a PDF link
                         time_sig_movements = sig_df[(sig_df['composer'] == row['composer']) & 
                                                   (sig_df['work'] == row['work'])]
                         pdf_links = time_sig_movements['pdf_link'].dropna().tolist()
                         
-                        with col3:
+                        with col4:
                             if pdf_links:
                                 # Use the first available PDF link
-                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
+                                st.markdown(f"[![Kern PDF](https://img.icons8.com/color/32/000000/pdf.png)]({pdf_links[0]})")
                         
                         # Show work details - movements with this time signature
                         st.markdown(f"#### Movements with {time_sig_to_analyze} Time Signature")
