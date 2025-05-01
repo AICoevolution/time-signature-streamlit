@@ -130,6 +130,174 @@
         "time_signature": "4/4"
       },
       {
+        "movement": "II. Poco adagio; cantabile",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto: Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale: Presto",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Maurice Ravel": {
+    "Boléro": [
+      {
+        "movement": "Tempo di Bolero moderato assai",
+        "time_signature": "3/4"
+      }
+    ],
+    "Pavane pour une infante défunte": [
+      {
+        "movement": "Lent",
+        "time_signature": "4/4"
+      }
+    ],
+    "String Quartet in F major": [
+      {
+        "movement": "I. Allegro moderato - Très doux",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Assez vif - Très rythmé",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Très lent",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Vif et agité",
+        "time_signature": "5/8"
+      }
+    ]
+  },
+  "Felix Mendelssohn": {
+    "Symphony No. 4 in A major, Op. 90 \"Italian\"": [
+      {
+        "movement": "I. Allegro vivace",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Andante con moto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Con moto moderato",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Saltarello: Presto",
+        "time_signature": "6/8"
+      }
+    ],
+    "Violin Concerto in E minor, Op. 64": [
+      {
+        "movement": "I. Allegro molto appassionato",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Allegretto non troppo - Allegro molto vivace",
+        "time_signature": "6/8"
+      }
+    ],
+    "Wedding March from A Midsummer Night's Dream": [
+      {
+        "movement": "Allegro vivace",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "George Frideric Handel": {
+    "Messiah, HWV 56": [
+      {
+        "movement": "Overture",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Comfort ye, my people",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Ev'ry valley shall be exalted",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "And the glory of the Lord",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Hallelujah Chorus",
+        "time_signature": "4/4"
+      }
+    ],
+    "Water Music Suite No. 1 in F major, HWV 348": [
+      {
+        "movement": "I. Ouverture: Largo - Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio e staccato",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Andante",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "V. Menuet",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Giacomo Puccini": {
+    "La bohème": [
+      {
+        "movement": "Act I: Che gelida manina",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act I: Sì, mi chiamano Mimì",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act I: O soave fanciulla",
+        "time_signature": "3/4"
+      }
+    ],
+    "Madama Butterfly": [
+      {
+        "movement": "Act II: Un bel dì vedremo",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Richard Wagner": {
+    "Ride of the Valkyries (Die Walküre)": [
+      {
+        "movement": "Act III Scene 1",
+        "time_signature": "6/8"
+      }
+    ],
+    "Bridal Chorus (Lohengrin)": [
+      {
+        "movement": "Act III Scene 1",
+        "time_signature": "4/4"
+      }
+    ]
+  }
+      {
         "movement": "II. Adagio un poco mosso",
         "time_signature": "4/4"
       },
@@ -1259,5 +1427,28 @@
         "time_signature": "2/4"
       }
     ]
-  }
-}
+  },
+  "Joseph Haydn": {
+    "Symphony No. 94 in G major \"Surprise\"": [
+      {
+        "movement": "I. Adagio cantabile - Vivace assai",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto: Allegro molto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale: Allegro molto",
+        "time_signature": "2/4"
+      }
+    ],
+    "String Quartet in C major, Op. 76 No. 3 \"Emperor\"": [
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
