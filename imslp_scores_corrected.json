@@ -3,8 +3,7 @@
     "Symphony No. 5 in C minor, Op. 67": [
       {
         "movement": "I. Allegro con brio",
-        "time_signature": "2/2",
-        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata17-3.krn&format=pdf"
+        "time_signature": "2/2"
       },
       {
         "movement": "II. Andante con moto",
@@ -244,155 +243,434 @@
       }
     ],
     "Piano Sonata No. 1 in F minor, Op. 2 No. 1": [
-      { "movement": "I. Allegro", "time_signature": "2/2" },
-      { "movement": "II. Adagio", "time_signature": "3/4" },
-      { "movement": "III. Menuetto. Allegretto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Prestissimo", "time_signature": "2/2" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Adagio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Menuetto. Allegretto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Prestissimo",
+        "time_signature": "2/2"
+      }
     ],
     "Piano Sonata No. 2 in A major, Op. 2 No. 2": [
-      { "movement": "I. Allegro vivace", "time_signature": "2/2" },
-      { "movement": "II. Largo appassionato", "time_signature": "3/4" },
-      { "movement": "III. Scherzo. Allegretto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Rondo. Grazioso", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro vivace",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Largo appassionato",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Scherzo. Allegretto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Rondo. Grazioso",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 3 in C major, Op. 2 No. 3": [
-      { "movement": "I. Allegro con brio", "time_signature": "2/2" },
-      { "movement": "II. Adagio", "time_signature": "4/4" },
-      { "movement": "III. Scherzo. Allegro – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Allegro assai", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro con brio",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Adagio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Scherzo. Allegro – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro assai",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 4 in E-flat major, Op. 7": [
-      { "movement": "I. Allegro molto e con brio", "time_signature": "4/4" },
-      { "movement": "II. Largo con gran espressione", "time_signature": "6/8" },
-      { "movement": "III. Allegro (Menuetto) – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Rondo. Poco allegretto e grazioso", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro molto e con brio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Largo con gran espressione",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Allegro (Menuetto) – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Rondo. Poco allegretto e grazioso",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 5 in C minor, Op. 10 No. 1": [
-      { "movement": "I. Allegro molto e con brio", "time_signature": "2/2" },
-      { "movement": "II. Adagio molto", "time_signature": "4/4" },
-      { "movement": "III. Finale. Prestissimo", "time_signature": "2/2" }
+      {
+        "movement": "I. Allegro molto e con brio",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Adagio molto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Finale. Prestissimo",
+        "time_signature": "2/2"
+      }
     ],
     "Piano Sonata No. 6 in F major, Op. 10 No. 2": [
-      { "movement": "I. Allegro", "time_signature": "2/2" },
-      { "movement": "II. Allegretto", "time_signature": "3/4" },
-      { "movement": "III. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 7 in D major, Op. 10 No. 3": [
-      { "movement": "I. Presto", "time_signature": "6/8" },
-      { "movement": "II. Largo e mesto", "time_signature": "4/4" },
-      { "movement": "III. Menuetto. Allegro – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Rondo. Allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Presto",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Largo e mesto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Menuetto. Allegro – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Rondo. Allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 9 in E major, Op. 14 No. 1": [
-      { "movement": "I. Allegro", "time_signature": "3/4" },
-      { "movement": "II. Allegretto", "time_signature": "2/4" },
-      { "movement": "III. Rondo. Allegro comodo", "time_signature": "6/8" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Allegretto",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Rondo. Allegro comodo",
+        "time_signature": "6/8"
+      }
     ],
     "Piano Sonata No. 10 in G major, Op. 14 No. 2": [
-      { "movement": "I. Allegro", "time_signature": "6/8" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Scherzo. Allegro assai – Trio", "time_signature": "3/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Scherzo. Allegro assai – Trio",
+        "time_signature": "3/4"
+      }
     ],
     "Piano Sonata No. 11 in B-flat major, Op. 22": [
-      { "movement": "I. Allegro con brio", "time_signature": "4/4" },
-      { "movement": "II. Adagio con molta espressione", "time_signature": "2/4" },
-      { "movement": "III. Menuetto", "time_signature": "3/4" },
-      { "movement": "IV. Rondo. Allegretto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro con brio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio con molta espressione",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Rondo. Allegretto",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 12 in A-flat major, Op. 26": [
-      { "movement": "I. Andante con variazioni", "time_signature": "2/4" },
-      { "movement": "II. Scherzo. Allegro molto", "time_signature": "3/4" },
-      { "movement": "III. Marcia funebre sulla morte d'un Eroe", "time_signature": "4/4" },
-      { "movement": "IV. Allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Andante con variazioni",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "II. Scherzo. Allegro molto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Marcia funebre sulla morte d'un Eroe",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 13 in E-flat major, Op. 27 No. 1 (\"Quasi una fantasia\")": [
-      { "movement": "I. Andante – Allegro – Andante", "time_signature": "4/4" },
-      { "movement": "II. Allegro molto e vivace", "time_signature": "3/8" },
-      { "movement": "III. Adagio con espressione", "time_signature": "4/4" },
-      { "movement": "IV. Allegro vivace", "time_signature": "2/2" }
+      {
+        "movement": "I. Andante – Allegro – Andante",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Allegro molto e vivace",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "III. Adagio con espressione",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Allegro vivace",
+        "time_signature": "2/2"
+      }
     ],
     "Piano Sonata No. 15 in D major, Op. 28 (\"Pastoral\")": [
-      { "movement": "I. Allegro", "time_signature": "3/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Scherzo. Allegro vivace – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Rondo. Allegro ma non troppo", "time_signature": "6/8" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Scherzo. Allegro vivace – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Rondo. Allegro ma non troppo",
+        "time_signature": "6/8"
+      }
     ],
     "Piano Sonata No. 16 in G major, Op. 31 No. 1": [
-      { "movement": "I. Allegro vivace", "time_signature": "2/2" },
-      { "movement": "II. Adagio grazioso", "time_signature": "3/4" },
-      { "movement": "III. Rondo. Allegretto – Presto", "time_signature": "6/8" }
+      {
+        "movement": "I. Allegro vivace",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Adagio grazioso",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Rondo. Allegretto – Presto",
+        "time_signature": "6/8"
+      }
     ],
     "Piano Sonata No. 17 in D minor, Op. 31 No. 2 (\"Tempest\")": [
-      { "movement": "I. Largo – Allegro", "time_signature": "3/4" },
-      { "movement": "II. Adagio", "time_signature": "4/4" },
-      { "movement": "III. Allegretto", "time_signature": "3/8" }
+      {
+        "movement": "I. Largo – Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Adagio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Allegretto",
+        "time_signature": "3/8"
+      }
     ],
     "Piano Sonata No. 18 in E-flat major, Op. 31 No. 3 (\"Hunt\")": [
-      { "movement": "I. Allegro", "time_signature": "6/8" },
-      { "movement": "II. Scherzo. Allegretto vivace", "time_signature": "2/4" },
-      { "movement": "III. Menuetto. Moderato e grazioso", "time_signature": "3/4" },
-      { "movement": "IV. Presto con fuoco", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Scherzo. Allegretto vivace",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto. Moderato e grazioso",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Presto con fuoco",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 19 in G minor, Op. 49 No. 1": [
-      { "movement": "I. Andante", "time_signature": "4/4" },
-      { "movement": "II. Rondo. Allegro", "time_signature": "6/8" }
+      {
+        "movement": "I. Andante",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Rondo. Allegro",
+        "time_signature": "6/8"
+      }
     ],
     "Piano Sonata No. 20 in G major, Op. 49 No. 2": [
-      { "movement": "I. Allegro ma non troppo", "time_signature": "2/4" },
-      { "movement": "II. Tempo di Menuetto", "time_signature": "3/4" }
+      {
+        "movement": "I. Allegro ma non troppo",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "II. Tempo di Menuetto",
+        "time_signature": "3/4"
+      }
     ],
     "Piano Sonata No. 21 in C major, Op. 53 (\"Waldstein\")": [
-      { "movement": "I. Allegro con brio", "time_signature": "4/4" },
-      { "movement": "II. Introduzione. Adagio molto", "time_signature": "6/8" },
-      { "movement": "III. Rondo. Allegretto moderato – Prestissimo", "time_signature": "2/2" }
+      {
+        "movement": "I. Allegro con brio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Introduzione. Adagio molto",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Rondo. Allegretto moderato – Prestissimo",
+        "time_signature": "2/2"
+      }
     ],
     "Piano Sonata No. 22 in F major, Op. 54": [
-      { "movement": "I. In tempo d'un Menuetto", "time_signature": "3/4" },
-      { "movement": "II. Allegretto", "time_signature": "2/4" }
+      {
+        "movement": "I. In tempo d'un Menuetto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Allegretto",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 24 in F-sharp major, Op. 78": [
-      { "movement": "I. Adagio cantabile – Allegro ma non troppo", "time_signature": "4/4" },
-      { "movement": "II. Allegro vivace", "time_signature": "2/4" }
+      {
+        "movement": "I. Adagio cantabile – Allegro ma non troppo",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Allegro vivace",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 25 in G major, Op. 79": [
-      { "movement": "I. Presto alla tedesca", "time_signature": "3/8" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Vivace", "time_signature": "6/8" }
+      {
+        "movement": "I. Presto alla tedesca",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Vivace",
+        "time_signature": "6/8"
+      }
     ],
     "Piano Sonata No. 26 in E-flat major, Op. 81a (\"Les Adieux\")": [
-      { "movement": "I. Das Lebewohl (Adagio – Allegro)", "time_signature": "2/2" },
-      { "movement": "II. Abwesenheit (Andante espressivo)", "time_signature": "2/4" },
-      { "movement": "III. Das Wiedersehen (Vivacissamente)", "time_signature": "6/8" }
+      {
+        "movement": "I. Das Lebewohl (Adagio – Allegro)",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Abwesenheit (Andante espressivo)",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Das Wiedersehen (Vivacissamente)",
+        "time_signature": "6/8"
+      }
     ],
     "Piano Sonata No. 27 in E minor, Op. 90": [
-      { "movement": "I. Mit Lebhaftigkeit und durchaus mit Empfindung und Ausdruck (Allegro)", "time_signature": "2/4" },
-      { "movement": "II. Nicht zu geschwind und sehr singbar vorgetragen (Moderato)", "time_signature": "2/4" }
+      {
+        "movement": "I. Mit Lebhaftigkeit und durchaus mit Empfindung und Ausdruck (Allegro)",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "II. Nicht zu geschwind und sehr singbar vorgetragen (Moderato)",
+        "time_signature": "2/4"
+      }
     ],
     "Piano Sonata No. 28 in A major, Op. 101": [
-      { "movement": "I. Etwas lebhaft und mit der innigsten Empfindung (Allegretto, ma non troppo)", "time_signature": "6/8" },
-      { "movement": "II. Lebhaft, marschmäßig (Vivace alla marcia)", "time_signature": "4/4" },
-      { "movement": "III. Langsam und sehnsuchtsvoll (Adagio, ma non troppo)", "time_signature": "3/4" },
-      { "movement": "IV. Geschwind, doch nicht zu sehr und mit Entschlossenheit (Allegro)", "time_signature": "4/4" }
+      {
+        "movement": "I. Etwas lebhaft und mit der innigsten Empfindung (Allegretto, ma non troppo)",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Lebhaft, marschmäßig (Vivace alla marcia)",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Langsam und sehnsuchtsvoll (Adagio, ma non troppo)",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Geschwind, doch nicht zu sehr und mit Entschlossenheit (Allegro)",
+        "time_signature": "4/4"
+      }
     ],
     "Piano Sonata No. 29 in B-flat major, Op. 106 (\"Hammerklavier\")": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Scherzo. Assai vivace", "time_signature": "2/4" },
-      { "movement": "III. Adagio sostenuto", "time_signature": "6/8" },
-      { "movement": "IV. Largo – Allegro risoluto", "time_signature": "2/2" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Scherzo. Assai vivace",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Adagio sostenuto",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "IV. Largo – Allegro risoluto",
+        "time_signature": "2/2"
+      }
     ],
     "Piano Sonata No. 30 in E major, Op. 109": [
-      { "movement": "I. Vivace, ma non troppo – Adagio espressivo", "time_signature": "2/4" },
-      { "movement": "II. Prestissimo", "time_signature": "6/8" },
-      { "movement": "III. Andante molto cantabile ed espressivo (Theme with variations)", "time_signature": "3/4" }
+      {
+        "movement": "I. Vivace, ma non troppo – Adagio espressivo",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "II. Prestissimo",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Andante molto cantabile ed espressivo (Theme with variations)",
+        "time_signature": "3/4"
+      }
     ],
     "Piano Sonata No. 31 in A-flat major, Op. 110": [
-      { "movement": "I. Moderato cantabile molto espressivo", "time_signature": "3/4" },
-      { "movement": "II. Allegro molto", "time_signature": "2/4" },
-      { "movement": "III. Adagio ma non troppo – Fuga. Allegro, ma non troppo", "time_signature": "4/4" }
+      {
+        "movement": "I. Moderato cantabile molto espressivo",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Allegro molto",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Adagio ma non troppo – Fuga. Allegro, ma non troppo",
+        "time_signature": "4/4"
+      }
     ],
     "Piano Sonata No. 32 in C minor, Op. 111": [
-      { "movement": "I. Maestoso – Allegro con brio ed appassionato", "time_signature": "12/8" },
-      { "movement": "II. Arietta: Adagio molto semplice e cantabile", "time_signature": "9/16" }
+      {
+        "movement": "I. Maestoso – Allegro con brio ed appassionato",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "II. Arietta: Adagio molto semplice e cantabile",
+        "time_signature": "9/16"
+      }
     ]
   },
   "Wolfgang Amadeus Mozart": {
@@ -531,210 +809,600 @@
       }
     ],
     "Symphony No. 1 in E-flat major, K. 16": [
-      { "movement": "I. Molto allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Presto", "time_signature": "3/8" }
+      {
+        "movement": "I. Molto allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 2 in B-flat major, K. 17 (doubtful)": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Presto", "time_signature": "3/8" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 3 in E-flat major, K. 18 (doubtful)": [
-      { "movement": "I. Allegro spiritoso", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Presto", "time_signature": "3/8" }
+      {
+        "movement": "I. Allegro spiritoso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 4 in D major, K. 19": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Presto", "time_signature": "3/8" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 5 in B-flat major, K. 22": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante maestoso", "time_signature": "3/4" },
-      { "movement": "III. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante maestoso",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 6 in F major, K. 43": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 7 in D major, K. 45": [
-      { "movement": "I. Allegro maestoso", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Molto allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro maestoso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Molto allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 8 in D major, K. 48": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Molto allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Molto allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 9 in C major, K. 73 (\"Old Lambach\")": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto and Trio", "time_signature": "3/4" },
-      { "movement": "IV. Molto allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto and Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Molto allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 10 in G major, K. 74": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 11 in D major, K. 84": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 12 in G major, K. 110": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 13 in F major, K. 112": [
-      { "movement": "I. Allegro spiritoso", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Molto allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro spiritoso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Molto allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 14 in A major, K. 114": [
-      { "movement": "I. Allegro moderato", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Allegro vivace", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro moderato",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro vivace",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 15 in G major, K. 124": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 16 in C major, K. 128": [
-      { "movement": "I. Allegro maestoso", "time_signature": "4/4" },
-      { "movement": "II. Andante grazioso", "time_signature": "3/8" },
-      { "movement": "III. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro maestoso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante grazioso",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 17 in G major, K. 129": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Allegro (Menuetto)", "time_signature": "3/8" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Allegro (Menuetto)",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 18 in F major, K. 130": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "6/8" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Molto allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Molto allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 19 in E-flat major, K. 132": [
-      { "movement": "I. Allegro", "time_signature": "3/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Presto assai", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Presto assai",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 20 in D major, K. 133": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "3/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 21 in A major, K. 134": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "6/8" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Allegro", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 22 in C major, K. 162": [
-      { "movement": "I. Allegro assai", "time_signature": "2/2" },
-      { "movement": "II. Andante moderato", "time_signature": "2/4" },
-      { "movement": "III. Presto", "time_signature": "3/8" }
+      {
+        "movement": "I. Allegro assai",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante moderato",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 23 in D major, K. 181": [
-      { "movement": "I. Allegro spiritoso", "time_signature": "2/2" },
-      { "movement": "II. Andantino grazioso", "time_signature": "6/8" },
-      { "movement": "III. Presto assai", "time_signature": "3/8" }
+      {
+        "movement": "I. Allegro spiritoso",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andantino grazioso",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Presto assai",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 24 in B-flat major, K. 182": [
-      { "movement": "I. Allegro spiritoso", "time_signature": "2/2" },
-      { "movement": "II. Andantino grazioso", "time_signature": "3/8" },
-      { "movement": "III. Presto", "time_signature": "3/8" }
+      {
+        "movement": "I. Allegro spiritoso",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andantino grazioso",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 26 in E-flat major, K. 184": [
-      { "movement": "I. Molto allegro", "time_signature": "2/2" },
-      { "movement": "II. Andante", "time_signature": "3/8" },
-      { "movement": "III. Allegro (Menuetto)", "time_signature": "3/8" }
+      {
+        "movement": "I. Molto allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "III. Allegro (Menuetto)",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 27 in G major, K. 199": [
-      { "movement": "I. Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante moderato", "time_signature": "6/8" },
-      { "movement": "III. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante moderato",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 28 in C major, K. 200": [
-      { "movement": "I. Allegro spiritoso", "time_signature": "2/2" },
-      { "movement": "II. Andante", "time_signature": "3/4" },
-      { "movement": "III. Menuetto – Trio, Allegretto", "time_signature": "3/4" },
-      { "movement": "IV. Presto, 2/4", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro spiritoso",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio, Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Presto, 2/4",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 29 in A major, K. 201": [
-      { "movement": "I. Allegro moderato", "time_signature": "2/2" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio, Allegretto", "time_signature": "3/4" },
-      { "movement": "IV. Allegro con spirito", "time_signature": "6/8" }
+      {
+        "movement": "I. Allegro moderato",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio, Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro con spirito",
+        "time_signature": "6/8"
+      }
     ],
     "Symphony No. 30 in D major, K. 202": [
-      { "movement": "I. Molto allegro", "time_signature": "2/2" },
-      { "movement": "II. Andantino con moto", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio, Allegretto", "time_signature": "3/4" },
-      { "movement": "IV. Allegro", "time_signature": "6/8" }
+      {
+        "movement": "I. Molto allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andantino con moto",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio, Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "6/8"
+      }
     ],
     "Symphony No. 31 in D major, K. 297 (\"Paris\")": [
-      { "movement": "I. Allegro assai", "time_signature": "6/8" },
-      { "movement": "II. Andante (in G major)", "time_signature": "3/4" },
-      { "movement": "III. Allegro (Finale)", "time_signature": "2/2" }
+      {
+        "movement": "I. Allegro assai",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Andante (in G major)",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Allegro (Finale)",
+        "time_signature": "2/2"
+      }
     ],
     "Symphony No. 32 in G major, K. 318": [
-      { "movement": "Allegro spiritoso (Overture in 3 sections)", "time_signature": "4/4" }
+      {
+        "movement": "Allegro spiritoso (Overture in 3 sections)",
+        "time_signature": "4/4"
+      }
     ],
     "Symphony No. 33 in B-flat major, K. 319": [
-      { "movement": "I. Allegro assai", "time_signature": "2/2" },
-      { "movement": "II. Andante moderato", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Allegro assai", "time_signature": "2/4" }
+      {
+        "movement": "I. Allegro assai",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante moderato",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro assai",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 34 in C major, K. 338": [
-      { "movement": "I. Allegro vivace", "time_signature": "4/4" },
-      { "movement": "II. Andante di molto (in F major)", "time_signature": "3/4" },
-      { "movement": "III. Finale. Allegro vivace", "time_signature": "6/8" }
+      {
+        "movement": "I. Allegro vivace",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante di molto (in F major)",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Finale. Allegro vivace",
+        "time_signature": "6/8"
+      }
     ],
     "Symphony No. 35 in D major, K. 385 (\"Haffner\")": [
-      { "movement": "I. Allegro con spirito", "time_signature": "2/2" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Finale. Presto", "time_signature": "2/2" }
+      {
+        "movement": "I. Allegro con spirito",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale. Presto",
+        "time_signature": "2/2"
+      }
     ],
     "Symphony No. 36 in C major, K. 425 (\"Linz\")": [
-      { "movement": "I. Adagio – Allegro spiritoso", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "2/4" },
-      { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Adagio – Allegro spiritoso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 37 in G major, K. 444 (\"Michael Haydn's No. 25\", Mozart intro)": [
-      { "movement": "I. Adagio maestoso – Allegro con spirito", "time_signature": "4/4" },
-      { "movement": "II. Andante sostenuto", "time_signature": "2/4" },
-      { "movement": "III. Finale. Allegro molto", "time_signature": "3/8" }
+      {
+        "movement": "I. Adagio maestoso – Allegro con spirito",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante sostenuto",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Finale. Allegro molto",
+        "time_signature": "3/8"
+      }
     ],
     "Symphony No. 38 in D major, K. 504 (\"Prague\")": [
-      { "movement": "I. Adagio – Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante", "time_signature": "6/8" },
-      { "movement": "III. Presto", "time_signature": "2/4" }
+      {
+        "movement": "I. Adagio – Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Presto",
+        "time_signature": "2/4"
+      }
     ],
     "Symphony No. 39 in E-flat major, K. 543": [
-      { "movement": "I. Adagio – Allegro", "time_signature": "4/4" },
-      { "movement": "II. Andante con moto (in A-flat major)", "time_signature": "2/2" },
-      { "movement": "III. Menuetto. Allegretto – Trio", "time_signature": "3/4" },
-      { "movement": "IV. Finale. Allegro", "time_signature": "2/2" }
+      {
+        "movement": "I. Adagio – Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante con moto (in A-flat major)",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "III. Menuetto. Allegretto – Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale. Allegro",
+        "time_signature": "2/2"
+      }
     ]
   },
   "Johann Sebastian Bach": {
@@ -1478,6 +2146,3888 @@
       {
         "movement": "Liebestod",
         "time_signature": "4/4"
+      }
+    ]
+  },
+  "Adam": {
+    "Fi Maris de vostre Amour CPDL.org; edited by Sara Manley; Added on 2004/12/09/": [
+      {
+        "movement": "Fi Maris de vostre Amour",
+        "time_signature": "3/4"
+      }
+    ],
+    "I Am Like a Bear": [
+      {
+        "movement": "I Am Like a Bear",
+        "time_signature": "2/4"
+      }
+    ],
+    "Bear Dance Song (a)": [
+      {
+        "movement": "Bear Dance Song",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Bear Dance Song",
+        "time_signature": "2/4"
+      }
+    ],
+    "Other Girls Are as Pretty as She": [
+      {
+        "movement": "Other Girls Are as Pretty as She",
+        "time_signature": "2/4"
+      }
+    ],
+    "Durch Adams Fall ist ganz verderbt BWV 18/5": [
+      {
+        "movement": "Durch Adams Fall ist ganz verderbt",
+        "time_signature": "4/4"
+      }
+    ],
+    "Piano Sonata no. 4 in E-flat major": [
+      {
+        "movement": "Allegro molto con brio",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata04-1.krn&format=pdf"
+      },
+      {
+        "movement": "Largo, con gran espressione",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata04-2.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata04-4.krn&format=pdf"
+      }
+    ],
+    "ADAM HATTE SIEBEN SOEHNE ESAC (Essen Associative Code) Database: KINDER": [
+      {
+        "movement": "ADAM HATTE SIEBEN SOEHNE",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Ritter und Magd Es spielte ein Ritter mit einer Madam",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Ritter und Magd Es spielte ein Ritter mit einer Madam,",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=essen/asia/china/natmin&file=natmn188.krn&format=pdf"
+      },
+      {
+        "movement": "\"Liederkraenzchen\" AF UNSERN WAIHADAMM",
+        "time_signature": "6/4"
+      },
+      {
+        "movement": "ADAM GING UND WOLLTE SICH ERQUICKEN",
+        "time_signature": "3/4"
+      }
+    ],
+    "Apr&egrave;s un R&ecirc;ve, Op. 7, No. 1": [
+      {
+        "movement": "Après un Rêve",
+        "time_signature": "3/4"
+      }
+    ],
+    "Als ich auf meiner Bleiche": [
+      {
+        "movement": "Als ich auf meiner Bleiche",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk007.krn&format=pdf"
+      }
+    ],
+    "Adam hatte sieben S�hne (261), S. 559": [
+      {
+        "movement": "Adam hatte sieben S�hne",
+        "time_signature": "2/4"
+      }
+    ]
+  },
+  "Alkan": {
+    "Der schwatzhafte Junggeselle Es sassen der Bursche viere, viere ESAC (Essen Associative Code) Database: BALLADE": [
+      {
+        "movement": "Der schwatzhafte Junggeselle Es sassen der Bursche viere, viere",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/alkan/op38&file=02-fa.krn&format=pdf"
+      }
+    ],
+    "Fa, Op. 38, No. 2": [
+      {
+        "movement": "Fa",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/alkan/op38&file=02-fa.krn&format=pdf"
+      }
+    ]
+  },
+  "Bach": {
+    "Bachuan hozi C1533": [
+      {
+        "movement": "Bachuan hozi",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=essen/asia/china/han&file=han0526.krn&format=pdf"
+      }
+    ],
+    "Tugai bachu xi ESAC (Essen Associative Code) Database: CHINA": [
+      {
+        "movement": "Tugai bachu xi",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=essen/asia/china/han&file=han0166.krn&format=pdf"
+      }
+    ],
+    "!!!OMV: 1 BWV 229": [
+      {
+        "movement": "Komm, Jesu, komm",
+        "time_signature": "3/2"
+      },
+      {
+        "movement": "Aria",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Invention No. 1 in C  major, BWV 772",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Fugue No. 4 in C♯ minor, BWV 849",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Fugue No. 11 in F  major, BWV 856",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Fugue No. 14 in F♯ minor, BWV 859",
+        "time_signature": "6/4"
+      },
+      {
+        "movement": "Fugue No. 15 in G  major, BWV 860",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Fugue No. 19 in A  major, BWV 864",
+        "time_signature": "9/8"
+      }
+    ],
+    "Brandenburgische Konzerte F 2 timebase errors fixed by Craig Sapp, 28 February 2001": [
+      {
+        "movement": "Brandenburg Concerto No. 1 in F  major, BWV 1046, Mvmt. 1",
+        "time_signature": "2/2"
+      }
+    ],
+    "Brandenburgische Konzerte F ?Coethen; ?Cothen; ?Co2then": [
+      {
+        "movement": "Brandenburg Concerto No. 1 in F  major, BWV 1046, Mvmt. 2",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Brandenburg Concerto No. 1 in F  major, BWV 1046, Mvmt. 3",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Brandenburg Concerto No. 1 in F  major, BWV 1046, Mvmt. 6",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Brandenburg Concerto No. 1 in F  major, BWV 1046, Mvmt. 7",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Brandenburg Concerto No. 2 in F  major, BWV 1047, Mvmt. 1",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Brandenburg Concerto No. 3 in G  major, BWV 1048, Mvmt. 2",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Brandenburg Concerto No. 5 in D  major, BWV 1050, Mvmt. 2",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Brandenburg Concerto No. 6 in B  major, BWV 1051, Mvmt. 2",
+        "time_signature": "3/2"
+      }
+    ],
+    "Prelude in C Major BWV 846": [
+      {
+        "movement": "Prelude No. 1 in C  major, BWV 846",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor050.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude No. 3 in C♯ major, BWV 848",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Prelude No. 4 in C♯ minor, BWV 849",
+        "time_signature": "6/4"
+      },
+      {
+        "movement": "Prelude No. 8 in E♭ minor, BWV 853",
+        "time_signature": "3/2"
+      },
+      {
+        "movement": "Prelude No. 9 in E  major, BWV 854",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Prelude No. 13 in F♯ major, BWV 858",
+        "time_signature": "12/16"
+      },
+      {
+        "movement": "Prelude No. 15 in G  major, BWV 860",
+        "time_signature": "24/16"
+      },
+      {
+        "movement": "Prelude No. 17 in A♭ major, BWV 862",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor012.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude No. 18 in G♯ minor, BWV 863",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Prelude No. 20 in A  minor, BWV 865",
+        "time_signature": "9/8"
+      }
+    ],
+    "Ach bleib' bei uns, Herr Jesu Christ BWV 253": [
+      {
+        "movement": "bwv0253.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor013.krn&format=pdf"
+      },
+      {
+        "movement": "Du lebensfürst, Herr Jesu Christ",
+        "time_signature": "3/4"
+      }
+    ],
+    "Ach Gott, erho2r' mein Seufzen und Wehklagen BWV 254": [
+      {
+        "movement": "bwv0254.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ach lieben Christen, seid getrost BWV 256": [
+      {
+        "movement": "bwv0256.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wa2r' Gott nicht mit uns diese Zeit BWV 257": [
+      {
+        "movement": "bwv0257.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor016.krn&format=pdf"
+      }
+    ],
+    "Ach, was soll ich Su2nder machen BWV 259": [
+      {
+        "movement": "bwv0259.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor025.krn&format=pdf"
+      }
+    ],
+    "Allein Gott in der Ho2h' sei Ehr' BWV 260": [
+      {
+        "movement": "bwv0260.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Alle Menschen mu2ssen sterben BWV 262": [
+      {
+        "movement": "bwv0262.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Alles ist an Gottes Segen BWV 263": [
+      {
+        "movement": "bwv0263.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Als vierzig Tag' nach Ostern war'n BWV 266": [
+      {
+        "movement": "bwv0266.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "An Wasserflu2ssen Babylon BWV 267": [
+      {
+        "movement": "bwv0267.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor005.krn&format=pdf"
+      }
+    ],
+    "Auf, auf, mein Herz BWV 268": [
+      {
+        "movement": "bwv0268.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Wach auf, mein Herz",
+        "time_signature": "3/4"
+      }
+    ],
+    "Aus meines Herzens Grunde BWV 269": [
+      {
+        "movement": "bwv0269.krn",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "bwv0361.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Befiehl du deine Wege BWV 270": [
+      {
+        "movement": "bwv0270.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor026.krn&format=pdf"
+      }
+    ],
+    "Christ, der du bist der helle Tag BWV 273": [
+      {
+        "movement": "bwv0273.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Christ ist erstanden BWV 276": [
+      {
+        "movement": "bwv0276.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "bwv0306.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Christ, unser Herr, zum Jordan kam BWV 280": [
+      {
+        "movement": "bwv0280.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Christus, der ist mein Leben BWV 281": [
+      {
+        "movement": "bwv0281.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "bwv0282.krn",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor017.krn&format=pdf"
+      }
+    ],
+    "Danket dem Herren BWV 286": [
+      {
+        "movement": "bwv0286.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Nun laßt uns Gott, dem Herren",
+        "time_signature": "3/4"
+      }
+    ],
+    "Das alte Jahr vergangen ist BWV 288": [
+      {
+        "movement": "bwv0288.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Das walt' Gott Vater und Gott Sohn BWV 290": [
+      {
+        "movement": "bwv0290.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor035.krn&format=pdf"
+      }
+    ],
+    "Den Vater dort oben BWV 292": [
+      {
+        "movement": "bwv0292.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Des heil'gen Geistes reiche Gnad' BWV 295": [
+      {
+        "movement": "bwv0295.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Die Sonn' hat sich mit ihrem Glanz BWV 297": [
+      {
+        "movement": "bwv0297.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Diess sind die heil'gen zehn Gebot' BWV 298": [
+      {
+        "movement": "bwv0298.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Dir, dir, Jehova, will ich singen BWV 299": [
+      {
+        "movement": "bwv0299.krn",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "bwv0347.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor002.krn&format=pdf"
+      }
+    ],
+    "Du, o scho2nes Weltgeba2ude BWV 301": [
+      {
+        "movement": "bwv0301.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "bwv0400.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Ein' feste Burg ist unser Gott BWV 302": [
+      {
+        "movement": "bwv0302.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor020.krn&format=pdf"
+      }
+    ],
+    "Eins ist not, ach Herr, dies Eine BWV 304": [
+      {
+        "movement": "bwv0304.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Erbarm' dich mein, o Herre Gott BWV 305": [
+      {
+        "movement": "bwv0305.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor034.krn&format=pdf"
+      }
+    ],
+    "Es spricht der Unweisen Mund wohl BWV 308": [
+      {
+        "movement": "bwv0308.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor027.krn&format=pdf"
+      }
+    ],
+    "Es steh'n vor Gottes Throne BWV 309": [
+      {
+        "movement": "bwv0309.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Fu2r Freuden lasst uns springen BWV 313": [
+      {
+        "movement": "bwv0313.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Gib dich zufrieden und sei stille BWV 315": [
+      {
+        "movement": "bwv0315.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Gott lebet noch BWV 320": [
+      {
+        "movement": "bwv0320.krn",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "bwv0322.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Gottlob, es geht nunmehr zum Ende BWV 321": [
+      {
+        "movement": "bwv0321.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Meine Seele erhebet den Herrn BWV 324": [
+      {
+        "movement": "bwv0324.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Heilig, Heilig! BWV 325": [
+      {
+        "movement": "bwv0325.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Herr Gott, dich loben alle wir BWV 326": [
+      {
+        "movement": "bwv0326.krn",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "bwv0328.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Fu2r deinen Thron tret' ich hiermit BWV 327": [
+      {
+        "movement": "bwv0327.krn",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "bwv0346.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Herr, ich denk' an jene Zeit BWV 329": [
+      {
+        "movement": "bwv0329.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor033.krn&format=pdf"
+      }
+    ],
+    "Herr, nun lass in Friede BWV 337": [
+      {
+        "movement": "bwv0337.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Herr, wie du willst, so schick's mit mir BWV 339": [
+      {
+        "movement": "bwv0339.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Herzlich lieb hab' ich dich, o Herr BWV 340": [
+      {
+        "movement": "bwv0340.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor022.krn&format=pdf"
+      }
+    ],
+    "Heut' ist, o Mensch, ein grosser Trauertag BWV 341": [
+      {
+        "movement": "bwv0341.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "bwv0403.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Heut' triumphiret Gottes Sohn BWV 342": [
+      {
+        "movement": "bwv0342.krn",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "bwv0409.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Hilf, Gott, lass mir's gelingen BWV 343": [
+      {
+        "movement": "bwv0343.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Ich danke dir, o Gott in deinem Throne BWV 350": [
+      {
+        "movement": "bwv0350.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Jesu, meine Freude BWV 358": [
+      {
+        "movement": "bwv0358.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Jesus Christus, unser Heiland BWV 363": [
+      {
+        "movement": "bwv0363.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ihr Gestirn', ihr hohen Lu2fte BWV 366": [
+      {
+        "movement": "bwv0366.krn",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "bwv0408.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Komm, Gott Scho2pfer, heiliger Geist BWV 370": [
+      {
+        "movement": "bwv0370.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Lass, o Herr, dein Ohr sich neigen BWV 372": [
+      {
+        "movement": "bwv0372.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Liebster Jesu, wir sind hier BWV 373": [
+      {
+        "movement": "bwv0373.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Lobt Gott, ihr Christen allzugleich BWV 375": [
+      {
+        "movement": "bwv0375.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor008.krn&format=pdf"
+      }
+    ],
+    "Mach's mit mir, Gott, nach deiner gut' BWV 377": [
+      {
+        "movement": "bwv0377.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor044.krn&format=pdf"
+      }
+    ],
+    "Mein' Augen schliess' ich jetzt BWV 378": [
+      {
+        "movement": "bwv0378.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Meinen Jesum lass' ich nicht, Jesus BWV 379": [
+      {
+        "movement": "bwv0379.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Mit Fried' und Freud' ich fahr' dahin BWV 382": [
+      {
+        "movement": "bwv0382.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor049.krn&format=pdf"
+      }
+    ],
+    "Nicht so traurig, nicht so sehr BWV 384": [
+      {
+        "movement": "bwv0384.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Nun bitten wir den heiligen Geist BWV 385": [
+      {
+        "movement": "bwv0385.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "bwv0390.krn",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor007.krn&format=pdf"
+      }
+    ],
+    "Nun freut euch, Gottes Kinder all BWV 387": [
+      {
+        "movement": "bwv0387.krn",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "bwv0391.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "O wie selig seid ihr doch, ihr Frommen BWV 405": [
+      {
+        "movement": "bwv0405.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Sei gegru2sset, Jesu gu2tig BWV 410": [
+      {
+        "movement": "bwv0410.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Singt dem Herrn ein neues Lied BWV 411": [
+      {
+        "movement": "bwv0411.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "So giebst du nun, mein Jesu, gute Nacht BWV 412": [
+      {
+        "movement": "bwv0412.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Warum sollt' ich mich denn gra2men BWV 422": [
+      {
+        "movement": "bwv0422.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Was betru2bst du dich, mein Herze BWV 423": [
+      {
+        "movement": "bwv0423.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Was bist du doch, o Seele, so betru2bet BWV 424": [
+      {
+        "movement": "bwv0424.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Weltlich Ehr' und zeitlich Gut BWV 426": [
+      {
+        "movement": "bwv0426.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wenn wir in ho2chsten No2ten sein BWV 431": [
+      {
+        "movement": "bwv0431.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wer Gott vertraut, hat wohl gebaut BWV 433": [
+      {
+        "movement": "bwv0433.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wie scho2n leuchtet der Morgenstern BWV 436": [
+      {
+        "movement": "bwv0436.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wir glauben all an einen Gott BWV 437": [
+      {
+        "movement": "bwv0437.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wo Gott zum Haus nicht gibt sein' Gunst BWV 438": [
+      {
+        "movement": "bwv0438.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ermuntre dich, mein schwacher Geist": [
+      {
+        "movement": "chor009.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor009.krn&format=pdf"
+      }
+    ],
+    "Ich hab' mein' Sach' Gott heimgestellt": [
+      {
+        "movement": "chor019.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor019.krn&format=pdf"
+      }
+    ],
+    "Valet will ich dir geben": [
+      {
+        "movement": "chor024.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Nun komm, der Heiden Heiland": [
+      {
+        "movement": "chor028.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor028.krn&format=pdf"
+      }
+    ],
+    "Nun danket alle Gott": [
+      {
+        "movement": "chor032.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor032.krn&format=pdf"
+      }
+    ],
+    "Vom Himmel hoch, da komm' ich her": [
+      {
+        "movement": "chor046.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor046.krn&format=pdf"
+      }
+    ],
+    "Ach wie nichtig, ach wie fluechtig": [
+      {
+        "movement": "chor048.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor048.krn&format=pdf"
+      },
+      {
+        "movement": "chor217.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Helft mir Gott's Guete preisen": [
+      {
+        "movement": "chor088.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "O Haupt voll Blut und Wunden": [
+      {
+        "movement": "chor098.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Herr Christ, der ein'ge Gott's-Sohn": [
+      {
+        "movement": "chor101.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Vater unser im Himmelreich": [
+      {
+        "movement": "chor110.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor047.krn&format=pdf"
+      }
+    ],
+    "Auf, auf, mein Herz, und du mein ganzer Sinn": [
+      {
+        "movement": "chor124.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Herr Jesu Christ, dich zu uns wend'": [
+      {
+        "movement": "chor136.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Der Tag, der ist so freudenreich": [
+      {
+        "movement": "chor158.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "O Lamm Gottes, unschuldig": [
+      {
+        "movement": "chor165.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Christus ist erstanden, hat ueberwunden": [
+      {
+        "movement": "chor200.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "O mensche, bewein' dein' Suende gross": [
+      {
+        "movement": "chor201.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ich dank' dir, Gott, fuer all' Wohltat": [
+      {
+        "movement": "chor223.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Was frag' ich nach der Welt": [
+      {
+        "movement": "chor255.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Nun lob', mein' Seel', den Herren": [
+      {
+        "movement": "chor268.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Freu' dich sehr, O meine Seele": [
+      {
+        "movement": "chor282.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor029.krn&format=pdf"
+      }
+    ],
+    "Es ist das Heil uns kommen her": [
+      {
+        "movement": "chor290.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor004.krn&format=pdf"
+      }
+    ],
+    "Jesu, meiner Seelen Wonne": [
+      {
+        "movement": "chor350.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "O Welt, sieh hier dein Leben": [
+      {
+        "movement": "chor366.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Inventio 2 BWV 773": [
+      {
+        "movement": "Invention No. 2 in C  minor, BWV 773",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Invention No. 3 in D  major, BWV 774",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Invention No. 8 in F  major, BWV 779",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Invention No. 10 in G  major, BWV 781",
+        "time_signature": "9/8"
+      },
+      {
+        "movement": "Invention No. 12 in A  major, BWV 783",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Fugue No. 1 in C  major, BWV 870",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Fugue No. 4 in C♯ minor, BWV 873",
+        "time_signature": "12/16"
+      },
+      {
+        "movement": "Fugue No. 5 in D  major, BWV 874",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Fugue No. 9 in E  major, BWV 878",
+        "time_signature": "4/2"
+      },
+      {
+        "movement": "Fugue No. 11 in F  major, BWV 880",
+        "time_signature": "6/16"
+      },
+      {
+        "movement": "Fugue No. 18 in G♯ minor, BWV 887",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Fugue No. 22 in B♭ minor, BWV 891",
+        "time_signature": "3/2"
+      }
+    ],
+    "Ach Gott vom Himmel sieh darein BWV 153/1": [
+      {
+        "movement": "Ach Gott vom Himmel sieh darein",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor003.krn&format=pdf"
+      }
+    ],
+    "Aus tiefer Not schrei ich zu dir BWV 38/6": [
+      {
+        "movement": "Aus tiefer Not schrei ich zu dir",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor010.krn&format=pdf"
+      }
+    ],
+    "Jesu, nun sei gepreiset BWV 41/6 & 171/6": [
+      {
+        "movement": "Jesu, nun sei gepreiset",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor011.krn&format=pdf"
+      }
+    ],
+    "O Herre Gott, dein göttlich Wort Fixed alignment error in measure 10 on 2011/02/07/.": [
+      {
+        "movement": "O Herre Gott, dein göttlich Wort",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor014.krn&format=pdf"
+      }
+    ],
+    "Herzlich tut mich verlangen BWV 153/5": [
+      {
+        "movement": "Herzlich tut mich verlangen",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor021.krn&format=pdf"
+      }
+    ],
+    "Zeuch ein zu deinen Toren BWV 28/6": [
+      {
+        "movement": "Zeuch ein zu deinen Toren",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor023.krn&format=pdf"
+      }
+    ],
+    "Straf mich nicht in deinem Zorn BWV 115/6": [
+      {
+        "movement": "Straf mich nicht in deinem Zorn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor038.krn&format=pdf"
+      }
+    ],
+    "Liebester Gott, wann werd ich sterben Check second ending on plate 12021": [
+      {
+        "movement": "Liebester Gott, wann werd ich sterben",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor043.krn&format=pdf"
+      }
+    ],
+    "Kommt her zu mir, spricht BWV 108/6": [
+      {
+        "movement": "Kommt her zu mir, spricht",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor045.krn&format=pdf"
+      }
+    ],
+    "Das neugeborne Kindelein Same as chorale 178": [
+      {
+        "movement": "Das neugeborne Kindelein",
+        "time_signature": "3/4"
+      }
+    ],
+    "Wir Christenleut BWV 110/7": [
+      {
+        "movement": "Wir Christenleut",
+        "time_signature": "4/4"
+      }
+    ],
+    "Jesu Leiden, Pein und Tod BWV 159/5": [
+      {
+        "movement": "Jesu Leiden, Pein und Tod",
+        "time_signature": "4/4"
+      }
+    ],
+    "Hast du denn, Jesu, dein Angesicht BWV 57/8": [
+      {
+        "movement": "Hast du denn, Jesu, dein Angesicht",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Herzliebester Jesu, was hast du verbrochen",
+        "time_signature": "4/4"
+      }
+    ],
+    "Verleih uns Frieden gnädiglich BWV 42/7": [
+      {
+        "movement": "Verleih uns Frieden gnädiglich",
+        "time_signature": "4/4"
+      }
+    ],
+    "Durch Adams Fall ist ganz verderbt BWV 18/5": [
+      {
+        "movement": "Durch Adams Fall ist ganz verderbt",
+        "time_signature": "4/4"
+      }
+    ],
+    "Seelenbräutigam BWV 409": [
+      {
+        "movement": "Seelenbräutigam",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wer in dem Schutz des Höchsten ist BWV 339": [
+      {
+        "movement": "Wer in dem Schutz des Höchsten ist",
+        "time_signature": "4/4"
+      }
+    ],
+    "Uns ist ein Kindlein heut geborn Related to chorale 177 (BWV 253)": [
+      {
+        "movement": "Uns ist ein Kindlein heut geborn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ach Gott, wie manches Herzeleid Same as No. 308": [
+      {
+        "movement": "Ach Gott, wie manches Herzeleid",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Ach Gott, wie manches Herzeleid",
+        "time_signature": "3/4"
+      }
+    ],
+    "Wachet auf, ruft uns die Stimme BWV 140/7": [
+      {
+        "movement": "Wachet auf, ruft uns die Stimme",
+        "time_signature": "4/4"
+      }
+    ],
+    "Liebster Immanuel, Herzog der Frommen BWV 123/16": [
+      {
+        "movement": "Liebster Immanuel, Herzog der Frommen",
+        "time_signature": "3/2"
+      }
+    ],
+    "O Mensch, bewein dein' Sünde groß Same as No. 306": [
+      {
+        "movement": "O Mensch, bewein dein' Sünde groß",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wer weiß, wie nahe mir mein Ende Some other edition(s) use \"8dL 8cJ\" in the alto in m1b4:": [
+      {
+        "movement": "Wer weiß, wie nahe mir mein Ende",
+        "time_signature": "4/4"
+      }
+    ],
+    "Christe, du Beistand deiner Kreuzgemeinde BWV 275": [
+      {
+        "movement": "Christe, du Beistand deiner Kreuzgemeinde",
+        "time_signature": "4/4"
+      }
+    ],
+    "Es ist genug! so nimm Herr BWV 60/5": [
+      {
+        "movement": "Es ist genug! so nimm Herr",
+        "time_signature": "4/4"
+      }
+    ],
+    "Lobet den Herren, denn er ist freundlich BWV 374": [
+      {
+        "movement": "Lobet den Herren, denn er ist freundlich",
+        "time_signature": "4/4"
+      }
+    ],
+    "Weg, mein Herz, mit den Gedanken BWV 25/6": [
+      {
+        "movement": "Weg, mein Herz, mit den Gedanken",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Weg, mein Herz, mit den Gedanken",
+        "time_signature": "3/4"
+      }
+    ],
+    "Christ lag in Todesbanden BWV 158/4 (279)": [
+      {
+        "movement": "Christ lag in Todesbanden",
+        "time_signature": "4/4"
+      }
+    ],
+    "Nimm von uns, Herr, du treuer Gott BWV 101/7": [
+      {
+        "movement": "Nimm von uns, Herr, du treuer Gott",
+        "time_signature": "4/4"
+      }
+    ],
+    "Was Gott tut, das ist wohlgetan BWV 12/7 & 69a/16": [
+      {
+        "movement": "Was Gott tut, das ist wohlgetan",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ein Lämmelein geht und trägt die Schuld BWV 267": [
+      {
+        "movement": "Ein Lämmelein geht und trägt die Schuld",
+        "time_signature": "4/4"
+      }
+    ],
+    "Sanctus, sanctus Dominus Deus Sabaoth BWV 325": [
+      {
+        "movement": "Sanctus, sanctus Dominus Deus Sabaoth",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wo Gott, der Herr, mich bei uns hält BWV 258": [
+      {
+        "movement": "Wo Gott, der Herr, mich bei uns hält",
+        "time_signature": "4/4"
+      }
+    ],
+    "Nun lieget alles unter dir BWV 11/6": [
+      {
+        "movement": "Nun lieget alles unter dir",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Banchieri": {
+    "Confitemini Deo": [
+      {
+        "movement": "Confitemini Deo/Aprestateci fede",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Beethoven": {
+    "N6b. Beethoven, Piano Sonata op. 2 no. 3, mvt. 3, coda": [
+      {
+        "movement": "N6b",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata15-1.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro vivace",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata02-1.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata02-4.krn&format=pdf"
+      },
+      {
+        "movement": "63g",
+        "time_signature": "2/2"
+      }
+    ],
+    "Rondo a capriccio (Rage over a Lost Penny)": [
+      {
+        "movement": "Rondo a capriccio",
+        "time_signature": "2/4"
+      }
+    ],
+    "Symphony No. 5 in C Minor": [
+      {
+        "movement": "Symphony No. 5 in C  minor, Mvmt. 1",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata05-2.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata01-1.krn&format=pdf"
+      },
+      {
+        "movement": "Adagio",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata01-2.krn&format=pdf"
+      },
+      {
+        "movement": "Grave - Allegro molto e con brio",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata08-1.krn&format=pdf"
+      },
+      {
+        "movement": "Allegretto",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata17-3.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata19-2.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro assai",
+        "time_signature": "12/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata23-1.krn&format=pdf"
+      },
+      {
+        "movement": "Arietta",
+        "time_signature": "9/16",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata32-2.krn&format=pdf"
+      }
+    ],
+    "Piano Sonata no. 3 in C major mm223-232 needs extra voices for tied notes.": [
+      {
+        "movement": "Allegro con brio",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata03-1.krn&format=pdf"
+      },
+      {
+        "movement": "Adagio",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata03-2.krn&format=pdf"
+      },
+      {
+        "movement": "Scherzo",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata03-3.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro assai",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata03-4.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata09-3.krn&format=pdf"
+      },
+      {
+        "movement": "Scherzo",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata10-3.krn&format=pdf"
+      },
+      {
+        "movement": "Adagio",
+        "time_signature": "9/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata11-2.krn&format=pdf"
+      }
+    ],
+    "Sonata no. 21 for Piano (Waldstein)": [
+      {
+        "movement": "Prestissimo",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata29-1.krn&format=pdf"
+      },
+      {
+        "movement": "In tempo di Menuetto",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata22-1.krn&format=pdf"
+      },
+      {
+        "movement": "Allegretto",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata22-2.krn&format=pdf"
+      },
+      {
+        "movement": "Andante",
+        "time_signature": "9/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata25-2.krn&format=pdf"
+      },
+      {
+        "movement": "Le retour",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata26-3.krn&format=pdf"
+      },
+      {
+        "movement": "Vivace alla marcia",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata28-2.krn&format=pdf"
+      },
+      {
+        "movement": "Largo -- Fuga",
+        "time_signature": "6/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata29-4.krn&format=pdf"
+      }
+    ],
+    "Six Variations on a Swiss Song": [
+      {
+        "movement": "Theme",
+        "time_signature": "4/4"
+      }
+    ],
+    "String Quartet No. 1 in F Major, Op. 18, No. 1": [
+      {
+        "movement": "Allegro con brio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Adagio affettuoso ed appassionato",
+        "time_signature": "9/8"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Presto",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Allegro ma non tanto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Andante scherzoso quasi Allegretto",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Adagio, ma non troppo e molto cantabile",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Der schwer gefaßte Entschluß: Grave ma non troppo tratto - Allegro",
+        "time_signature": "3/2"
+      }
+    ],
+    "String Quartet No. 15 in A Minor, Op. 132 Converted to Humdrum by Craig Sapp 2006/08/18/ from MusicXML": [
+      {
+        "movement": "Assai sostenuto - Allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Allegro ma non tanto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Heiliger Dankgesang eines Genesenden an die Gottheit, in der lydischen Tonart: Molto adagio",
+        "time_signature": "4/4"
+      }
+    ],
+    "Sonata, Op. 53 Piston 71": [
+      {
+        "movement": "Beethoven -- Sonata, op. 53",
+        "time_signature": "2/4"
+      }
+    ],
+    "Beethoven: excerpt from An die ferne Geliebte": [
+      {
+        "movement": "Beethoven: excerpt from An die ferne Geliebte",
+        "time_signature": "3/4"
+      }
+    ],
+    "63i. Beethoven, Symphony no. 7 in A major, op. 92, mvt. 2, mm. 1-18": [
+      {
+        "movement": "63i",
+        "time_signature": "2/4"
+      }
+    ]
+  },
+  "Bossi": {
+    "Th&egrave;me et Variations": [
+      {
+        "movement": "Thème",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/alberto/bossi&file=bossi-op115-thema.krn&format=pdf"
+      }
+    ]
+  },
+  "Brahms": {
+    "N6d. Brahms, Piano Quintet in F minor, mvt. 3, mm. 173-end": [
+      {
+        "movement": "N6d",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/brahms/op39&file=op39-09.krn&format=pdf"
+      }
+    ],
+    "Piano Sonata No. 1 in C major, Op. 1": [
+      {
+        "movement": "Andante",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/brahms/op01&file=op01-2.krn&format=pdf"
+      },
+      {
+        "movement": "Ballade No. 1 in D  minor, Op. 10",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Brahms -- Waltz, op. 39, no. 2",
+        "time_signature": "3/4"
+      }
+    ],
+    "Scherzo in E-flat minor for piano Test conversion from MusicXML; no proof reading done": [
+      {
+        "movement": "Scherzo in E♭ minor for piano, Op. 4",
+        "time_signature": "3/4"
+      }
+    ],
+    "Waltz in B Major, Op.39 No.1": [
+      {
+        "movement": "Waltz No.1 in B  major",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/brahms/op39&file=op39-01.krn&format=pdf"
+      }
+    ],
+    "Romanze. Poco adagio": [
+      {
+        "movement": "Romanze. Poco adagio",
+        "time_signature": "3/4"
+      }
+    ],
+    "Allegretto molto moderato e commodo -- Un poco pi&ugrave; animato": [
+      {
+        "movement": "Allegretto molto moderato e commodo -- Un poco più animato",
+        "time_signature": "4/8"
+      }
+    ],
+    "Intermezzo, Op. 118, No. 2 Piston 99": [
+      {
+        "movement": "Brahms -- Intermezzo, op. 118, no. 2",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Buxtehude": {
+    "Sonata in B-flat Major, Op. 1, No. 4": [
+      {
+        "movement": "Allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Vivace",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Andante",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Vivace",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Byrd": {
+    "Ne irascaris Domine": [
+      {
+        "movement": "Ne irascaris Domine",
+        "time_signature": "2/2"
+      }
+    ],
+    "Ave verum corpus": [
+      {
+        "movement": "Ave verum corpus",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Chopin": {
+    "N6e. Chopin, Mazurka, op. 41 no. 2, mm. 1-8": [
+      {
+        "movement": "N6e",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/scherzo&file=scherzo2.krn&format=pdf"
+      }
+    ],
+    "Ballade No. 4 in F Minor, Op. 52": [
+      {
+        "movement": "Ballade in F  minor",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/etude&file=etude10-09.krn&format=pdf"
+      },
+      {
+        "movement": "Etude in A  minor",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/etude&file=etude10-02.krn&format=pdf"
+      },
+      {
+        "movement": "Etude in G♭ Major",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/etude&file=etude10-05.krn&format=pdf"
+      },
+      {
+        "movement": "Mazurka in F♯ Minor",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/mazurka&file=mazurka06-1.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude in C  major",
+        "time_signature": "2/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/prelude&file=prelude28-01.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude in G  major",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/prelude&file=prelude28-03.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude in D  major",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/prelude&file=prelude28-05.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude in F♯ Major",
+        "time_signature": "6/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/prelude&file=prelude28-13.krn&format=pdf"
+      }
+    ],
+    "Mazurka 50 in A Minor": [
+      {
+        "movement": "Mazurka in A  minor",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/mazurka&file=mazurka-50.krn&format=pdf"
+      }
+    ],
+    "Prelude in F-sharp Minor, Op. 28, No. 8 Probably some enharmonic errors, etc. but I don't care": [
+      {
+        "movement": "Prelude in F♯ Minor",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/prelude&file=prelude28-08.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude in B♭ Minor",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/prelude&file=prelude28-16.krn&format=pdf"
+      }
+    ],
+    "Scherzo in B-flat Minor Basic conversion from SharpEye": [
+      {
+        "movement": "Scherzo No. 2 in B♭ minor, Op. 31",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/scherzo&file=scherzo2.krn&format=pdf"
+      }
+    ],
+    "Waltz in A Minor, Brown Index 150": [
+      {
+        "movement": "Waltz in A  minor",
+        "time_signature": "3/4"
+      }
+    ],
+    "Etude, Op. 10, No. 6 Piston 70": [
+      {
+        "movement": "Chopin -- Etude, op. 10, no. 6",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Chopin -- Nocturne, op. 37, no. 1",
+        "time_signature": "4/4"
+      }
+    ],
+    "etude10-02b.krn": [
+      {
+        "movement": "etude10-02b.krn",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Clementi": {
+    "Sonata No. 6 in D Major, Op. 36, Mvmt. 2": [
+      {
+        "movement": "Allegro spirito",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Andante",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Vivace",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Allegretto",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Un poco adagio",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Corelli": {
+    "63p. Corelli, Concerto Grosso in G minor, op. 6 no. 8, mvt. 1, mm. 1-6": [
+      {
+        "movement": "63p",
+        "time_signature": "3/4"
+      }
+    ],
+    "Sonate a tre [in F] Roma; Rome": [
+      {
+        "movement": "Trio Sonata in F  major, Op. 1, No. 1, Mvmt. 1 (Grave)",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Trio Sonata in F  major, Op. 1, No. 1, Mvmt. 3 (Adagio)",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Trio Sonata in E  minor, Op. 1, No. 2, Mvmt. 4 (Allegro)",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Trio Sonata in B♭ Major, Op. 1, No. 5, Mvmt. 1 (Grave)",
+        "time_signature": "3/2"
+      },
+      {
+        "movement": "Trio Sonata in B♭ Major, Op. 1, No. 5, Mvmt. 4 (Allegro)",
+        "time_signature": "6/8"
+      }
+    ],
+    "!!!ONM: Opus 3, No. 1": [
+      {
+        "movement": "Trio Sonata in F  major, Op. 3, No. 1, Mvmt. 1",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Trio Sonata in F  major, Op. 3, No. 1, Mvmt. 3",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Trio Sonata in F  major, Op. 3, No. 1, Mvmt. 4",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Trio Sonata in D  major, Op. 3, No. 2, Mvmt. 3",
+        "time_signature": "3/2"
+      },
+      {
+        "movement": "Trio Sonata in B♭ Major, Op. 3, No. 3, Mvmt. 4",
+        "time_signature": "6/4"
+      },
+      {
+        "movement": "Trio Sonata in B  minor, Op. 3, No. 4, Mvmt. 3",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Trio Sonata in B  minor, Op. 3, No. 4, Mvmt. 4",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Trio Sonata in D  minor, Op. 3, No. 5, Mvmt. 4",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Trio Sonata in F  major, Op. 5, No. 10, Mvmt. 5",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Trio Sonata in D  major, Op. 6, No. 1, Mvmt. 5",
+        "time_signature": "4/2"
+      }
+    ]
+  },
+  "Dufay": {
+    "O tres piteulx/Omnes amici": [
+      {
+        "movement": "O tres piteulx/Omnes amici",
+        "time_signature": "3/4"
+      }
+    ],
+    "Adieu ces bons vins de Lannoys": [
+      {
+        "movement": "Adieu ces bons vins de Lannoys",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Dunstable": {
+    "Hymn \"Veni Creator\" for Whitsunday 4 voices": [
+      {
+        "movement": "Veni creator spiritus",
+        "time_signature": "3/2"
+      }
+    ]
+  },
+  "Field": {
+    "Concerto a violino solo, No. 8 RV 332": [
+      {
+        "movement": "Largo",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/field&file=nocturne.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Danza Pastorale",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Allegro non molto",
+        "time_signature": "3/8"
+      }
+    ],
+    "Nocturne": [
+      {
+        "movement": "Nocturne",
+        "time_signature": "12/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/field&file=nocturne.krn&format=pdf"
+      }
+    ],
+    "My Wild Irish Rose": [
+      {
+        "movement": "My Wild Irish Rose",
+        "time_signature": "3/4"
+      }
+    ],
+    "Allegro RV 359": [
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Presto",
+        "time_signature": "2/4"
+      }
+    ]
+  },
+  "Flecha": {
+    "La bomba": [
+      {
+        "movement": "La bomba",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Foster": {
+    "Willie has Gone to the War": [
+      {
+        "movement": "Willie has Gone to the War",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "The Voices that are Gone",
+        "time_signature": "3/4"
+      }
+    ],
+    "Ah! May the red rose live alway!": [
+      {
+        "movement": "Ah! May the red rose live alway!",
+        "time_signature": "6/8"
+      }
+    ],
+    "Beautiful Dreamer": [
+      {
+        "movement": "Beautiful Dreamer",
+        "time_signature": "9/8"
+      }
+    ],
+    "Better Times are Coming": [
+      {
+        "movement": "Better Times are Coming",
+        "time_signature": "2/4"
+      }
+    ],
+    "Gwine to Run All Night (or 'De Camptown Race')": [
+      {
+        "movement": "Gwine to Run All Night (or 'De Camptown Race')",
+        "time_signature": "2/4"
+      }
+    ],
+    "Don't Bet Your Money on De Shanghai": [
+      {
+        "movement": "Don't Bet Your Money on De Shanghai",
+        "time_signature": "2/4"
+      }
+    ],
+    "Down Among the Cane-Brakes": [
+      {
+        "movement": "Down Among the Cane-Brakes",
+        "time_signature": "4/4"
+      }
+    ],
+    "Gentle Annie": [
+      {
+        "movement": "Gentle Annie",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Gentle Lena Clare",
+        "time_signature": "2/4"
+      }
+    ],
+    "The Glendy Burk": [
+      {
+        "movement": "The Glendy Burk",
+        "time_signature": "2/4"
+      }
+    ],
+    "Hard Times Comes Again No More": [
+      {
+        "movement": "Hard Times Comes Again No More",
+        "time_signature": "4/4"
+      }
+    ],
+    "If You've Only Got a Moustache": [
+      {
+        "movement": "If You've Only Got a Moustache",
+        "time_signature": "6/8"
+      }
+    ],
+    "Jeanie with the Light Brown Hair": [
+      {
+        "movement": "Jeanie with the Light Brown Hair",
+        "time_signature": "4/4"
+      }
+    ],
+    "Maggie by my Side": [
+      {
+        "movement": "Maggie by my Side",
+        "time_signature": "4/4"
+      }
+    ],
+    "Massa's in de Cold Ground": [
+      {
+        "movement": "Massa's in de Cold Ground",
+        "time_signature": "4/4"
+      }
+    ],
+    "My Old Kentucky Home, Good-Night": [
+      {
+        "movement": "My Old Kentucky Home, Good-Night",
+        "time_signature": "4/4"
+      }
+    ],
+    "My Wife is a Most Knowing Woman": [
+      {
+        "movement": "My Wife is a Most Knowing Woman",
+        "time_signature": "6/8"
+      }
+    ],
+    "Nelly Bly": [
+      {
+        "movement": "Nelly Bly",
+        "time_signature": "4/4"
+      }
+    ],
+    "Nelly was a Lady": [
+      {
+        "movement": "Nelly was a Lady",
+        "time_signature": "4/4"
+      }
+    ],
+    "I'm Nothing but a Plain Old Soldier": [
+      {
+        "movement": "I'm Nothing but a Plain Old Soldier",
+        "time_signature": "4/4"
+      }
+    ],
+    "Oh! Susanna": [
+      {
+        "movement": "Oh! Susanna",
+        "time_signature": "2/4"
+      }
+    ],
+    "Old Black Joe": [
+      {
+        "movement": "Old Black Joe",
+        "time_signature": "4/4"
+      }
+    ],
+    "Old Folks at Home": [
+      {
+        "movement": "Old Folks at Home",
+        "time_signature": "4/4"
+      }
+    ],
+    "Open Thy Lattice Love": [
+      {
+        "movement": "Open Thy Lattice Love",
+        "time_signature": "6/8"
+      }
+    ],
+    "Ring, Ring de Banjo!": [
+      {
+        "movement": "Ring, Ring de Banjo!",
+        "time_signature": "2/4"
+      }
+    ],
+    "Some Folks": [
+      {
+        "movement": "Some Folks",
+        "time_signature": "2/4"
+      }
+    ],
+    "The Song of All Songs": [
+      {
+        "movement": "The Song of All Songs",
+        "time_signature": "4/4"
+      }
+    ],
+    "That's What's the Matter": [
+      {
+        "movement": "That's What's the Matter",
+        "time_signature": "2/4"
+      }
+    ],
+    "There are Plenty of Fish in the Sea": [
+      {
+        "movement": "There are Plenty of Fish in the Sea",
+        "time_signature": "6/8"
+      }
+    ],
+    "There's a Good Time Coming": [
+      {
+        "movement": "There's a Good Time Coming",
+        "time_signature": "4/4"
+      }
+    ],
+    "Way Down in Ca-i-ro": [
+      {
+        "movement": "Way Down in Ca-i-ro",
+        "time_signature": "4/4"
+      }
+    ],
+    "We are Coming, Father Abraam": [
+      {
+        "movement": "We are Coming, Father Abraam",
+        "time_signature": "2/4"
+      }
+    ],
+    "When this Dreadful War is Ended": [
+      {
+        "movement": "When this Dreadful War is Ended",
+        "time_signature": "2/4"
+      }
+    ]
+  },
+  "Frescobaldi": {
+    "No. 40: Canzon Sesta &agrave; 4. Canto, Alto, Tenore, Basso Andrea Friggi, ed.": [
+      {
+        "movement": "Canzon Sesta à 4. Canto, Alto, Tenore, Basso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Canzon Quarta à 3. Due Bassi e Canto",
+        "time_signature": "3/1"
+      },
+      {
+        "movement": "Canzon Seconda à 3. Due Canti e Basso",
+        "time_signature": "3/2"
+      }
+    ]
+  },
+  "Gershwin": {
+    "Aren't you kinda glad we did": [
+      {
+        "movement": "Aren't you kinda glad we did",
+        "time_signature": "4/4"
+      }
+    ],
+    "(I've Got) Beginner's Luck\"": [
+      {
+        "movement": "(I've Got) Beginner's Luck\"",
+        "time_signature": "4/4"
+      }
+    ],
+    "Bidin' My Time": [
+      {
+        "movement": "Bidin' My Time",
+        "time_signature": "4/4"
+      }
+    ],
+    "Could You Use Me?": [
+      {
+        "movement": "Could You Use Me?",
+        "time_signature": "4/4"
+      }
+    ],
+    "Drifting Along with the Tide": [
+      {
+        "movement": "Drifting Along with the Tide",
+        "time_signature": "4/4"
+      }
+    ],
+    "Fascinating Rhythm": [
+      {
+        "movement": "Fascinating Rhythm",
+        "time_signature": "4/4"
+      }
+    ],
+    "Fidgety Feet": [
+      {
+        "movement": "Fidgety Feet",
+        "time_signature": "2/2"
+      }
+    ],
+    "A Foggy Day": [
+      {
+        "movement": "A Foggy Day",
+        "time_signature": "2/2"
+      }
+    ],
+    "The Half of it, Dearie, Blues": [
+      {
+        "movement": "The Half of it, Dearie, Blues",
+        "time_signature": "4/4"
+      }
+    ],
+    "High Hat": [
+      {
+        "movement": "High Hat",
+        "time_signature": "2/4"
+      }
+    ],
+    "How Long Has This Been Going On?": [
+      {
+        "movement": "How Long Has This Been Going On?",
+        "time_signature": "2/2"
+      }
+    ],
+    "I Can't Be Bothered Now": [
+      {
+        "movement": "I Can't Be Bothered Now",
+        "time_signature": "2/2"
+      }
+    ],
+    "I Got Plenty O' Nuttin'": [
+      {
+        "movement": "I Got Plenty O' Nuttin'",
+        "time_signature": "2/2"
+      }
+    ],
+    "Innocent Lonesome Blue Baby": [
+      {
+        "movement": "Innocent Lonesome Blue Baby",
+        "time_signature": "4/4"
+      }
+    ],
+    "Isn't It A Pith": [
+      {
+        "movement": "Isn't It A Pith",
+        "time_signature": "4/4"
+      }
+    ],
+    "It's A Great Little World": [
+      {
+        "movement": "It's A Great Little World",
+        "time_signature": "2/4"
+      }
+    ],
+    "Love is Here to Stay": [
+      {
+        "movement": "Love is Here to Stay",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Love is Sweeping the Country",
+        "time_signature": "2/4"
+      }
+    ],
+    "Nashville Nightingale": [
+      {
+        "movement": "Nashville Nightingale",
+        "time_signature": "2/2"
+      }
+    ],
+    "Naughty Baby": [
+      {
+        "movement": "Naughty Baby",
+        "time_signature": "2/2"
+      }
+    ],
+    "Nice Work If You Can Get It": [
+      {
+        "movement": "Nice Work If You Can Get It",
+        "time_signature": "2/2"
+      }
+    ],
+    "They Can't Take That Away From Me": [
+      {
+        "movement": "They Can't Take That Away From Me",
+        "time_signature": "2/2"
+      }
+    ],
+    "Who Cares?": [
+      {
+        "movement": "Who Cares?",
+        "time_signature": "2/2"
+      }
+    ],
+    "You've Got What Gets Me": [
+      {
+        "movement": "You've Got What Gets Me",
+        "time_signature": "2/2"
+      }
+    ],
+    "Shall We Dance": [
+      {
+        "movement": "Shall We Dance",
+        "time_signature": "2/2"
+      }
+    ],
+    "I've Got a \"Crush on You": [
+      {
+        "movement": "I've Got a \"Crush on You",
+        "time_signature": "2/4"
+      }
+    ],
+    "Kickin' The Clouds Away": [
+      {
+        "movement": "Kickin' The Clouds Away",
+        "time_signature": "4/4"
+      }
+    ],
+    "Let's Call the Whole Thing Off": [
+      {
+        "movement": "Let's Call the Whole Thing Off",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Giovannelli": {
+    "Dulce est": [
+      {
+        "movement": "Dulce est/Occhi miei",
+        "time_signature": "4/4"
+      }
+    ],
+    "Deus noster fidelis": [
+      {
+        "movement": "Deus noster fidelis/Filli cara et amata",
+        "time_signature": "4/4"
+      }
+    ],
+    "O quam inanes": [
+      {
+        "movement": "O quam inanes/O come vaneggiate",
+        "time_signature": "4/4"
+      }
+    ],
+    "Sanctissima Maria": [
+      {
+        "movement": "Sanctissima Maria/Baciatemi",
+        "time_signature": "4/4"
+      }
+    ],
+    "Moritur in ligno": [
+      {
+        "movement": "Moritur in ligno/Morirò di dolor",
+        "time_signature": "4/4"
+      }
+    ],
+    "Suauissime Iesu": [
+      {
+        "movement": "Suauissime Iesu/Soavissimi fiori",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Grieg": {
+    "Lullaby": [
+      {
+        "movement": "Cow Call and Lullaby",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op66&file=op66-06.krn&format=pdf"
+      }
+    ],
+    "Mazurka": [
+      {
+        "movement": "Mazurka: Con grazia",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op01&file=op01-3.krn&format=pdf"
+      }
+    ],
+    "Andante con sentimento": [
+      {
+        "movement": "Andante con sentimento",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op03&file=op03-4.krn&format=pdf"
+      },
+      {
+        "movement": "Allegretto con grazia",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op06&file=op06-3.krn&format=pdf"
+      }
+    ],
+    "Sonata in E minor": [
+      {
+        "movement": "Allegro moderato",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op07&file=op07-1.krn&format=pdf"
+      }
+    ],
+    "Waltz": [
+      {
+        "movement": "Waltz: Allegro moderato",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op12&file=op12-2.krn&format=pdf"
+      }
+    ],
+    "Spring Dance I": [
+      {
+        "movement": "Spring Dance I",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op17&file=op17-01.krn&format=pdf"
+      },
+      {
+        "movement": "To Spring",
+        "time_signature": "6/4"
+      }
+    ],
+    "Butterfly": [
+      {
+        "movement": "Butterfly",
+        "time_signature": "4/4"
+      }
+    ],
+    "Solitary Traveller": [
+      {
+        "movement": "Solitary Traveller",
+        "time_signature": "6/8"
+      }
+    ],
+    "In My Native Country": [
+      {
+        "movement": "In My Native Country",
+        "time_signature": "4/4"
+      }
+    ],
+    "Little bird": [
+      {
+        "movement": "Little bird",
+        "time_signature": "6/8"
+      }
+    ],
+    "Erotikon": [
+      {
+        "movement": "Erotikon",
+        "time_signature": "2/4"
+      }
+    ],
+    "Morning Mood": [
+      {
+        "movement": "Morning Mood",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op46&file=op46-1.krn&format=pdf"
+      }
+    ],
+    "In the Hall of the Mountain-King": [
+      {
+        "movement": "In the Hall of the Mountain-King",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/grieg/op46&file=op46-4.krn&format=pdf"
+      }
+    ]
+  },
+  "Haydn": {
+    "N6a. Haydn, \"Il Terremoto\", op. 51 no. 7, mm. 93-end": [
+      {
+        "movement": "N6a",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk136a.krn&format=pdf"
+      }
+    ],
+    "Piano Sonata no. 1 in F minor": [
+      {
+        "movement": "Allegro",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata01-1.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro vivace",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata02-1.krn&format=pdf"
+      },
+      {
+        "movement": "Scherzo",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata02-3.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata02-4.krn&format=pdf"
+      }
+    ],
+    "Piano Sonata no. 3 in C major mm223-232 needs extra voices for tied notes.": [
+      {
+        "movement": "Allegro con brio",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata03-1.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro assai",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/beethoven/piano/sonata&file=sonata03-4.krn&format=pdf"
+      }
+    ],
+    "String Quartet in E-flat Major H II:6": [
+      {
+        "movement": "Presto",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=musedata/haydn/quartet&file=op74n1-04.krn&format=pdf"
+      },
+      {
+        "movement": "Menuetto & Trio I",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=musedata/haydn/quartet&file=op74n1-03.krn&format=pdf"
+      },
+      {
+        "movement": "Adagio",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=musedata/haydn/quartet&file=op76n1-01.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=musedata/haydn/quartet&file=op76n2-02.krn&format=pdf"
+      },
+      {
+        "movement": "Adagio",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=musedata/haydn/quartet&file=op74n1-01.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro molto",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=musedata/haydn/quartet&file=op74n1-02.krn&format=pdf"
+      }
+    ],
+    "Symphonie Nr. 99 London": [
+      {
+        "movement": "Adagio - vivace assai",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Adagio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Finale (Vivace)",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Finale (Presto)",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Largo - vivace",
+        "time_signature": "4/4"
+      }
+    ],
+    "Sonata No. 12 in A major Stich und Druck von Jos. Eberle & Co. Wien VII. Seidengasse 3-9": [
+      {
+        "movement": "Andante",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/haydn/keyboard/uesonatas&file=sonata12-1.krn&format=pdf"
+      },
+      {
+        "movement": "Menuetto & Trio",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/haydn/keyboard/uesonatas&file=sonata12-2.krn&format=pdf"
+      },
+      {
+        "movement": "Finale: Allegretto",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/haydn/keyboard/uesonatas&file=sonata12-3.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/haydn/keyboard/uesonatas&file=sonata13-1.krn&format=pdf"
+      },
+      {
+        "movement": "Prestissimo",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/haydn/keyboard/uesonatas&file=sonata52-3.krn&format=pdf"
+      }
+    ],
+    "Menuet 1": [
+      {
+        "movement": "menuet1.krn",
+        "time_signature": "3/4"
+      }
+    ],
+    "Quartet, Op. 77, No. 1 Piston 61": [
+      {
+        "movement": "Haydn -- Quartet, op. 77, no. 1",
+        "time_signature": "3/4"
+      }
+    ],
+    "Sonata Piston 96": [
+      {
+        "movement": "Haydn -- Sonata",
+        "time_signature": "6/8"
+      }
+    ],
+    "Oestereichisches Nationallied": [
+      {
+        "movement": "Oestereichisches Nationallied",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk136.krn&format=pdf"
+      }
+    ],
+    "Deutschland über Alles": [
+      {
+        "movement": "Deutschland über Alles",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk136a.krn&format=pdf"
+      }
+    ],
+    "Section A header data": [
+      {
+        "movement": "Section A header data",
+        "time_signature": "3/4"
+      }
+    ],
+    "Gioco filharmonico, example 1": [
+      {
+        "movement": "Gioco filharmonico, example 1",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Himmel": {
+    "Vater unser im Himmelreich BWV 416": [
+      {
+        "movement": "bwv0416.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor047.krn&format=pdf"
+      }
+    ],
+    "Vom Himmel hoch, da komm' ich her": [
+      {
+        "movement": "chor046.krn",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor046.krn&format=pdf"
+      }
+    ],
+    "Ach Gott vom Himmel sieh darein BWV 153/1": [
+      {
+        "movement": "Ach Gott vom Himmel sieh darein",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor003.krn&format=pdf"
+      }
+    ],
+    "Gott des Himmels und der Erden BWV 248/53": [
+      {
+        "movement": "Gott des Himmels und der Erden",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/371chorales&file=chor035.krn&format=pdf"
+      }
+    ],
+    "xxerk110.krn Harmony and Root analysis done manually": [
+      {
+        "movement": "xxerk110.krn",
+        "time_signature": "4/4"
+      }
+    ],
+    "Die Linde im Himmelreich ESAC (Essen Associative Code) Database: ALTDEU": [
+      {
+        "movement": "Die Linde im Himmelreich",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Himmelfahrt",
+        "time_signature": "4/1"
+      },
+      {
+        "movement": "Himmelsrose",
+        "time_signature": "4/2"
+      },
+      {
+        "movement": "Schloss in Oesterreich Ich weiss ein ewiges Himmelreich.",
+        "time_signature": "6/4"
+      },
+      {
+        "movement": "ACH DU KLARER BLAUER HIMMEL",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "AUS DEM HIMMEL FERNE",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "DER HIMMEL IST SO TRUEBE",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "DER HIMMEL UNSER HORT DIE FREIHEIT UNSER WORT",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "SEHT DEN HIMMEL WIE HEITER",
+        "time_signature": "6/8"
+      }
+    ],
+    "Der Rose Sendung": [
+      {
+        "movement": "Der Rose Sendung",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk009.krn&format=pdf"
+      }
+    ],
+    "Die Welt, ein Orchester Aus Fanchon": [
+      {
+        "movement": "Die Welt, ein Orchester",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk028.krn&format=pdf"
+      }
+    ],
+    "Ewiger Wechsel": [
+      {
+        "movement": "Ewiger Wechsel",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk039.krn&format=pdf"
+      }
+    ],
+    "Mignon": [
+      {
+        "movement": "Mignon",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk067.krn&format=pdf"
+      }
+    ],
+    "Gebet während der Schlacht": [
+      {
+        "movement": "Gebet während der Schlacht",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk162.krn&format=pdf"
+      }
+    ],
+    "Sch�nes Himmelreich (2-25) S. 79": [
+      {
+        "movement": "Schönes Himmelreich",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Hummel": {
+    "Prelude in D minor, op. 67, no. 24": [
+      {
+        "movement": "Prelude in D  minor",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/hummel/op67&file=prelude67-24.krn&format=pdf"
+      },
+      {
+        "movement": "Prelude in E♭ Minor",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/hummel/op67&file=prelude67-14.krn&format=pdf"
+      }
+    ]
+  },
+  "Isaac": {
+    "Innsbruck, ich mu&szlig; dich lassen Also Luthern Hymn: O Welt, ich mu&szlig; dich lassen": [
+      {
+        "movement": "Innsbruck, ich muß dich lassen",
+        "time_signature": "2/2"
+      }
+    ],
+    "A la battaglia textless": [
+      {
+        "movement": "A la battaglia",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Ives": {
+    "novel motivic element outlining one chord": [
+      {
+        "movement": "novel motivic element outlining one chord",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/densmore/sioux&file=sioux166.krn&format=pdf"
+      }
+    ],
+    "Song Received from a Dead Relative": [
+      {
+        "movement": "Song Received from a Dead Relative",
+        "time_signature": "2/4"
+      }
+    ],
+    "Sonate a tre [in e] Roma; Rome": [
+      {
+        "movement": "Trio Sonata in E  minor, Op. 1, No. 2, Mvmt. 4 (Allegro)",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Trio Sonata in B♭ Major, Op. 1, No. 5, Mvmt. 1 (Grave)",
+        "time_signature": "3/2"
+      },
+      {
+        "movement": "Trio Sonata in B  minor, Op. 1, No. 6, Mvmt. 4 (Allegro)",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Trio Sonata in G  major, Op. 1, No. 9, Mvmt. 4 (Allegro)",
+        "time_signature": "3/4"
+      }
+    ],
+    "Spring Song": [
+      {
+        "movement": "Spring Song",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/ives/114songs&file=065-spring-song.krn&format=pdf"
+      }
+    ],
+    "Lentamente set of 20 pieces": [
+      {
+        "movement": "Lentamente",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/prokofiev/op22&file=visions22-1.krn&format=pdf"
+      },
+      {
+        "movement": "Andante",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/prokofiev/op22&file=visions22-2.krn&format=pdf"
+      }
+    ],
+    "Captives I Am Bringing": [
+      {
+        "movement": "Captives I Am Bringing",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/densmore/sioux&file=sioux166.krn&format=pdf"
+      }
+    ],
+    "motivic element from cello suite no.1, courante": [
+      {
+        "movement": "motivic element from cello suite no.1, courante",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Joplin": {
+    "Overture Opera in Three Acts": [
+      {
+        "movement": "Overture",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin/treemonisha&file=treemonisha01.krn&format=pdf"
+      }
+    ],
+    "Antoinette March and Two-Step": [
+      {
+        "movement": "Antoinette",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=antoinette.krn&format=pdf"
+      },
+      {
+        "movement": "A Breeze from Alabama",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=breeze.krn&format=pdf"
+      }
+    ],
+    "Augustan Club Waltz": [
+      {
+        "movement": "Augustan Club Waltz",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=augustan.krn&format=pdf"
+      },
+      {
+        "movement": "Harmony Club Waltz",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=harmony.krn&format=pdf"
+      }
+    ],
+    "The Cascades": [
+      {
+        "movement": "The Cascades",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=cascades.krn&format=pdf"
+      }
+    ],
+    "The Chrysanthemum An Afro-American Intermezzo": [
+      {
+        "movement": "The Chrysanthemum",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=chrysanthemum.krn&format=pdf"
+      }
+    ],
+    "Combination March": [
+      {
+        "movement": "Combination March",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=combination.krn&format=pdf"
+      },
+      {
+        "movement": "March Majestic",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=majestic.krn&format=pdf"
+      }
+    ],
+    "Country Club Ragtime Two-Step": [
+      {
+        "movement": "Country Club",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=countryclub.krn&format=pdf"
+      }
+    ],
+    "The Crush Collision March": [
+      {
+        "movement": "The Crush Collision March",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=crush.krn&format=pdf"
+      },
+      {
+        "movement": "The Rosebud March",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=rosebud.krn&format=pdf"
+      }
+    ],
+    "Elite Syncopations Rag": [
+      {
+        "movement": "Elite Syncopations",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=elite.krn&format=pdf"
+      },
+      {
+        "movement": "Magnetic Rag",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=magnetic.krn&format=pdf"
+      }
+    ],
+    "Heliotrope Bouquet A Slow Drag Two Step": [
+      {
+        "movement": "Heliotrope Bouquet",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=heliotrope.krn&format=pdf"
+      }
+    ],
+    "Leola": [
+      {
+        "movement": "Leola",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=leola.krn&format=pdf"
+      }
+    ],
+    "Original Rags": [
+      {
+        "movement": "Original Rags",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=original.krn&format=pdf"
+      }
+    ],
+    "Pleasant Moments Ragtime Waltz": [
+      {
+        "movement": "Pleasant Moments",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=pleasant.krn&format=pdf"
+      }
+    ],
+    "Reflection Rag Syncopated Musings": [
+      {
+        "movement": "Reflection Rag",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=reflection.krn&format=pdf"
+      }
+    ],
+    "School of Ragtime Six Exercises for Piano": [
+      {
+        "movement": "School of Ragtime",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=school.krn&format=pdf"
+      }
+    ],
+    "Scott Joplin's New Rag": [
+      {
+        "movement": "Scott Joplin's New Rag",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=newrag.krn&format=pdf"
+      }
+    ],
+    "Solace, A Mexican Serenade": [
+      {
+        "movement": "Solace",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=solace.krn&format=pdf"
+      }
+    ],
+    "Sunflower Slow Drag": [
+      {
+        "movement": "Sunflower Slow Drag",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=sunflower.krn&format=pdf"
+      }
+    ],
+    "Swipsey": [
+      {
+        "movement": "Swipesy",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=swipesy.krn&format=pdf"
+      }
+    ]
+  },
+  "Josquin": {
+    "Tulerunt Dominum meum": [
+      {
+        "movement": "Tulerunt Dominum meum",
+        "time_signature": "2/2"
+      }
+    ],
+    "El grillo": [
+      {
+        "movement": "El grillo",
+        "time_signature": "2/2"
+      }
+    ],
+    "Nymphes des bois": [
+      {
+        "movement": "Nymphes des bois",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Landini": {
+    "Excerpt from Non avr&agrave; ma' piet&agrave;": [
+      {
+        "movement": "Francesco Landini, Excerpt from Non avrà ma' pietà",
+        "time_signature": "3/4"
+      }
+    ],
+    "Angelica bilt&agrave; CPDL.org; edited by Sabine Cassola; added on 2003/07/31/": [
+      {
+        "movement": "Angelica biltà",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Deh! dimmi tu",
+        "time_signature": "4/2"
+      }
+    ]
+  },
+  "Lassus": {
+    "Salve regina mater Test conversion with xml2hum program from MIDI via Finale 2004 & Dolet": [
+      {
+        "movement": "Salve Regina",
+        "time_signature": "2/2"
+      }
+    ],
+    "Matona mia cara Test conversion with mid2hum program.": [
+      {
+        "movement": "Matona mia cara",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Liszt": {
+    "Ballade No. 2 in B Minor, S. 171": [
+      {
+        "movement": "Ballad No. 2 in B  minor",
+        "time_signature": "6/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/etude&file=etude10-09.krn&format=pdf"
+      },
+      {
+        "movement": "Etude in A  minor",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/etude&file=etude10-02.krn&format=pdf"
+      }
+    ],
+    "Etude in G-flat Major, Op. 10, No. 5": [
+      {
+        "movement": "Etude in G♭ Major",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/etude&file=etude10-05.krn&format=pdf"
+      },
+      {
+        "movement": "Etude in F  minor",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/chopin/etude&file=etude10-09.krn&format=pdf"
+      }
+    ]
+  },
+  "MacDowell": {
+    "Dance of the Gnomes": [
+      {
+        "movement": "Dance of the Gnomes",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op39&file=op39-06.krn&format=pdf"
+      }
+    ],
+    "Amourette": [
+      {
+        "movement": "Amourette, Op. 1 (A♭ major)",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op01&file=op01.krn&format=pdf"
+      }
+    ],
+    "Beauty in the Rosegarden": [
+      {
+        "movement": "Beauty in The Rosegarden",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op04&file=op04-3.krn&format=pdf"
+      },
+      {
+        "movement": "In the Forest",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op39&file=op39-05.krn&format=pdf"
+      }
+    ],
+    "Hunting Song": [
+      {
+        "movement": "Hunting Song",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op39&file=op39-01.krn&format=pdf"
+      }
+    ],
+    "Alla tarantella": [
+      {
+        "movement": "Alla tarantella",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op39&file=op39-02.krn&format=pdf"
+      }
+    ],
+    "Romanze": [
+      {
+        "movement": "Romance",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op39&file=op39-03.krn&format=pdf"
+      }
+    ],
+    "Arabesque": [
+      {
+        "movement": "Arabesque",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/macdowell/op39&file=op39-04.krn&format=pdf"
+      }
+    ]
+  },
+  "Mendelssohn": {
+    "Der Jäger Abschied": [
+      {
+        "movement": "Der Jäger Abschied",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk122.krn&format=pdf"
+      }
+    ],
+    "Song without words, Venetianisches Gondellied, Op. 62, No. 3": [
+      {
+        "movement": "Song without words, Venetianisches Gondellied, Op. 62, No. 3",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Song without words, Trauermarsch, Op. 62, No. 3",
+        "time_signature": "2/4"
+      }
+    ],
+    "Sonata in B-flat minor for piano in one movement": [
+      {
+        "movement": "Sonata in B♭ minor for piano in one movement",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mendelssohn&file=sonata1823.krn&format=pdf"
+      }
+    ],
+    "String Quartet, Op. 12 Piston 295": [
+      {
+        "movement": "Mendelssohn -- String Quartet, op. 12",
+        "time_signature": "3/4"
+      }
+    ],
+    "Es ist bestimmt in Gottes Rath": [
+      {
+        "movement": "Es ist bestimmt in Gottes Rath",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk038.krn&format=pdf"
+      }
+    ]
+  },
+  "Monteverdi": {
+    "Cantate": [
+      {
+        "movement": "Cantate/E viver' e morire",
+        "time_signature": "4/4"
+      }
+    ],
+    "Confitemini Deo": [
+      {
+        "movement": "Confitemini Deo/Aprestateci fede",
+        "time_signature": "4/4"
+      }
+    ],
+    "Bonum est et suaue": [
+      {
+        "movement": "Bonum est et suaue/Sonno diletto e caro",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ne confide": [
+      {
+        "movement": "Ne confide/Non ti sdegnar",
+        "time_signature": "4/4"
+      }
+    ],
+    "Deus noster fidelis": [
+      {
+        "movement": "Deus noster fidelis/Filli cara et amata",
+        "time_signature": "4/4"
+      }
+    ],
+    "O quam inanes": [
+      {
+        "movement": "O quam inanes/O come vaneggiate",
+        "time_signature": "4/4"
+      }
+    ],
+    "Sanctissima Maria": [
+      {
+        "movement": "Sanctissima Maria/Baciatemi",
+        "time_signature": "4/4"
+      }
+    ],
+    "Moritur in ligno": [
+      {
+        "movement": "Moritur in ligno/Morirò di dolor",
+        "time_signature": "4/4"
+      }
+    ],
+    "Suauissime Iesu": [
+      {
+        "movement": "Suauissime Iesu/Soavissimi fiori",
+        "time_signature": "4/4"
+      }
+    ],
+    "Dulce est": [
+      {
+        "movement": "Dulce est/Occhi miei",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ergo ne vis abire": [
+      {
+        "movement": "Ergo ne vis abire/Deggio dunque partire",
+        "time_signature": "4/4"
+      }
+    ],
+    "Laudate Dominum omnes gentes": [
+      {
+        "movement": "Laudate Dominium omnes gentes",
+        "time_signature": "4/4"
+      }
+    ],
+    "Felle amaro me potavit populus": [
+      {
+        "movement": "Felle amaro/Cruda Amarilli",
+        "time_signature": "4/4"
+      }
+    ],
+    "Qui pependit in cruce Deus meus": [
+      {
+        "movement": "Qui pependit in cruce/Ecco Silvio",
+        "time_signature": "4/4"
+      }
+    ],
+    "Pulchrae sunt genae tuae": [
+      {
+        "movement": "Pulchrae sunt/Ferir quel petto",
+        "time_signature": "4/4"
+      }
+    ],
+    "Spernit Deus cor durum": [
+      {
+        "movement": "Spernit Deus/Ma tu più che mai dura",
+        "time_signature": "4/4"
+      }
+    ],
+    "Te Jesu Christe": [
+      {
+        "movement": "Te Jesu Christe/Ecco piegando",
+        "time_signature": "4/4"
+      }
+    ],
+    "Ure me": [
+      {
+        "movement": "Ure me/Troppo ben può",
+        "time_signature": "4/4"
+      }
+    ],
+    "Gloria tua": [
+      {
+        "movement": "Gloria tua /T'amo mia vita",
+        "time_signature": "4/4"
+      }
+    ],
+    "Artifex mirus": [
+      {
+        "movement": "Artifex mirus/Erano i capei d'or",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Mozart": {
+    "63q. Mozart, Piano Sonata in B-flat major, K. 281, mvt. 1, mm. 1-8": [
+      {
+        "movement": "63q",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band3&file=erk416.krn&format=pdf"
+      },
+      {
+        "movement": "63l",
+        "time_signature": "3/4"
+      }
+    ],
+    "String Quartet No. 1 in G Major": [
+      {
+        "movement": "Adagio",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata01-2.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata01-1.krn&format=pdf"
+      },
+      {
+        "movement": "Molto allegro",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata01-3.krn&format=pdf"
+      },
+      {
+        "movement": "Presto",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata02-3.krn&format=pdf"
+      },
+      {
+        "movement": "String Quartet, K.298, Mvmt.1",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata03-3.krn&format=pdf"
+      },
+      {
+        "movement": "Andante",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata02-2.krn&format=pdf"
+      }
+    ],
+    "Quartet in F Major for oboe, violin, viola and cello": [
+      {
+        "movement": "String Quartet, K.370, Mvmt.1",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "String Quartet, K.370, Mvmt.2",
+        "time_signature": "3/4"
+      }
+    ],
+    "Piano Sonata No. 4 in E-flat major Some notational improvements needed": [
+      {
+        "movement": "Menuett I & II",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata04-2.krn&format=pdf"
+      },
+      {
+        "movement": "Piano Sonata No. 6  in D  major",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata06-1.krn&format=pdf"
+      },
+      {
+        "movement": "Thema",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata06-3a.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo: Allegretto grazioso",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata07-3.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo: Allegro",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonata&file=sonata09-3.krn&format=pdf"
+      }
+    ],
+    "Sonatina in C-major": [
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonatina&file=viennese1-1.krn&format=pdf"
+      },
+      {
+        "movement": "Menuet and Trio",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonatina&file=viennese1-2.krn&format=pdf"
+      },
+      {
+        "movement": "Rondo",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/mozart/piano/sonatina&file=viennese1-4.krn&format=pdf"
+      }
+    ],
+    "Divertimento IV in B-flat Major": [
+      {
+        "movement": "Divertimento IV, mvmt. 1",
+        "time_signature": "4/4"
+      }
+    ],
+    "12 Variations on Ah vous dirai-je, maman K6 300e": [
+      {
+        "movement": "Theme",
+        "time_signature": "2/4"
+      }
+    ],
+    "Dauernde Liebe Wohl schon aus den 90er Jahren": [
+      {
+        "movement": "Dauernde Liebe",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk008.krn&format=pdf"
+      }
+    ],
+    "Der Vogelfänger": [
+      {
+        "movement": "Der Vogelfänger",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk024.krn&format=pdf"
+      }
+    ],
+    "Das Veilchen": [
+      {
+        "movement": "Das Veilchen",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk035.krn&format=pdf"
+      }
+    ],
+    "Zufriedenheit 2. Melodie": [
+      {
+        "movement": "Zufriedenheit",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk112.krn&format=pdf"
+      }
+    ],
+    "Bald prangt, den Morgen zu verkünden": [
+      {
+        "movement": "Bald prangt, den Morgen zu verkünden",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band2&file=erk214.krn&format=pdf"
+      }
+    ],
+    "Bundeslied Text neuern Ursprungs": [
+      {
+        "movement": "Bundeslied",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band3&file=erk416.krn&format=pdf"
+      }
+    ],
+    "Piano Sonata Piston 69": [
+      {
+        "movement": "Mozart -- Piano Sonata",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Mozart: Piano Sonata excerpt",
+        "time_signature": "2/4"
+      }
+    ],
+    "Piano Concerto K 466": [
+      {
+        "movement": "Mozart -- Pianoforte Concerto, K. no. 466",
+        "time_signature": "4/4"
+      }
+    ],
+    "Menuetto (Excerpt from Second Trio)": [
+      {
+        "movement": "Mozart: Clarinet Quintet excerpt from the trio section",
+        "time_signature": "3/4"
+      }
+    ],
+    "Musikalische Würfelspiele, Kontre-Tänze": [
+      {
+        "movement": "measure     0",
+        "time_signature": "2/4"
+      }
+    ],
+    "63f. Mozart (?), Duo for Two Horns, K. 487 no. 5 (complete)": [
+      {
+        "movement": "63f",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Pachelbel": {
+    "Canon in D Major": [
+      {
+        "movement": "Canon in D  major",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Prokofiev": {
+    "Allegretto set of 20 pieces": [
+      {
+        "movement": "Allegretto",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/prokofiev/op22&file=visions22-3.krn&format=pdf"
+      },
+      {
+        "movement": "Lentamente",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/prokofiev/op22&file=visions22-1.krn&format=pdf"
+      }
+    ]
+  },
+  "Ravel": {
+    "Sonatine pour le piano": [
+      {
+        "movement": "Modéré",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/ravel&file=sonatine-1.krn&format=pdf"
+      }
+    ],
+    "Solitary Traveller": [
+      {
+        "movement": "Solitary Traveller",
+        "time_signature": "6/8"
+      }
+    ]
+  },
+  "Scarlatti": {
+    "Sonata in C major, L.1, K.514 L. 1": [
+      {
+        "movement": "Sonata in C  major",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L001K514.krn&format=pdf"
+      },
+      {
+        "movement": "Sonata in C  major",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L002K384.krn&format=pdf"
+      },
+      {
+        "movement": "Sonata in C  major",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L003K502.krn&format=pdf"
+      },
+      {
+        "movement": "Sonata in C  minor",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L010K084.krn&format=pdf"
+      },
+      {
+        "movement": "Sonata in D  major",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L014K492.krn&format=pdf"
+      },
+      {
+        "movement": "Sonata in C  major",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L054K200.krn&format=pdf"
+      },
+      {
+        "movement": "Sonata in C  major",
+        "time_signature": "12/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L503K513.krn&format=pdf"
+      }
+    ],
+    "Fuga in G minor L.336, K.93 L. 336": [
+      {
+        "movement": "Sonata in G  minor",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L336K093.krn&format=pdf"
+      }
+    ],
+    "Sonata in F-sharp minor, L.481, K.25 Missinog # on dd in original edition:": [
+      {
+        "movement": "Sonata in F♯ Minor",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/scarlatti/longo&file=L481K025.krn&format=pdf"
+      }
+    ],
+    "Sonata Piston 95": [
+      {
+        "movement": "Scarlatti -- Sonata",
+        "time_signature": "2/4"
+      }
+    ]
+  },
+  "Schubert": {
+    "N6c. Schubert, Quintet, end of mvt. 4, mm. 416-end": [
+      {
+        "movement": "N6c",
+        "time_signature": "2/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band2&file=erk205.krn&format=pdf"
+      }
+    ],
+    "Ouverture to Der Teufel als Hydraulicus page 8": [
+      {
+        "movement": "Hydraulicus Overture",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=osu/classical/schubert&file=hydraulicus.krn&format=pdf"
+      }
+    ],
+    "Theme D 576": [
+      {
+        "movement": "Theme",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Variation 13",
+        "time_signature": "3/8"
+      }
+    ],
+    "Impromptu in G-flat major, Op. 90, No. 3 D 899": [
+      {
+        "movement": "Impromptu in G♭ major",
+        "time_signature": "4/2",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/schubert/piano/op90&file=op90-03.krn&format=pdf"
+      },
+      {
+        "movement": "Allegro piu moderato",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Scherzo (Prestissimo) - Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Adagio",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Allegro",
+        "time_signature": "2/4"
+      }
+    ],
+    "Trio for violin, viola and violon cello": [
+      {
+        "movement": "Trio for violin, viola and cello",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/schubert/strings/trio&file=trio.krn&format=pdf"
+      }
+    ],
+    "Der Lindenbaum": [
+      {
+        "movement": "Der Lindenbaum",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band2&file=erk205.krn&format=pdf"
+      }
+    ],
+    "Symphony No. 8 Piston 293": [
+      {
+        "movement": "Schubert -- Symphony no. 8",
+        "time_signature": "3/8"
+      }
+    ],
+    "Du bist die Ruh Leading and trailing bars of rest have been deleted.": [
+      {
+        "movement": "Du bist die Ruh",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Das Rosenband",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Das Fischermädchen",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "Ständchen",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "An Sylvia",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Der Wanderer an den Mond",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Herbst",
+        "time_signature": "12/8"
+      }
+    ],
+    "Der Neugierige The tempo of 81 quarter-notes per minute is taken from the following recorded performance": [
+      {
+        "movement": "Der Neugierige",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Lied der Mignon",
+        "time_signature": "6/8"
+      }
+    ],
+    "Ungeduld DV 795": [
+      {
+        "movement": "Ungeduld",
+        "time_signature": "3/4"
+      }
+    ],
+    "An mein Klavier and the new encoding was transposed back up to the original key of A Major.": [
+      {
+        "movement": "An mein Klavier",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "An die Musik",
+        "time_signature": "2/2"
+      }
+    ],
+    "Schaefers Klagelied DV 121": [
+      {
+        "movement": "Schäfers Klagelied",
+        "time_signature": "6/8"
+      }
+    ],
+    "Litanei auf das Fest Aller Seelen DV 343": [
+      {
+        "movement": "Litanei auf das Fest Aller Seelen",
+        "time_signature": "4/4"
+      }
+    ],
+    "Meeres Stille **kern": [
+      {
+        "movement": "Meeres Stille",
+        "time_signature": "2/2"
+      }
+    ],
+    "Raw hum2xml conversion": [
+      {
+        "movement": "Raw hum2xml conversion",
+        "time_signature": "4/4"
+      }
+    ],
+    "Quartet D 804, Mvmt. 2": [
+      {
+        "movement": "Quartet D 804, Mvmt. 2",
+        "time_signature": "4/4"
+      }
+    ],
+    "63h. Schubert, Piano Sonata in A minor, D 845, mvt. 3, mm. 1-5": [
+      {
+        "movement": "63h",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "63j",
+        "time_signature": "3/8"
+      }
+    ]
+  },
+  "Schumann": {
+    "63r. Schumann, Album for the Young, op. 68 no. 2 (\"Soldier's March\"), mm. 1-5": [
+      {
+        "movement": "63r",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/schumann/op68&file=op68no10.krn&format=pdf"
+      },
+      {
+        "movement": "Schumann -- Album for the Young, no. 30",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "63m",
+        "time_signature": "6/8"
+      }
+    ],
+    "Symphony No. 3 in E-flat Major (Rhenish)": [
+      {
+        "movement": "Feierlich",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wanderlied, Op.35, No.3": [
+      {
+        "movement": "Wanderlied, Op.35, No.3",
+        "time_signature": "4/4"
+      }
+    ],
+    "Melodie, Op. 68, No. 10": [
+      {
+        "movement": "Melodie, Op. 68, No. 10",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/schumann/op68&file=op68no01.krn&format=pdf"
+      }
+    ],
+    "Harmonic analysis of Op. 68, No. 1 Chord and root analyses done by hand": [
+      {
+        "movement": "Harmonic analysis of Op. 68, No. 1",
+        "time_signature": "4/4"
+      }
+    ],
+    "Novelette, Op. 21 Piston 291": [
+      {
+        "movement": "Schumann -- Novelette, op. 21",
+        "time_signature": "4/4"
+      }
+    ],
+    "63d. Schumann, Papillons, Finale, mm. 1-21": [
+      {
+        "movement": "63d",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Scriabin": {
+    "Prelude Op. 59, No. 2": [
+      {
+        "movement": "Prelude",
+        "time_signature": "6/8"
+      }
+    ]
+  },
+  "Sinding": {
+    "Rustles of Spring": [
+      {
+        "movement": "Rustles of Spring",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/sinding&file=spring.krn&format=pdf"
+      }
+    ]
+  },
+  "Sousa": {
+    "Washington Post March Arrangement for keyboard": [
+      {
+        "movement": "Washington Post March",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/sousa&file=venus-transit.krn&format=pdf"
+      },
+      {
+        "movement": "The Gladiator",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Turpin": {
+    "St. Louis Rag": [
+      {
+        "movement": "St. Louis Rag",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=rosebud.krn&format=pdf"
+      }
+    ],
+    "The Rose-bud March": [
+      {
+        "movement": "The Rosebud March",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/ragtime/joplin&file=rosebud.krn&format=pdf"
+      }
+    ],
+    "Harlem Rag (March and Cake Walk) First published instrumental rag by an African-American": [
+      {
+        "movement": "Harlem Rag",
+        "time_signature": "2/4"
+      }
+    ]
+  },
+  "Vecchi": {
+    "Cantate": [
+      {
+        "movement": "Cantate/E viver' e morire",
+        "time_signature": "4/4"
+      }
+    ],
+    "Veni in hortum": [
+      {
+        "movement": "Veni in hortum/Dicea Damenta",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Victoria": {
+    "O magnum mysterium": [
+      {
+        "movement": "O magnum mysterium",
+        "time_signature": "4/4"
+      }
+    ],
+    "VICTORIA VICTORIA ESAC (Essen Associative Code) Database: KINDER": [
+      {
+        "movement": "VICTORIA VICTORIA",
+        "time_signature": "2/4"
+      }
+    ],
+    "Gloria V 11,5": [
+      {
+        "movement": "Gloria",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Vivaldi": {
+    "Transcription of Vivaldi's Op. 3, No. 3, RV310 BWV 978": [
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/keyboard&file=bwv978-1.krn&format=pdf"
+      },
+      {
+        "movement": "Largo",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/classical/bach/keyboard&file=bwv978-2.krn&format=pdf"
+      }
+    ],
+    "Allegro RV 359": [
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Presto",
+        "time_signature": "2/4"
+      }
+    ],
+    "Concerto a violino solo, No. 1 RV 269": [
+      {
+        "movement": "Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Largo",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Danza Pastorale",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Allegro non molto",
+        "time_signature": "3/8"
+      }
+    ],
+    "Prelude": [
+      {
+        "movement": "Prelude",
+        "time_signature": "4/4"
+      }
+    ],
+    "Allemande": [
+      {
+        "movement": "Allemande",
+        "time_signature": "4/4"
+      }
+    ],
+    "Adagio": [
+      {
+        "movement": "Adagio",
+        "time_signature": "3/2"
+      }
+    ],
+    "Capriccio": [
+      {
+        "movement": "Capriccio",
+        "time_signature": "3/4"
+      }
+    ],
+    "Gavotta": [
+      {
+        "movement": "Gavotta",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Weber": {
+    "Weberlied (Band 1), S. 167": [
+      {
+        "movement": "Weberlied",
+        "time_signature": "3/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/sagrillo/lorraine&file=p0831.krn&format=pdf"
+      }
+    ],
+    "EIN SCHNEIDER UND EIN ZIEGENBOCK ESAC (Essen Associative Code) Database: ERK3": [
+      {
+        "movement": "EIN SCHNEIDER UND EIN ZIEGENBOCK",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "DIE LEINEWEBER HABEN EINE SAUBERE ZUNFT",
+        "time_signature": "2/4"
+      }
+    ],
+    "Einsam bin ich nicht alleine Aus \"Preciosa\"": [
+      {
+        "movement": "Einsam bin ich nicht alleine",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk033.krn&format=pdf"
+      }
+    ],
+    "Mei Schatzerl Volkslied (1808). Str. 2 neu hinzu gedichtet (1835)": [
+      {
+        "movement": "Mei Schatzerl",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk076.krn&format=pdf"
+      }
+    ],
+    "Wiegenlied": [
+      {
+        "movement": "Wiegenlied",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk089.krn&format=pdf"
+      }
+    ],
+    "Weine nur nicht!": [
+      {
+        "movement": "Weine nur nicht!",
+        "time_signature": "3/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk113.krn&format=pdf"
+      }
+    ],
+    "Brautjungfernlied": [
+      {
+        "movement": "Brautjungfernlied",
+        "time_signature": "2/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk126.krn&format=pdf"
+      }
+    ],
+    "Schwertlied": [
+      {
+        "movement": "Schwertlied",
+        "time_signature": "4/4",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk133.krn&format=pdf"
+      }
+    ],
+    "Lützows wilde Jagd": [
+      {
+        "movement": "Lützows wilde Jagd",
+        "time_signature": "6/8",
+        "pdf_link": "https://kern.humdrum.org/cgi-bin/ksdata?location=users/craig/songs/erk/liederschatz/band1&file=erk164.krn&format=pdf"
       }
     ]
   }
