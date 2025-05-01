@@ -9,14 +9,25 @@ import re
 import plotly.express as px
 import plotly.graph_objects as go
 from urllib.parse import quote
+import os
+from PIL import Image
 
-# Set page configuration
-st.set_page_config(
-    page_title="Classical Time Signature Analysis",
-    page_icon="🎵",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# Set page configuration with custom logo if available
+if os.path.exists("logo.png"):
+    logo = Image.open("logo.png")
+    st.set_page_config(
+        page_title="Classical Time Signature Analysis",
+        page_icon=logo,
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+else:
+    st.set_page_config(
+        page_title="Classical Time Signature Analysis",
+        page_icon="🎵",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
 
 # Custom CSS for better appearance
 st.markdown("""
@@ -54,27 +65,30 @@ st.markdown("""
     .st-emotion-cache-16txtl3 h1 {
         font-weight: 700;
     }
-    /* Media icons styling */
-    .media-icon {
-        display: inline-block;
-        margin-right: 8px;
-        text-decoration: none;
+    /* Media links styling */
+    .stButton>button {
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 4px;
+        padding: 0.3rem 0.5rem;
+        margin-right: 0.5rem;
+        display: inline-flex;
+        align-items: center;
     }
-    .media-icon:hover {
-        opacity: 0.8;
+    .stButton>button:hover {
+        background-color: #e0e0e0;
     }
-    .youtube-icon {
-        color: #FF0000;
+    /* Search button styling */
+    .search-button {
+        background-color: #0078d4 !important;
+        color: white !important;
+        height: 38px !important;
+        margin-top: 1.5rem !important;
     }
-    .spotify-icon {
-        color: #1DB954;
-    }
-    .pdf-icon {
-        color: #FF0000;
-    }
-    /* Table cell with media icons styling */
-    .stDataFrame td:last-child {
-        white-space: nowrap;
+    /* Logo styling */
+    .logo-img {
+        max-height: 60px;
+        margin-bottom: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -443,8 +457,8 @@ def create_time_signature_correlations(analysis):
     
     return fig
 
-def generate_media_links(row):
-    """Generate HTML for media links (YouTube, Spotify, PDF)"""
+def display_media_links(row):
+    """Display media links as actual clickable buttons"""
     composer = row['composer']
     work = row['work']
     
@@ -456,20 +470,31 @@ def generate_media_links(row):
     spotify_query = quote(f"{composer} {work}")
     spotify_link = f"https://open.spotify.com/search/{spotify_query}"
     
-    # PDF link (use actual PDF link if available)
-    pdf_link = ""
-    if pd.notna(row.get('pdf_link')):
-        pdf_link = f'<a href="{row["pdf_link"]}" target="_blank" class="media-icon pdf-icon" title="PDF Score">📄</a>'
+    # Use columns for the buttons
+    col1, col2, col3, col4 = st.columns([1, 1, 1, 7])
     
-    return f'''
-    <a href="{youtube_link}" target="_blank" class="media-icon youtube-icon" title="Search on YouTube">▶️</a>
-    <a href="{spotify_link}" target="_blank" class="media-icon spotify-icon" title="Search on Spotify">🎵</a>
-    {pdf_link}
-    '''
+    with col1:
+        st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+    
+    with col2:
+        st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+    
+    with col3:
+        # PDF link (if available)
+        if pd.notna(row.get('pdf_link')):
+            st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
 
 # Main application
 def main():
-    st.title("🎵 Classical Music Time Signature Analyzer")
+    # Display logo if available
+    if os.path.exists("logo.png"):
+        col1, col2 = st.columns([1, 3])
+        with col1:
+            st.image("logo.png", width=150)
+        with col2:
+            st.title("Classical Music Time Signature Analyzer")
+    else:
+        st.title("🎵 Classical Music Time Signature Analyzer")
     
     st.markdown("""
     This application analyzes time signatures in classical music compositions. 
@@ -551,68 +576,166 @@ def main():
         Explore the dataset with custom filters to find specific patterns or examples.
         """)
         
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            filter_composer = st.multiselect(
-                "Composer",
-                options=["All"] + sorted(analysis['dataframe']['composer'].unique().tolist()),
-                default=["All"]
-            )
-        
-        with col2:
-            filter_era = st.multiselect(
-                "Era",
-                options=["All"] + sorted(analysis['dataframe']['era'].unique().tolist()),
-                default=["All"]
-            )
-        
-        with col3:
-            filter_time_sig = st.multiselect(
-                "Time Signature",
-                options=["All"] + sorted(analysis['dataframe']['normalized_time_signature'].unique().tolist()),
-                default=["All"]
-            )
-        
-        # Apply filters
-        filtered_df = analysis['dataframe'].copy()
-        
-        if "All" not in filter_composer:
-            filtered_df = filtered_df[filtered_df['composer'].isin(filter_composer)]
-        
-        if "All" not in filter_era:
-            filtered_df = filtered_df[filtered_df['era'].isin(filter_era)]
-        
-        if "All" not in filter_time_sig:
-            filtered_df = filtered_df[filtered_df['normalized_time_signature'].isin(filter_time_sig)]
-        
-        # Display results
-        st.write(f"Found {len(filtered_df)} movements matching your criteria")
-        
-        if not filtered_df.empty:
-            # Add media links column
-            filtered_df['media_links'] = filtered_df.apply(generate_media_links, axis=1)
+        with st.form("query_form"):
+            col1, col2, col3 = st.columns(3)
             
-            # Display the dataframe with media links
+            with col1:
+                filter_composer = st.multiselect(
+                    "Composer",
+                    options=["All"] + sorted(analysis['dataframe']['composer'].unique().tolist()),
+                    default=["All"]
+                )
+            
+            with col2:
+                filter_era = st.multiselect(
+                    "Era",
+                    options=["All"] + sorted(analysis['dataframe']['era'].unique().tolist()),
+                    default=["All"]
+                )
+            
+            with col3:
+                filter_time_sig = st.multiselect(
+                    "Time Signature",
+                    options=["All"] + sorted(analysis['dataframe']['normalized_time_signature'].unique().tolist()),
+                    default=["All"]
+                )
+            
+            # Submit button
+            submitted = st.form_submit_button("Search", use_container_width=True)
+        
+        if submitted:
+            # Apply filters
+            filtered_df = analysis['dataframe'].copy()
+            
+            if "All" not in filter_composer:
+                filtered_df = filtered_df[filtered_df['composer'].isin(filter_composer)]
+            
+            if "All" not in filter_era:
+                filtered_df = filtered_df[filtered_df['era'].isin(filter_era)]
+            
+            if "All" not in filter_time_sig:
+                filtered_df = filtered_df[filtered_df['normalized_time_signature'].isin(filter_time_sig)]
+            
+            # Display results count
+            st.write(f"Found {len(filtered_df)} movements matching your criteria")
+            
+            if not filtered_df.empty:
+                # Group by work to avoid duplicates
+                unique_works = filtered_df.drop_duplicates(['composer', 'work']).copy()
+                
+                # Display as a regular table without the media_links column
+                st.dataframe(
+                    unique_works[['composer', 'work', 'normalized_time_signature', 'era']],
+                    column_config={
+                        "composer": "Composer",
+                        "work": "Work Title", 
+                        "normalized_time_signature": "Time Signature",
+                        "era": "Musical Era"
+                    },
+                    hide_index=True,
+                    use_container_width=True,
+                    height=400
+                )
+                
+                # Show selected works with media links
+                st.subheader("Selected Works")
+                st.write("Click on a work to see media links and details:")
+                
+                # Create an expander for each work
+                for _, row in unique_works.iterrows():
+                    with st.expander(f"{row['composer']} - {row['work']}"):
+                        # Display media links
+                        st.markdown("#### Media Links")
+                        col1, col2, col3 = st.columns([1, 1, 8])
+                        
+                        with col1:
+                            youtube_query = quote(f"{row['composer']} {row['work']}")
+                            youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                            st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+                        
+                        with col2:
+                            spotify_query = quote(f"{row['composer']} {row['work']}")
+                            spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                            st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                        
+                        with col3:
+                            if pd.notna(row.get('pdf_link')):
+                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                        
+                        # Show work details - all movements
+                        st.markdown("#### Movements")
+                        work_movements = filtered_df[(filtered_df['composer'] == row['composer']) & 
+                                                   (filtered_df['work'] == row['work'])]
+                        
+                        for _, movement in work_movements.iterrows():
+                            st.markdown(f"**{movement['movement']}** - {movement['normalized_time_signature']}")
+                        
+                        # Show era
+                        st.markdown(f"**Era:** {row['era']}")
+        else:
+            # Show all data by default with pagination
+            st.subheader("All Works")
+            
+            # Group by work to avoid duplicates
+            all_works = analysis['dataframe'].drop_duplicates(['composer', 'work']).copy()
+            
+            # Calculate pagination
+            items_per_page = 25
+            total_pages = (len(all_works) + items_per_page - 1) // items_per_page
+            
+            col1, col2 = st.columns([3, 1])
+            with col2:
+                page = st.number_input("Page", min_value=1, max_value=total_pages, value=1)
+            
+            start_idx = (page - 1) * items_per_page
+            end_idx = min(start_idx + items_per_page, len(all_works))
+            
+            # Display paged results
             st.dataframe(
-                filtered_df[['composer', 'work', 'movement', 'normalized_time_signature', 'era', 'media_links']],
+                all_works.iloc[start_idx:end_idx][['composer', 'work', 'normalized_time_signature', 'era']],
                 column_config={
                     "composer": "Composer",
                     "work": "Work Title",
-                    "movement": "Movement",
                     "normalized_time_signature": "Time Signature",
-                    "era": "Musical Era",
-                    "media_links": st.column_config.Column(
-                        "Media Links",
-                        help="Links to YouTube, Spotify, and PDF score",
-                        width="small",
-                        disabled=False
-                    )
+                    "era": "Musical Era"
                 },
                 hide_index=True,
-                use_container_width=True,
-                height=600
+                use_container_width=True
             )
+            
+            st.write(f"Showing {start_idx+1}-{end_idx} of {len(all_works)} works")
+            
+            # Create an expander for each shown work
+            for _, row in all_works.iloc[start_idx:end_idx].iterrows():
+                with st.expander(f"{row['composer']} - {row['work']}"):
+                    # Display media links
+                    st.markdown("#### Media Links")
+                    col1, col2, col3 = st.columns([1, 1, 8])
+                    
+                    with col1:
+                        youtube_query = quote(f"{row['composer']} {row['work']}")
+                        youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                        st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+                    
+                    with col2:
+                        spotify_query = quote(f"{row['composer']} {row['work']}")
+                        spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                        st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                    
+                    with col3:
+                        if pd.notna(row.get('pdf_link')):
+                            st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                    
+                    # Show work details - all movements
+                    st.markdown("#### Movements")
+                    work_movements = analysis['dataframe'][(analysis['dataframe']['composer'] == row['composer']) & 
+                                               (analysis['dataframe']['work'] == row['work'])]
+                    
+                    for _, movement in work_movements.iterrows():
+                        st.markdown(f"**{movement['movement']}** - {movement['normalized_time_signature']}")
+                    
+                    # Show era
+                    st.markdown(f"**Era:** {row['era']}")
     
     with tab2:
         st.header("Overview")
@@ -767,24 +890,48 @@ def main():
                 # List of works by this composer
                 st.subheader(f"Works by {composer_to_analyze}")
                 
-                # Add media links to composer's works
-                composer_works_df = composer_df.drop_duplicates(['work']).copy()
-                composer_works_df['media_links'] = composer_works_df.apply(generate_media_links, axis=1)
+                # Group by work to avoid duplicates
+                composer_works = composer_df.drop_duplicates(['work']).copy()
                 
+                # Display works in a table
                 st.dataframe(
-                    composer_works_df[['work', 'normalized_time_signature', 'media_links']],
+                    composer_works[['work', 'normalized_time_signature', 'era']],
                     column_config={
                         "work": "Work Title",
-                        "normalized_time_signature": "Time Signatures Used",
-                        "media_links": st.column_config.Column(
-                            "Media Links",
-                            help="Links to YouTube, Spotify, and PDF score",
-                            width="small"
-                        )
+                        "normalized_time_signature": "Time Signature",
+                        "era": "Musical Era"
                     },
                     hide_index=True,
                     use_container_width=True
                 )
+                
+                # Create an expander for each work
+                for _, row in composer_works.iterrows():
+                    with st.expander(f"{row['work']}"):
+                        # Display media links
+                        st.markdown("#### Media Links")
+                        col1, col2, col3 = st.columns([1, 1, 8])
+                        
+                        with col1:
+                            youtube_query = quote(f"{composer_to_analyze} {row['work']}")
+                            youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                            st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+                        
+                        with col2:
+                            spotify_query = quote(f"{composer_to_analyze} {row['work']}")
+                            spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                            st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                        
+                        with col3:
+                            if pd.notna(row.get('pdf_link')):
+                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                        
+                        # Show work details - all movements
+                        st.markdown("#### Movements")
+                        work_movements = composer_df[composer_df['work'] == row['work']]
+                        
+                        for _, movement in work_movements.iterrows():
+                            st.markdown(f"**{movement['movement']}** - {movement['normalized_time_signature']}")
     
     with tab4:
         st.header("Time Signature Analysis")
@@ -904,25 +1051,49 @@ def main():
                 # List of works using this time signature
                 st.subheader(f"Works using {time_sig_to_analyze}")
                 
-                # Add media links
-                sig_works_df = sig_df.drop_duplicates(['composer', 'work']).copy()
-                sig_works_df['media_links'] = sig_works_df.apply(generate_media_links, axis=1)
+                # Group by work and composer to avoid duplicates
+                sig_works = sig_df.drop_duplicates(['composer', 'work']).copy()
                 
+                # Display works in a table
                 st.dataframe(
-                    sig_works_df[['composer', 'work', 'movement', 'media_links']],
+                    sig_works[['composer', 'work', 'era']],
                     column_config={
                         "composer": "Composer",
                         "work": "Work Title",
-                        "movement": "Movement",
-                        "media_links": st.column_config.Column(
-                            "Media Links",
-                            help="Links to YouTube, Spotify, and PDF score",
-                            width="small"
-                        )
+                        "era": "Musical Era"
                     },
                     hide_index=True,
                     use_container_width=True
                 )
+                
+                # Create expanders for each work
+                for _, row in sig_works.iterrows():
+                    with st.expander(f"{row['composer']} - {row['work']}"):
+                        # Display media links
+                        st.markdown("#### Media Links")
+                        col1, col2, col3 = st.columns([1, 1, 8])
+                        
+                        with col1:
+                            youtube_query = quote(f"{row['composer']} {row['work']}")
+                            youtube_link = f"https://www.youtube.com/results?search_query={youtube_query}"
+                            st.markdown(f"[![YouTube](https://img.icons8.com/color/32/000000/youtube-play.png)]({youtube_link})")
+                        
+                        with col2:
+                            spotify_query = quote(f"{row['composer']} {row['work']}")
+                            spotify_link = f"https://open.spotify.com/search/{spotify_query}"
+                            st.markdown(f"[![Spotify](https://img.icons8.com/color/32/000000/spotify--v1.png)]({spotify_link})")
+                        
+                        with col3:
+                            if pd.notna(row.get('pdf_link')):
+                                st.markdown(f"[![PDF](https://img.icons8.com/color/32/000000/pdf.png)]({row['pdf_link']})")
+                        
+                        # Show work details - all movements with this time signature
+                        st.markdown("#### Movements with this Time Signature")
+                        time_sig_movements = sig_df[(sig_df['composer'] == row['composer']) & 
+                                                   (sig_df['work'] == row['work'])]
+                        
+                        for _, movement in time_sig_movements.iterrows():
+                            st.markdown(f"**{movement['movement']}** - {time_sig_to_analyze}")
                 
                 # Time signature co-occurrence
                 st.subheader("Time Signature Co-occurrence")
