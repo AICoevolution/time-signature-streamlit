@@ -1,1009 +1,1373 @@
+
 {
-    "Ludwig van Beethoven": {
-      "Symphony No. 5 in C minor, Op. 67": [
-        {
-          "movement": "I. Allegro con brio",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "II. Andante con moto",
-          "time_signature": "3/8"
-        },
-        {
-          "movement": "III. Scherzo: Allegro",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Allegro",
-          "time_signature": "4/4"
-        }
+  "Ludwig van Beethoven": {
+    "Symphony No. 5 in C minor, Op. 67": [
+      {
+        "movement": "I. Allegro con brio",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante con moto",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "III. Scherzo: Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "4/4"
+      }
+    ],
+    "Symphony No. 9 in D minor, Op. 125 \"Choral\"": [
+      {
+        "movement": "I. Allegro ma non troppo, un poco maestoso",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Molto vivace",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Adagio molto e cantabile",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Finale: Presto - Allegro assai",
+        "time_signature": "4/4"
+      }
+    ],
+    "Piano Sonata No. 14 in C-sharp minor, Op. 27 No. 2 \"Moonlight\"": [
+      {
+        "movement": "I. Adagio sostenuto",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Presto agitato",
+        "time_signature": "4/4"
+      }
+    ],
+    "Symphony No. 3 in E-flat major, Op. 55 \"Eroica\"": [
+      {
+        "movement": "I. Allegro con brio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Marcia funebre: Adagio assai",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Scherzo: Allegro vivace",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale: Allegro molto",
+        "time_signature": "2/4"
+      }
+    ],
+    "Symphony No. 6 in F major, Op. 68 \"Pastoral\"": [
+      {
+        "movement": "I. Awakening of cheerful feelings on arrival in the countryside: Allegro ma non troppo",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "II. Scene by the brook: Andante molto mosso",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "III. Merry gathering of country folk: Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Thunderstorm: Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "V. Shepherd's song. Cheerful and thankful feelings after the storm: Allegretto",
+        "time_signature": "6/8"
+      }
+    ],
+    "Piano Sonata No. 8 in C minor, Op. 13 \"Pathétique\"": [
+      {
+        "movement": "I. Grave - Allegro di molto e con brio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio cantabile",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Rondo: Allegro",
+        "time_signature": "2/2"
+      }
+    ],
+    "Piano Sonata No. 23 in F minor, Op. 57 \"Appassionata\"": [
+      {
+        "movement": "I. Allegro assai",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "II. Andante con moto",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "III. Allegro ma non troppo - Presto",
+        "time_signature": "2/2"
+      }
+    ],
+    "Bagatelle No. 25 in A minor, WoO 59 \"Für Elise\"": [
+      {
+        "movement": "Poco moto",
+        "time_signature": "3/8"
+      }
+    ],
+    "Piano Concerto No. 5 in E-flat major, Op. 73 \"Emperor\"": [
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio un poco mosso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Rondo: Allegro",
+        "time_signature": "6/8"
+      }
+    ],
+    "Violin Concerto in D major, Op. 61": [
+      {
+        "movement": "I. Allegro ma non troppo",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Larghetto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Rondo: Allegro",
+        "time_signature": "6/8"
+      }
+    ]
+  },
+  "Wolfgang Amadeus Mozart": {
+    "Symphony No. 40 in G minor, K. 550": [
+      {
+        "movement": "I. Molto allegro",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Menuetto: Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale: Allegro assai",
+        "time_signature": "2/2"
+      }
+    ],
+    "Symphony No. 41 in C major, K. 551 \"Jupiter\"": [
+      {
+        "movement": "I. Allegro vivace",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante cantabile",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Menuetto: Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Molto allegro",
+        "time_signature": "2/2"
+      }
+    ],
+    "Requiem in D minor, K. 626": [
+      {
+        "movement": "I. Introitus: Requiem aeternam",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Kyrie eleison",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Sequentia: Dies irae",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Offertorium: Domine Jesu Christe",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "V. Sanctus",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "VI. Benedictus",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "VII. Agnus Dei",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "VIII. Communio: Lux aeterna",
+        "time_signature": "4/4"
+      }
+    ],
+    "Piano Concerto No. 21 in C major, K. 467": [
+      {
+        "movement": "I. Allegro maestoso",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Allegro vivace assai",
+        "time_signature": "6/8"
+      }
+    ],
+    "Piano Sonata No. 11 in A major, K. 331 \"Alla Turca\"": [
+      {
+        "movement": "I. Andante grazioso",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Menuetto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Alla Turca: Allegretto",
+        "time_signature": "2/4"
+      }
+    ],
+    "Eine kleine Nachtmusik (Serenade No. 13 for strings in G major), K. 525": [
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Romanze: Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto: Allegretto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Rondo: Allegro",
+        "time_signature": "2/4"
+      }
+    ],
+    "Symphony No. 25 in G minor, K. 183 \"Little G minor\"": [
+      {
+        "movement": "I. Allegro con brio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto - Trio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Allegro",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Johann Sebastian Bach": {
+    "Brandenburg Concerto No. 3 in G major, BWV 1048": [
+      {
+        "movement": "I. (Allegro)",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Adagio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Allegro",
+        "time_signature": "12/8"
+      }
+    ],
+    "Cello Suite No. 1 in G major, BWV 1007": [
+      {
+        "movement": "I. Prélude",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Allemande",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Courante",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Sarabande",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "V. Menuet I & II",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "VI. Gigue",
+        "time_signature": "6/8"
+      }
+    ],
+    "Toccata and Fugue in D minor, BWV 565": [
+      {
+        "movement": "I. Toccata",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Fugue",
+        "time_signature": "4/4"
+      }
+    ],
+    "The Well-Tempered Clavier, Book I, BWV 846": [
+      {
+        "movement": "Prelude in C major",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Fugue in C major",
+        "time_signature": "4/4"
+      }
+    ],
+    "Goldberg Variations, BWV 988": [
+      {
+        "movement": "Aria",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Variation 1",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Variation 2",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Variation 3: Canone all'Unisono",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Variation 4",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "Variation 5",
+        "time_signature": "3/4"
+      }
+    ],
+    "Orchestral Suite No. 3 in D major, BWV 1068": [
+      {
+        "movement": "I. Ouverture",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Air (\"Air on the G String\")",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Gavotte I & II",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "IV. Bourrée",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "V. Gigue",
+        "time_signature": "6/8"
+      }
+    ],
+    "Mass in B minor, BWV 232": [
+      {
+        "movement": "I. Kyrie",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Gloria",
+        "time_signature": "3/8"
+      },
+      {
+        "movement": "III. Credo",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Sanctus",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "V. Agnus Dei",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Frédéric Chopin": {
+    "Nocturne in E-flat major, Op. 9 No. 2": [
+      {
+        "movement": "Andante",
+        "time_signature": "12/8"
+      }
+    ],
+    "Prelude in E minor, Op. 28 No. 4": [
+      {
+        "movement": "Largo",
+        "time_signature": "2/2"
+      }
+    ],
+    "Ballade No. 1 in G minor, Op. 23": [
+      {
+        "movement": "Largo - Moderato",
+        "time_signature": "4/4"
+      }
+    ],
+    "Étude in C minor, Op. 10 No. 12 \"Revolutionary\"": [
+      {
+        "movement": "Allegro con fuoco",
+        "time_signature": "4/4"
+      }
+    ],
+    "Piano Sonata No. 2 in B-flat minor, Op. 35 \"Funeral March\"": [
+      {
+        "movement": "I. Grave - Doppio movimento",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Scherzo",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Marche funèbre: Lento",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Finale: Presto",
+        "time_signature": "2/2"
+      }
+    ],
+    "Waltz in D-flat major, Op. 64 No. 1 \"Minute Waltz\"": [
+      {
+        "movement": "Molto vivace",
+        "time_signature": "3/4"
+      }
+    ],
+    "Polonaise in A-flat major, Op. 53 \"Heroic\"": [
+      {
+        "movement": "Maestoso",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Pyotr Ilyich Tchaikovsky": {
+    "Symphony No. 6 in B minor, Op. 74 \"Pathétique\"": [
+      {
+        "movement": "I. Adagio - Allegro non troppo",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Allegro con grazia",
+        "time_signature": "5/4"
+      },
+      {
+        "movement": "III. Allegro molto vivace",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "IV. Adagio lamentoso",
+        "time_signature": "4/4"
+      }
+    ],
+    "The Nutcracker, Op. 71": [
+      {
+        "movement": "Overture",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "Act I: March",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act I: Dance of the Sugar Plum Fairy",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act II: Russian Dance (Trepak)",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Act II: Waltz of the Flowers",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Act II: Pas de deux",
+        "time_signature": "4/4"
+      }
+    ],
+    "Piano Concerto No. 1 in B-flat minor, Op. 23": [
+      {
+        "movement": "I. Allegro non troppo e molto maestoso - Allegro con spirito",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andantino semplice - Prestissimo",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Allegro con fuoco",
+        "time_signature": "3/4"
+      }
+    ],
+    "1812 Overture, Op. 49": [
+      {
+        "movement": "Largo - Allegro giusto",
+        "time_signature": "4/4"
+      }
+    ],
+    "Swan Lake, Op. 20": [
+      {
+        "movement": "Act I No. 2: Valse",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Act II No. 10: Scene",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act II No. 13: Dance of the Swans",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act III: Spanish Dance",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Act IV: Finale",
+        "time_signature": "4/4"
+      }
+    ],
+    "Romeo and Juliet, Fantasy-Overture": [
+      {
+        "movement": "Andante non tanto quasi moderato - Allegro giusto",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Franz Schubert": {
+    "Symphony No. 8 in B minor, D. 759 \"Unfinished\"": [
+      {
+        "movement": "I. Allegro moderato",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "II. Andante con moto",
+        "time_signature": "3/8"
+      }
+    ],
+    "Ave Maria, D. 839": [
+      {
+        "movement": "Moderato",
+        "time_signature": "4/4"
+      }
+    ],
+    "Piano Quintet in A major, D. 667 \"Trout\"": [
+      {
+        "movement": "I. Allegro vivace",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Scherzo: Presto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Theme and Variations: Andantino",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "V. Finale: Allegro giusto",
+        "time_signature": "6/8"
+      }
+    ],
+    "Impromptu in G-flat major, Op. 90 No. 3, D. 899": [
+      {
+        "movement": "Andante",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Johannes Brahms": {
+    "Symphony No. 4 in E minor, Op. 98": [
+      {
+        "movement": "I. Allegro non troppo",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante moderato",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Allegro giocoso",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "IV. Allegro energico e passionato (Passacaglia)",
+        "time_signature": "3/4"
+      }
+    ],
+    "Hungarian Dance No. 5 in G minor, WoO 1": [
+      {
+        "movement": "Allegro - Vivace",
+        "time_signature": "2/4"
+      }
+    ],
+    "Violin Concerto in D major, Op. 77": [
+      {
+        "movement": "I. Allegro non troppo",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Allegro giocoso, ma non troppo vivace",
+        "time_signature": "2/4"
+      }
+    ],
+    "Lullaby (Wiegenlied), Op. 49 No. 4": [
+      {
+        "movement": "Moderato",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Claude Debussy": {
+    "Clair de Lune (Suite Bergamasque, No. 3)": [
+      {
+        "movement": "Andante très expressif",
+        "time_signature": "9/8"
+      }
+    ],
+    "Prélude à l'après-midi d'un faune": [
+      {
+        "movement": "Très modéré",
+        "time_signature": "9/8"
+      }
+    ],
+    "La Mer": [
+      {
+        "movement": "I. De l'aube à midi sur la mer",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Jeux de vagues",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "III. Dialogue du vent et de la mer",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "Sergei Rachmaninoff": {
+    "Piano Concerto No. 2 in C minor, Op. 18": [
+      {
+        "movement": "I. Moderato",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio sostenuto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Allegro scherzando",
+        "time_signature": "2/2"
+      }
+    ],
+    "Prelude in C-sharp minor, Op. 3 No. 2": [
+      {
+        "movement": "Lento - Agitato",
+        "time_signature": "4/4"
+      }
+    ],
+    "Rhapsody on a Theme of Paganini, Op. 43": [
+      {
+        "movement": "Introduction and Variation 1",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "Variation 18",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Variation 24",
+        "time_signature": "6/8"
+      }
+    ]
+  },
+  "Antonio Vivaldi": {
+    "The Four Seasons, Op. 8": [
+      {
+        "movement": "Concerto No. 1 in E major, \"Spring\": I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Concerto No. 1 in E major, \"Spring\": II. Largo",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Concerto No. 1 in E major, \"Spring\": III. Allegro pastorale",
+        "time_signature": "12/8"
+      },
+      {
+        "movement": "Concerto No. 2 in G minor, \"Summer\": I. Allegro non molto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Concerto No. 2 in G minor, \"Summer\": II. Adagio",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Concerto No. 2 in G minor, \"Summer\": III. Presto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Concerto No. 3 in F major, \"Autumn\": I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Concerto No. 3 in F major, \"Autumn\": II. Adagio molto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Concerto No. 3 in F major, \"Autumn\": III. Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "Concerto No. 4 in F minor, \"Winter\": I. Allegro non molto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Concerto No. 4 in F minor, \"Winter\": II. Largo",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Concerto No. 4 in F minor, \"Winter\": III. Allegro",
+        "time_signature": "3/8"
+      }
+    ]
+  },
+  "Edvard Grieg": {
+    "Peer Gynt Suite No. 1, Op. 46": [
+      {
+        "movement": "I. Morning Mood",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. The Death of Åse",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Anitra's Dance",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. In the Hall of the Mountain King",
+        "time_signature": "4/4"
+      }
+    ],
+    "Piano Concerto in A minor, Op. 16": [
+      {
+        "movement": "I. Allegro molto moderato",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Allegro moderato molto e marcato",
+        "time_signature": "2/4"
+      }
+    ]
+  },
+  "Joseph Haydn": {
+    "Symphony No. 94 in G major \"Surprise\"": [
+      {
+        "movement": "I. Adagio cantabile - Vivace assai",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto: Allegro molto",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale: Allegro molto",
+        "time_signature": "2/4"
+      }
+    ],
+    "String Quartet in C major, Op. 76 No. 3 \"Emperor\"": [
+      {
+        "movement": "I. Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Poco adagio; cantabile",
+        "time_signature": "2/4"
+      },
+      {
+        "movement": "III. Menuetto: Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Finale: Presto",
+        "time_signature": "2/2"
+      }
+    ]
+  },
+  "Maurice Ravel": {
+    "Boléro": [
+      {
+        "movement": "Tempo di Bolero moderato assai",
+        "time_signature": "3/4"
+      }
+    ],
+    "Pavane pour une infante défunte": [
+      {
+        "movement": "Lent",
+        "time_signature": "4/4"
+      }
+    ],
+    "String Quartet in F major": [
+      {
+        "movement": "I. Allegro moderato - Très doux",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Assez vif - Très rythmé",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "III. Très lent",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "IV. Vif et agité",
+        "time_signature": "5/8"
+      }
+    ]
+  },
+  "Felix Mendelssohn": {
+    "Symphony No. 4 in A major, Op. 90 \"Italian\"": [
+      {
+        "movement": "I. Allegro vivace",
+        "time_signature": "6/8"
+      },
+      {
+        "movement": "II. Andante con moto",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Con moto moderato",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Saltarello: Presto",
+        "time_signature": "6/8"
+      }
+    ],
+    "Violin Concerto in E minor, Op. 64": [
+      {
+        "movement": "I. Allegro molto appassionato",
+        "time_signature": "2/2"
+      },
+      {
+        "movement": "II. Andante",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Allegretto non troppo - Allegro molto vivace",
+        "time_signature": "6/8"
+      }
+    ],
+    "Wedding March from A Midsummer Night's Dream": [
+      {
+        "movement": "Allegro vivace",
+        "time_signature": "4/4"
+      }
+    ]
+  },
+  "George Frideric Handel": {
+    "Messiah, HWV 56": [
+      {
+        "movement": "Overture",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Comfort ye, my people",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Ev'ry valley shall be exalted",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "And the glory of the Lord",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Hallelujah Chorus",
+        "time_signature": "4/4"
+      }
+    ],
+    "Water Music Suite No. 1 in F major, HWV 348": [
+      {
+        "movement": "I. Ouverture: Largo - Allegro",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "II. Adagio e staccato",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "III. Allegro",
+        "time_signature": "3/4"
+      },
+      {
+        "movement": "IV. Andante",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "V. Menuet",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Giacomo Puccini": {
+    "La bohème": [
+      {
+        "movement": "Act I: Che gelida manina",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act I: Sì, mi chiamano Mimì",
+        "time_signature": "4/4"
+      },
+      {
+        "movement": "Act I: O soave fanciulla",
+        "time_signature": "3/4"
+      }
+    ],
+    "Madama Butterfly": [
+      {
+        "movement": "Act II: Un bel dì vedremo",
+        "time_signature": "3/4"
+      }
+    ]
+  },
+  "Richard Wagner": {
+    "Ride of the Valkyries (Die Walküre)": [
+      {
+        "movement": "Act III Scene 1",
+        "time_signature": "6/8"
+      }
+    ],
+    "Bridal Chorus (Lohengrin)": [
+      {
+        "movement": "Act III Scene 1",
+        "time_signature": "4/4"
+      }
+    ],
+    "Wolfgang Amadeus Mozart": {
+      "Symphony No. 1 in E-flat major, K. 16": [
+        { "movement": "I. Molto allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Presto", "time_signature": "3/8" }
       ],
-      "Symphony No. 9 in D minor, Op. 125 \"Choral\"": [
-        {
-          "movement": "I. Allegro ma non troppo, un poco maestoso",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "II. Molto vivace",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Adagio molto e cantabile",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "IV. Finale: Presto - Allegro assai",
-          "time_signature": "4/4"
-        }
+      "Symphony No. 2 in B-flat major, K. 17 (doubtful)": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Presto", "time_signature": "3/8" }
       ],
-      "Piano Sonata No. 14 in C-sharp minor, Op. 27 No. 2 \"Moonlight\"": [
-        {
-          "movement": "I. Adagio sostenuto",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "II. Allegretto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Presto agitato",
-          "time_signature": "4/4"
-        }
+      "Symphony No. 3 in E-flat major, K. 18 (doubtful)": [
+        { "movement": "I. Allegro spiritoso", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Presto", "time_signature": "3/8" }
       ],
-      "Symphony No. 3 in E-flat major, Op. 55 \"Eroica\"": [
-        {
-          "movement": "I. Allegro con brio",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "II. Marcia funebre: Adagio assai",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "III. Scherzo: Allegro vivace",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Finale: Allegro molto",
-          "time_signature": "2/4"
-        }
+      "Symphony No. 4 in D major, K. 19": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Presto", "time_signature": "3/8" }
       ],
-      "Symphony No. 6 in F major, Op. 68 \"Pastoral\"": [
-        {
-          "movement": "I. Awakening of cheerful feelings on arrival in the countryside: Allegro ma non troppo",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "II. Scene by the brook: Andante molto mosso",
-          "time_signature": "12/8"
-        },
-        {
-          "movement": "III. Merry gathering of country folk: Allegro",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Thunderstorm: Allegro",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "V. Shepherd's song. Cheerful and thankful feelings after the storm: Allegretto",
-          "time_signature": "6/8"
-        }
+      "Symphony No. 5 in B-flat major, K. 22": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante maestoso", "time_signature": "3/4" },
+        { "movement": "III. Presto", "time_signature": "2/4" }
       ],
-      "Piano Sonata No. 8 in C minor, Op. 13 \"Pathétique\"": [
-        {
-          "movement": "I. Grave - Allegro di molto e con brio",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Adagio cantabile",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "III. Rondo: Allegro",
-          "time_signature": "2/2"
-        }
+      "Symphony No. 6 in F major, K. 43": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Allegro", "time_signature": "2/4" }
       ],
-      "Piano Sonata No. 23 in F minor, Op. 57 \"Appassionata\"": [
-        {
-          "movement": "I. Allegro assai",
-          "time_signature": "12/8"
-        },
-        {
-          "movement": "II. Andante con moto",
-          "time_signature": "3/8"
-        },
-        {
-          "movement": "III. Allegro ma non troppo - Presto",
-          "time_signature": "2/2"
-        }
+      "Symphony No. 7 in D major, K. 45": [
+        { "movement": "I. Allegro maestoso", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Molto allegro", "time_signature": "2/4" }
       ],
-      "Bagatelle No. 25 in A minor, WoO 59 \"Für Elise\"": [
-        {
-          "movement": "Poco moto",
-          "time_signature": "3/8"
-        }
+      "Symphony No. 8 in D major, K. 48": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Molto allegro", "time_signature": "2/4" }
       ],
-      "Piano Concerto No. 5 in E-flat major, Op. 73 \"Emperor\"": [
-        {
-          "movement": "I. Allegro",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Adagio un poco mosso",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Rondo: Allegro",
-          "time_signature": "6/8"
-        }
+      "Symphony No. 9 in C major, K. 73 (\"Old Lambach\")": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto and Trio", "time_signature": "3/4" },
+        { "movement": "IV. Molto allegro", "time_signature": "2/4" }
       ],
-      "Violin Concerto in D major, Op. 61": [
-        {
-          "movement": "I. Allegro ma non troppo",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Larghetto",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Rondo: Allegro",
-          "time_signature": "6/8"
-        }
+      "Symphony No. 10 in G major, K. 74": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Allegro", "time_signature": "2/4" }
+      ],
+      "Symphony No. 11 in D major, K. 84": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Presto", "time_signature": "2/4" }
+      ],
+      "Symphony No. 12 in G major, K. 110": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Allegro", "time_signature": "2/4" }
+      ],
+      "Symphony No. 13 in F major, K. 112": [
+        { "movement": "I. Allegro spiritoso", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Molto allegro", "time_signature": "2/4" }
+      ],
+      "Symphony No. 14 in A major, K. 114": [
+        { "movement": "I. Allegro moderato", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Allegro vivace", "time_signature": "2/4" }
+      ],
+      "Symphony No. 15 in G major, K. 124": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Presto", "time_signature": "2/4" }
+      ],
+      "Symphony No. 16 in C major, K. 128": [
+        { "movement": "I. Allegro maestoso", "time_signature": "4/4" },
+        { "movement": "II. Andante grazioso", "time_signature": "3/8" },
+        { "movement": "III. Presto", "time_signature": "2/4" }
+      ],
+      "Symphony No. 17 in G major, K. 129": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Allegro (Menuetto)", "time_signature": "3/8" }
+      ],
+      "Symphony No. 18 in F major, K. 130": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "6/8" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Molto allegro", "time_signature": "2/4" }
+      ],
+      "Symphony No. 19 in E-flat major, K. 132": [
+        { "movement": "I. Allegro", "time_signature": "3/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Presto assai", "time_signature": "2/4" }
+      ],
+      "Symphony No. 20 in D major, K. 133": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "3/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Presto", "time_signature": "2/4" }
+      ],
+      "Symphony No. 21 in A major, K. 134": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "6/8" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Allegro", "time_signature": "2/4" }
+      ],
+      "Symphony No. 22 in C major, K. 162": [
+        { "movement": "I. Allegro assai", "time_signature": "2/2" },
+        { "movement": "II. Andante moderato", "time_signature": "2/4" },
+        { "movement": "III. Presto", "time_signature": "3/8" }
+      ],
+      "Symphony No. 23 in D major, K. 181": [
+        { "movement": "I. Allegro spiritoso", "time_signature": "2/2" },
+        { "movement": "II. Andantino grazioso", "time_signature": "6/8" },
+        { "movement": "III. Presto assai", "time_signature": "3/8" }
+      ],
+      "Symphony No. 24 in B-flat major, K. 182": [
+        { "movement": "I. Allegro spiritoso", "time_signature": "2/2" },
+        { "movement": "II. Andantino grazioso", "time_signature": "3/8" },
+        { "movement": "III. Presto", "time_signature": "3/8" }
+      ],
+      "Symphony No. 25 in G minor, K. 183": [
+        { "movement": "I. Allegro con brio", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Allegro", "time_signature": "4/4" }
+      ],
+      "Symphony No. 26 in E-flat major, K. 184": [
+        { "movement": "I. Molto allegro", "time_signature": "2/2" },
+        { "movement": "II. Andante", "time_signature": "3/8" },
+        { "movement": "III. Allegro (Menuetto)", "time_signature": "3/8" }
+      ],
+      "Symphony No. 27 in G major, K. 199": [
+        { "movement": "I. Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante moderato", "time_signature": "6/8" },
+        { "movement": "III. Presto", "time_signature": "2/4" }
+      ],
+      "Symphony No. 28 in C major, K. 200": [
+        { "movement": "I. Allegro spiritoso", "time_signature": "2/2" },
+        { "movement": "II. Andante", "time_signature": "3/4" },
+        { "movement": "III. Menuetto – Trio, Allegretto", "time_signature": "3/4" },
+        { "movement": "IV. Presto, 2/4", "time_signature": "2/4" }
+      ],
+      "Symphony No. 29 in A major, K. 201": [
+        { "movement": "I. Allegro moderato", "time_signature": "2/2" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio, Allegretto", "time_signature": "3/4" },
+        { "movement": "IV. Allegro con spirito", "time_signature": "6/8" }
+      ],
+      "Symphony No. 30 in D major, K. 202": [
+        { "movement": "I. Molto allegro", "time_signature": "2/2" },
+        { "movement": "II. Andantino con moto", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio, Allegretto", "time_signature": "3/4" },
+        { "movement": "IV. Allegro", "time_signature": "6/8" }
+      ],
+      "Symphony No. 31 in D major, K. 297 (\"Paris\")": [
+        { "movement": "I. Allegro assai", "time_signature": "6/8" },
+        { "movement": "II. Andante (in G major)", "time_signature": "3/4" },
+        { "movement": "III. Allegro (Finale)", "time_signature": "2/2" }
+      ],
+      "Symphony No. 32 in G major, K. 318": [
+        { "movement": "Allegro spiritoso (Overture in 3 sections)", "time_signature": "4/4" }
+      ],
+      "Symphony No. 33 in B-flat major, K. 319": [
+        { "movement": "I. Allegro assai", "time_signature": "2/2" },
+        { "movement": "II. Andante moderato", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Allegro assai", "time_signature": "2/4" }
+      ],
+      "Symphony No. 34 in C major, K. 338": [
+        { "movement": "I. Allegro vivace", "time_signature": "4/4" },
+        { "movement": "II. Andante di molto (in F major)", "time_signature": "3/4" },
+        { "movement": "III. Finale. Allegro vivace", "time_signature": "6/8" }
+      ],
+      "Symphony No. 35 in D major, K. 385 (\"Haffner\")": [
+        { "movement": "I. Allegro con spirito", "time_signature": "2/2" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Finale. Presto", "time_signature": "2/2" }
+      ],
+      "Symphony No. 36 in C major, K. 425 (\"Linz\")": [
+        { "movement": "I. Adagio – Allegro spiritoso", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Presto", "time_signature": "2/4" }
+      ],
+      "Symphony No. 37 in G major, K. 444 (\"Michael Haydn's No. 25\", Mozart intro)": [
+        { "movement": "I. Adagio maestoso – Allegro con spirito", "time_signature": "4/4" },
+        { "movement": "II. Andante sostenuto", "time_signature": "2/4" },
+        { "movement": "III. Finale. Allegro molto", "time_signature": "3/8" }
+      ],
+      "Symphony No. 38 in D major, K. 504 (\"Prague\")": [
+        { "movement": "I. Adagio – Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante", "time_signature": "6/8" },
+        { "movement": "III. Presto", "time_signature": "2/4" }
+      ],
+      "Symphony No. 39 in E-flat major, K. 543": [
+        { "movement": "I. Adagio – Allegro", "time_signature": "4/4" },
+        { "movement": "II. Andante con moto (in A-flat major)", "time_signature": "2/2" },
+        { "movement": "III. Menuetto. Allegretto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Finale. Allegro", "time_signature": "2/2" }
+      ],
+      "Symphony No. 40 in G minor, K. 550": [
+        { "movement": "I. Molto allegro", "time_signature": "2/2" },
+        { "movement": "II. Andante", "time_signature": "6/8" },
+        { "movement": "III. Menuetto. Allegretto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Finale. Allegro assai", "time_signature": "2/2" }
+      ],
+      "Symphony No. 41 in C major, K. 551 (\"Jupiter\")": [
+        { "movement": "I. Allegro vivace", "time_signature": "4/4" },
+        { "movement": "II. Andante cantabile (in F major)", "time_signature": "3/4" },
+        { "movement": "III. Menuetto. Allegretto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Molto allegro", "time_signature": "2/2" }
       ]
     },
-    "Wolfgang Amadeus Mozart": {
-      "Symphony No. 40 in G minor, K. 550": [
-        {
-          "movement": "I. Molto allegro",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "II. Andante",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "III. Menuetto: Allegretto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Finale: Allegro assai",
-          "time_signature": "2/2"
-        }
+    "Ludwig van Beethoven": {
+      "Symphony No. 1 in C major, Op. 21": [
+        { "movement": "I. Adagio molto – Allegro con brio", "time_signature": "4/4" },
+        { "movement": "II. Andante cantabile con moto", "time_signature": "3/8" },
+        { "movement": "III. Menuetto: Allegro molto e vivace", "time_signature": "3/4" },
+        { "movement": "IV. Adagio – Allegro molto e vivace", "time_signature": "2/4" }
       ],
-      "Symphony No. 41 in C major, K. 551 \"Jupiter\"": [
-        {
-          "movement": "I. Allegro vivace",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Andante cantabile",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Menuetto: Allegretto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Molto allegro",
-          "time_signature": "2/2"
-        }
+      "Symphony No. 2 in D major, Op. 36": [
+        { "movement": "I. Adagio molto – Allegro con brio", "time_signature": "4/4" },
+        { "movement": "II. Larghetto", "time_signature": "3/8" },
+        { "movement": "III. Scherzo: Allegro", "time_signature": "3/4" },
+        { "movement": "IV. Allegro molto", "time_signature": "2/2" }
       ],
-      "Requiem in D minor, K. 626": [
-        {
-          "movement": "I. Introitus: Requiem aeternam",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Kyrie eleison",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Sequentia: Dies irae",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "IV. Offertorium: Domine Jesu Christe",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "V. Sanctus",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "VI. Benedictus",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "VII. Agnus Dei",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "VIII. Communio: Lux aeterna",
-          "time_signature": "4/4"
-        }
+      "Symphony No. 3 in E-flat major, Op. 55 \"Eroica\"": [
+        { "movement": "I. Allegro con brio", "time_signature": "3/4" },
+        { "movement": "II. Marcia funebre: Adagio assai", "time_signature": "2/4" },
+        { "movement": "III. Scherzo: Allegro vivace", "time_signature": "3/4" },
+        { "movement": "IV. Finale: Allegro molto", "time_signature": "2/4" }
       ],
-      "Piano Concerto No. 21 in C major, K. 467": [
-        {
-          "movement": "I. Allegro maestoso",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Andante",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Allegro vivace assai",
-          "time_signature": "6/8"
-        }
+      "Symphony No. 4 in B-flat major, Op. 60": [
+        { "movement": "I. Adagio – Allegro vivace", "time_signature": "2/2" },
+        { "movement": "II. Adagio", "time_signature": "3/4" },
+        { "movement": "III. Allegro vivace", "time_signature": "3/4" },
+        { "movement": "IV. Allegro ma non troppo", "time_signature": "2/4" }
       ],
-      "Piano Sonata No. 11 in A major, K. 331 \"Alla Turca\"": [
-        {
-          "movement": "I. Andante grazioso",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "II. Menuetto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Alla Turca: Allegretto",
-          "time_signature": "2/4"
-        }
+      "Symphony No. 5 in C minor, Op. 67": [
+        { "movement": "I. Allegro con brio", "time_signature": "2/2" },
+        { "movement": "II. Andante con moto", "time_signature": "3/8" },
+        { "movement": "III. Scherzo: Allegro", "time_signature": "3/4" },
+        { "movement": "IV. Allegro", "time_signature": "4/4" }
       ],
-      "Eine kleine Nachtmusik (Serenade No. 13 for strings in G major), K. 525": [
-        {
-          "movement": "I. Allegro",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Romanze: Andante",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "III. Menuetto: Allegretto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Rondo: Allegro",
-          "time_signature": "2/4"
-        }
+      "Symphony No. 6 in F major, Op. 68 \"Pastoral\"": [
+        { "movement": "I. Awakening of cheerful feelings on arrival in the countryside: Allegro ma non troppo", "time_signature": "2/4" },
+        { "movement": "II. Scene by the brook: Andante molto mosso", "time_signature": "12/8" },
+        { "movement": "III. Merry gathering of country folk: Allegro", "time_signature": "3/4" },
+        { "movement": "IV. Thunder, Storm: Allegro", "time_signature": "4/4" },
+        { "movement": "V. Shepherd's song. Cheerful and thankful feelings after the storm: Allegretto", "time_signature": "6/8" }
       ],
-      "Symphony No. 25 in G minor, K. 183 \"Little G minor\"": [
-        {
-          "movement": "I. Allegro con brio",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Andante",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "III. Menuetto - Trio",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Allegro",
-          "time_signature": "4/4"
-        }
+      "Symphony No. 7 in A major, Op. 92": [
+        { "movement": "I. Poco sostenuto – Vivace", "time_signature": "6/8" },
+        { "movement": "II. Allegretto", "time_signature": "2/4" },
+        { "movement": "III. Presto – Assai meno presto", "time_signature": "3/4" },
+        { "movement": "IV. Allegro con brio", "time_signature": "2/4" }
+      ],
+      "Symphony No. 8 in F major, Op. 93": [
+        { "movement": "I. Allegro vivace e con brio", "time_signature": "3/4" },
+        { "movement": "II. Allegretto scherzando", "time_signature": "2/4" },
+        { "movement": "III. Tempo di Menuetto", "time_signature": "3/4" },
+        { "movement": "IV. Allegro vivace", "time_signature": "4/4" }
+      ],
+      "Symphony No. 9 in D minor, Op. 125 \"Choral\"": [
+        { "movement": "I. Allegro ma non troppo, un poco maestoso", "time_signature": "2/2" },
+        { "movement": "II. Molto vivace", "time_signature": "3/4" },
+        { "movement": "III. Adagio molto e cantabile", "time_signature": "4/4" },
+        { "movement": "IV. Finale: Presto - Allegro assai", "time_signature": "4/4" }
+      ],
+      "Piano Sonata No. 14 in C-sharp minor, Op. 27 No. 2 (\"Moonlight\")": [
+        { "movement": "I. Adagio sostenuto", "time_signature": "2/2" },
+        { "movement": "II. Allegretto", "time_signature": "3/4" },
+        { "movement": "III. Presto agitato", "time_signature": "4/4" }
       ]
     },
     "Johann Sebastian Bach": {
       "Brandenburg Concerto No. 3 in G major, BWV 1048": [
-        {
-          "movement": "I. (Allegro)",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "II. Adagio",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Allegro",
-          "time_signature": "12/8"
-        }
-      ],
-      "Cello Suite No. 1 in G major, BWV 1007": [
-        {
-          "movement": "I. Prélude",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Allemande",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Courante",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Sarabande",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "V. Menuet I & II",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "VI. Gigue",
-          "time_signature": "6/8"
-        }
-      ],
-      "Toccata and Fugue in D minor, BWV 565": [
-        {
-          "movement": "I. Toccata",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Fugue",
-          "time_signature": "4/4"
-        }
-      ],
-      "The Well-Tempered Clavier, Book I, BWV 846": [
-        {
-          "movement": "Prelude in C major",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Fugue in C major",
-          "time_signature": "4/4"
-        }
-      ],
-      "Goldberg Variations, BWV 988": [
-        {
-          "movement": "Aria",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Variation 1",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Variation 2",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Variation 3: Canone all'Unisono",
-          "time_signature": "12/8"
-        },
-        {
-          "movement": "Variation 4",
-          "time_signature": "3/8"
-        },
-        {
-          "movement": "Variation 5",
-          "time_signature": "3/4"
-        }
-      ],
-      "Orchestral Suite No. 3 in D major, BWV 1068": [
-        {
-          "movement": "I. Ouverture",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Air (\"Air on the G String\")",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Gavotte I & II",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "IV. Bourrée",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "V. Gigue",
-          "time_signature": "6/8"
-        }
-      ],
-      "Mass in B minor, BWV 232": [
-        {
-          "movement": "I. Kyrie",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Gloria",
-          "time_signature": "3/8"
-        },
-        {
-          "movement": "III. Credo",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "IV. Sanctus",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "V. Agnus Dei",
-          "time_signature": "4/4"
-        }
+        { "movement": "I. (Allegro – no tempo indicated)", "time_signature": "2/2" },
+        { "movement": "II. Adagio (in E minor)", "time_signature": "4/4" },
+        { "movement": "III. Allegro", "time_signature": "12/8" }
       ]
     },
-    "Frédéric Chopin": {
-      "Nocturne in E-flat major, Op. 9 No. 2": [
-        {
-          "movement": "Andante",
-          "time_signature": "12/8"
-        }
-      ],
-      "Prelude in E minor, Op. 28 No. 4": [
-        {
-          "movement": "Largo",
-          "time_signature": "2/2"
-        }
-      ],
-      "Ballade No. 1 in G minor, Op. 23": [
-        {
-          "movement": "Largo - Moderato",
-          "time_signature": "4/4"
-        }
-      ],
-      "Étude in C minor, Op. 10 No. 12 \"Revolutionary\"": [
-        {
-          "movement": "Allegro con fuoco",
-          "time_signature": "4/4"
-        }
-      ],
-      "Piano Sonata No. 2 in B-flat minor, Op. 35 \"Funeral March\"": [
-        {
-          "movement": "I. Grave - Doppio movimento",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Scherzo",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Marche funèbre: Lento",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "IV. Finale: Presto",
-          "time_signature": "2/2"
-        }
-      ],
-      "Waltz in D-flat major, Op. 64 No. 1 \"Minute Waltz\"": [
-        {
-          "movement": "Molto vivace",
-          "time_signature": "3/4"
-        }
-      ],
-      "Polonaise in A-flat major, Op. 53 \"Heroic\"": [
-        {
-          "movement": "Maestoso",
-          "time_signature": "3/4"
-        }
-      ]
-    },
-    "Pyotr Ilyich Tchaikovsky": {
-      "Symphony No. 6 in B minor, Op. 74 \"Pathétique\"": [
-        {
-          "movement": "I. Adagio - Allegro non troppo",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Allegro con grazia",
-          "time_signature": "5/4"
-        },
-        {
-          "movement": "III. Allegro molto vivace",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "IV. Adagio lamentoso",
-          "time_signature": "4/4"
-        }
-      ],
-      "The Nutcracker, Op. 71": [
-        {
-          "movement": "Overture",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "Act I: March",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Act I: Dance of the Sugar Plum Fairy",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Act II: Russian Dance (Trepak)",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "Act II: Waltz of the Flowers",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Act II: Pas de deux",
-          "time_signature": "4/4"
-        }
-      ],
-      "Piano Concerto No. 1 in B-flat minor, Op. 23": [
-        {
-          "movement": "I. Allegro non troppo e molto maestoso - Allegro con spirito",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Andantino semplice - Prestissimo",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Allegro con fuoco",
-          "time_signature": "3/4"
-        }
-      ],
-      "1812 Overture, Op. 49": [
-        {
-          "movement": "Largo - Allegro giusto",
-          "time_signature": "4/4"
-        }
-      ],
-      "Swan Lake, Op. 20": [
-        {
-          "movement": "Act I No. 2: Valse",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Act II No. 10: Scene",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Act II No. 13: Dance of the Swans",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Act III: Spanish Dance",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Act IV: Finale",
-          "time_signature": "4/4"
-        }
-      ],
-      "Romeo and Juliet, Fantasy-Overture": [
-        {
-          "movement": "Andante non tanto quasi moderato - Allegro giusto",
-          "time_signature": "4/4"
-        }
+    "Joseph Haydn": {
+      "Symphony No. 94 in G major, Hob. I:94 (\"Surprise\")": [
+        { "movement": "I. Adagio cantabile – Vivace assai", "time_signature": "6/8" },
+        { "movement": "II. Andante", "time_signature": "2/4" },
+        { "movement": "III. Menuetto. Allegro molto – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Finale. Allegro molto", "time_signature": "2/4" }
       ]
     },
     "Franz Schubert": {
-      "Symphony No. 8 in B minor, D. 759 \"Unfinished\"": [
-        {
-          "movement": "I. Allegro moderato",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "II. Andante con moto",
-          "time_signature": "3/8"
-        }
-      ],
-      "Ave Maria, D. 839": [
-        {
-          "movement": "Moderato",
-          "time_signature": "4/4"
-        }
-      ],
-      "Piano Quintet in A major, D. 667 \"Trout\"": [
-        {
-          "movement": "I. Allegro vivace",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Andante",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Scherzo: Presto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Theme and Variations: Andantino",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "V. Finale: Allegro giusto",
-          "time_signature": "6/8"
-        }
-      ],
-      "Impromptu in G-flat major, Op. 90 No. 3, D. 899": [
-        {
-          "movement": "Andante",
-          "time_signature": "4/4"
-        }
+      "Symphony No. 8 in B minor, D. 759 (\"Unfinished\")": [
+        { "movement": "I. Allegro moderato", "time_signature": "3/4" },
+        { "movement": "II. Andante con moto", "time_signature": "3/8" }
+      ]
+    },
+    "Frédéric Chopin": {
+      "Piano Sonata No. 2 in B-flat minor, Op. 35": [
+        { "movement": "I. Grave – Doppio movimento", "time_signature": "4/4" },
+        { "movement": "II. Scherzo", "time_signature": "3/4" },
+        { "movement": "III. Marche funèbre: Lento", "time_signature": "4/4" },
+        { "movement": "IV. Finale: Presto", "time_signature": "2/2" }
+      ]
+    },
+    "Claude Debussy": {
+      "La Mer, L. 109": [
+        { "movement": "I. De l'aube à midi sur la mer", "time_signature": "6/8" },
+        { "movement": "II. Jeux de vagues", "time_signature": "6/8" },
+        { "movement": "III. Dialogue du vent et de la mer", "time_signature": "4/4" }
+      ]
+    },
+    "Igor Stravinsky": {
+      "Symphony in C": [
+        { "movement": "I. Moderato alla breve", "time_signature": "2/2" },
+        { "movement": "II. Larghetto concertante", "time_signature": "4/4" },
+        { "movement": "III. Allegretto (Scherzo)", "time_signature": "3/8" },
+        { "movement": "IV. Largo – Tempo giusto, alla breve", "time_signature": "2/2" }
+      ]
+    },
+    "Pyotr Ilyich Tchaikovsky": {
+      "Symphony No. 6 in B minor, Op. 74 (\"Pathétique\")": [
+        { "movement": "I. Adagio – Allegro non troppo", "time_signature": "4/4" },
+        { "movement": "II. Allegro con grazia", "time_signature": "5/4" },
+        { "movement": "III. Allegro molto vivace", "time_signature": "2/4" },
+        { "movement": "IV. Adagio lamentoso – Andante", "time_signature": "4/4" }
       ]
     },
     "Johannes Brahms": {
       "Symphony No. 4 in E minor, Op. 98": [
-        {
-          "movement": "I. Allegro non troppo",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "II. Andante moderato",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "III. Allegro giocoso",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "IV. Allegro energico e passionato (Passacaglia)",
-          "time_signature": "3/4"
-        }
-      ],
-      "Hungarian Dance No. 5 in G minor, WoO 1": [
-        {
-          "movement": "Allegro - Vivace",
-          "time_signature": "2/4"
-        }
-      ],
-      "Violin Concerto in D major, Op. 77": [
-        {
-          "movement": "I. Allegro non troppo",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Adagio",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Allegro giocoso, ma non troppo vivace",
-          "time_signature": "2/4"
-        }
-      ],
-      "Lullaby (Wiegenlied), Op. 49 No. 4": [
-        {
-          "movement": "Moderato",
-          "time_signature": "3/4"
-        }
-      ]
-    },
-    "Claude Debussy": {
-      "Clair de Lune (Suite Bergamasque, No. 3)": [
-        {
-          "movement": "Andante très expressif",
-          "time_signature": "9/8"
-        }
-      ],
-      "Prélude à l'après-midi d'un faune": [
-        {
-          "movement": "Très modéré",
-          "time_signature": "9/8"
-        }
-      ],
-      "La Mer": [
-        {
-          "movement": "I. De l'aube à midi sur la mer",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "II. Jeux de vagues",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "III. Dialogue du vent et de la mer",
-          "time_signature": "4/4"
-        }
-      ]
-    },
-    "Sergei Rachmaninoff": {
-      "Piano Concerto No. 2 in C minor, Op. 18": [
-        {
-          "movement": "I. Moderato",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Adagio sostenuto",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Allegro scherzando",
-          "time_signature": "2/2"
-        }
-      ],
-      "Prelude in C-sharp minor, Op. 3 No. 2": [
-        {
-          "movement": "Lento - Agitato",
-          "time_signature": "4/4"
-        }
-      ],
-      "Rhapsody on a Theme of Paganini, Op. 43": [
-        {
-          "movement": "Introduction and Variation 1",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "Variation 18",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Variation 24",
-          "time_signature": "6/8"
-        }
-      ]
-    },
-    "Antonio Vivaldi": {
-      "The Four Seasons, Op. 8": [
-        {
-          "movement": "Concerto No. 1 in E major, \"Spring\": I. Allegro",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Concerto No. 1 in E major, \"Spring\": II. Largo",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Concerto No. 1 in E major, \"Spring\": III. Allegro pastorale",
-          "time_signature": "12/8"
-        },
-        {
-          "movement": "Concerto No. 2 in G minor, \"Summer\": I. Allegro non molto",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Concerto No. 2 in G minor, \"Summer\": II. Adagio",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Concerto No. 2 in G minor, \"Summer\": III. Presto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Concerto No. 3 in F major, \"Autumn\": I. Allegro",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Concerto No. 3 in F major, \"Autumn\": II. Adagio molto",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Concerto No. 3 in F major, \"Autumn\": III. Allegro",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "Concerto No. 4 in F minor, \"Winter\": I. Allegro non molto",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Concerto No. 4 in F minor, \"Winter\": II. Largo",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Concerto No. 4 in F minor, \"Winter\": III. Allegro",
-          "time_signature": "3/8"
-        }
-      ]
-    },
-    "Edvard Grieg": {
-      "Peer Gynt Suite No. 1, Op. 46": [
-        {
-          "movement": "I. Morning Mood",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "II. The Death of Åse",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Anitra's Dance",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. In the Hall of the Mountain King",
-          "time_signature": "4/4"
-        }
-      ],
-      "Piano Concerto in A minor, Op. 16": [
-        {
-          "movement": "I. Allegro molto moderato",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Adagio",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Allegro moderato molto e marcato",
-          "time_signature": "2/4"
-        }
-      ]
-    },
-    "Joseph Haydn": {
-      "Symphony No. 94 in G major \"Surprise\"": [
-        {
-          "movement": "I. Adagio cantabile - Vivace assai",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "II. Andante",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "III. Menuetto: Allegro molto",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Finale: Allegro molto",
-          "time_signature": "2/4"
-        }
-      ],
-      "String Quartet in C major, Op. 76 No. 3 \"Emperor\"": [
-        {
-          "movement": "I. Allegro",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Poco adagio; cantabile",
-          "time_signature": "2/4"
-        },
-        {
-          "movement": "III. Menuetto: Allegro",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Finale: Presto",
-          "time_signature": "2/2"
-        }
-      ]
-    },
-    "Maurice Ravel": {
-      "Boléro": [
-        {
-          "movement": "Tempo di Bolero moderato assai",
-          "time_signature": "3/4"
-        }
-      ],
-      "Pavane pour une infante défunte": [
-        {
-          "movement": "Lent",
-          "time_signature": "4/4"
-        }
-      ],
-      "String Quartet in F major": [
-        {
-          "movement": "I. Allegro moderato - Très doux",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Assez vif - Très rythmé",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "III. Très lent",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "IV. Vif et agité",
-          "time_signature": "5/8"
-        }
+        { "movement": "I. Allegro non troppo", "time_signature": "2/2" },
+        { "movement": "II. Andante moderato", "time_signature": "6/8" },
+        { "movement": "III. Allegro giocoso", "time_signature": "2/4" },
+        { "movement": "IV. Allegro energico e passionato (Passacaglia)", "time_signature": "3/4" }
       ]
     },
     "Felix Mendelssohn": {
-      "Symphony No. 4 in A major, Op. 90 \"Italian\"": [
-        {
-          "movement": "I. Allegro vivace",
-          "time_signature": "6/8"
-        },
-        {
-          "movement": "II. Andante con moto",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Con moto moderato",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Saltarello: Presto",
-          "time_signature": "6/8"
-        }
-      ],
-      "Violin Concerto in E minor, Op. 64": [
-        {
-          "movement": "I. Allegro molto appassionato",
-          "time_signature": "2/2"
-        },
-        {
-          "movement": "II. Andante",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Allegretto non troppo - Allegro molto vivace",
-          "time_signature": "6/8"
-        }
-      ],
-      "Wedding March from A Midsummer Night's Dream": [
-        {
-          "movement": "Allegro vivace",
-          "time_signature": "4/4"
-        }
+      "Symphony No. 4 in A major, Op. 90 (\"Italian\")": [
+        { "movement": "I. Allegro vivace", "time_signature": "6/8" },
+        { "movement": "II. Andante con moto", "time_signature": "4/4" },
+        { "movement": "III. Con moto moderato (Menuetto) – Trio", "time_signature": "3/4" },
+        { "movement": "IV. Saltarello. Presto", "time_signature": "6/8" }
       ]
     },
-    "George Frideric Handel": {
-      "Messiah, HWV 56": [
-        {
-          "movement": "Overture",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Comfort ye, my people",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Ev'ry valley shall be exalted",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "And the glory of the Lord",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Hallelujah Chorus",
-          "time_signature": "4/4"
-        }
-      ],
-      "Water Music Suite No. 1 in F major, HWV 348": [
-        {
-          "movement": "I. Ouverture: Largo - Allegro",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "II. Adagio e staccato",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "III. Allegro",
-          "time_signature": "3/4"
-        },
-        {
-          "movement": "IV. Andante",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "V. Menuet",
-          "time_signature": "3/4"
-        }
-      ]
-    },
-    "Giacomo Puccini": {
-      "La bohème": [
-        {
-          "movement": "Act I: Che gelida manina",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Act I: Sì, mi chiamano Mimì",
-          "time_signature": "4/4"
-        },
-        {
-          "movement": "Act I: O soave fanciulla",
-          "time_signature": "3/4"
-        }
-      ],
-      "Madama Butterfly": [
-        {
-          "movement": "Act II: Un bel dì vedremo",
-          "time_signature": "3/4"
-        }
-      ]
-    },
-    "Richard Wagner": {
-      "Ride of the Valkyries (Die Walküre)": [
-        {
-          "movement": "Act III Scene 1",
-          "time_signature": "6/8"
-        }
-      ],
-      "Bridal Chorus (Lohengrin)": [
-        {
-          "movement": "Act III Scene 1",
-          "time_signature": "4/4"
-        }
+    "Maurice Ravel": {
+      "String Quartet in F major, M. 35": [
+        { "movement": "I. Allegro moderato – Très doux", "time_signature": "4/4" },
+        { "movement": "II. Assez vif – Très rythmé", "time_signature": "3/4" },
+        { "movement": "III. Très lent", "time_signature": "4/4" },
+        { "movement": "IV. Vif et agité", "time_signature": "5/8" }
       ]
     }
-    
   }
+}
